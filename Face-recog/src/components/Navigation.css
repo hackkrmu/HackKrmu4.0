@@ -1,0 +1,46 @@
+.logo{
+    width: 6rem;
+    display: inline-block;
+    position: absolute;
+    left: 5rem;
+    top: 0rem;
+}
+
+.nav{
+    z-index: 10;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+ ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    left: 34rem;
+    width: 600px;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 20px;
+    
+    letter-spacing: 0.03em;
+ }
+  
+  li {
+    float: left;
+    padding: 1rem 0.7rem;
+  }
+  
+  li a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    color: black !important;
+  }
+
+
+  
