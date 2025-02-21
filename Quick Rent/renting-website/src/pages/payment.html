@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        nav {
+            background-color: #444;
+            padding: 1em;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        main {
+            padding: 2em;
+            background-color: #fff;
+            margin: 2em auto;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+        input {
+            margin-bottom: 1em;
+            padding: 0.5em;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 0.7em;
+            font-size: 1.1em;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        .total-amount {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 1em;
+            color: #333;
+        }
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Renting Website
+    </header>
+    
+    <nav>
+        <a href="../../index.html">Home</a>
+        <a href="../pages/register.html">Register</a>
+        <a href="../pages/login.html">Login</a>
+    </nav>
+
+    <main>
+        <h1>Payment</h1>
+        <form id="payment-form">
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" required>
+
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" name="expiry-date" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required>
+
+            <div class="total-amount">Total Amount: Rs. 50 (Delivery Charge)</div>
+
+            <button type="submit">Pay</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Renting Website. All rights reserved.</p>
+    </footer>
+
+    <script src="../assets/js/scripts.js"></script>
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Thank you for contributing your role in saving the environment!');
+            window.location.href = 'thank-you.html';
+        });
+    </script>
+</body>
+</html>

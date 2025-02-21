@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Renting Website</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        main {
+            width: 80%;
+            margin-top: 20px;
+        }
+        .featured-items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .featured-items h1 {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .item-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .item h2 {
+            font-weight: bold;
+        }
+        .item button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: blue;
+            color: white;
+        }
+        .item button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="header"></div>
+    </header>
+    
+    <nav>
+        <div id="navbar"></div>
+    </nav>
+
+    <main>
+        <section class="featured-items">
+            <h1>Featured Items for Rent and Sale</h1>
+            <div class="item-list">
+                <div class="item">
+                    <img src="https://i.etsystatic.com/19750256/r/il/a06f4c/1859109150/il_570xN.1859109150_tqje.jpg" alt="Blazer Cloth">
+                    <h2>Blazer Cloth</h2>
+                    <p>Description of Blazer Cloth</p>
+                    <button>Rent</button>
+                    <button>Buy</button>
+                </div>
+                <div class="item">
+                    <img src="https://files.sophie.co.ke/2023/05/1955044573_8664-1_9826.jpg" alt="Watch">
+                    <h2>Watch</h2>
+                    <p>Description of Watch</p>
+                    <button>Rent</button>
+                    <button>Buy</button>
+                </div>
+                <div class="item">
+                    <img src="https://th.bing.com/th/id/OIP.rSARovpxcCyrhEJvpia83AHaHa?rs=1&pid=ImgDetMain" alt="Painting Kit">
+                    <h2>Painting Kit</h2>
+                    <p>Description of Painting Kit</p>
+                    <button>Rent</button>
+                    <button>Buy</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <script src="../assets/js/scripts.js"></script>
+</body>
+</html>

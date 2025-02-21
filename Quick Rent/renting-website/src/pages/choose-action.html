@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Action</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        main {
+            margin-top: 20px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: blue;
+            color: white;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="header"></div>
+    </header>
+    <nav>
+        <div id="navbar"></div>
+    </nav>
+    <main>
+        <h1>Choose Action</h1>
+        <p id="points-display"></p>
+        <button onclick="window.location.href='rent.html'">Rent</button>
+        <button onclick="window.location.href='buy.html'">Buy</button>
+        <button onclick="window.location.href='donation.html'">Donate</button>
+    </main>
+    <footer>
+        <div id="footer"></div>
+    </footer>
+    <script src="../assets/js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let points = localStorage.getItem('donationPoints') || 0;
+            document.getElementById('points-display').innerText = `You have ${points} points.`;
+        });
+    </script>
+</body>
+</html>
