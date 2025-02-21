@@ -51,48 +51,56 @@
   <script src="admin.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-    const darkModeToggle = document.getElementById("dark-mode-toggle");
-
-    function enableDarkMode() {
-        document.body.classList.add("dark-mode");
-        localStorage.setItem("darkMode", "enabled");
-        darkModeToggle.textContent = "☀ Light Mode";
-    }
-
-    function disableDarkMode() {
-        document.body.classList.remove("dark-mode");
-        localStorage.setItem("darkMode", "disabled");
-        darkModeToggle.textContent = "🌙 Dark Mode";
-    }
-
-    if (localStorage.getItem("darkMode") === "enabled") {
-        enableDarkMode();
-    }
-
-    darkModeToggle.addEventListener("click", () => {
-        if (document.body.classList.contains("dark-mode")) {
-            disableDarkMode();
-        } else {
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+    
+        function enableDarkMode() {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "enabled");
+            darkModeToggle.textContent = "☀ Light Mode";
+        }
+    
+        function disableDarkMode() {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "disabled");
+            darkModeToggle.textContent = "🌙 Dark Mode";
+        }
+    
+        if (localStorage.getItem("darkMode") === "enabled") {
             enableDarkMode();
         }
+    
+        darkModeToggle.addEventListener("click", () => {
+            if (document.body.classList.contains("dark-mode")) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
     });
-});
-function approveTutor(button) {
-  const row = button.parentElement.parentElement;
-  const name = row.cells[0].textContent;
-  const subjects = row.cells[1].textContent;
-
-  document.getElementById("verified-tutors").innerHTML += `
-    <tr>
-        <td>${name}</td>
-        <td>${subjects}</td>
-    </tr>
-  `;
-  row.remove();
-}
-function logout() {
-  alert("Logged out");
-}
-</script>
+    
+    function approveTutor(button) {
+        const row = button.parentElement.parentElement;
+        const name = row.cells[0].textContent;
+        const subjects = row.cells[1].textContent;
+    
+        document.getElementById("verified-tutors").innerHTML += `
+            <tr>
+                <td>${name}</td>
+                <td>${subjects}</td>
+            </tr>
+        `;
+        row.remove();
+    }
+    
+    function ignoreTutor(button) {
+        const row = button.parentElement.parentElement;
+        row.remove();
+    }
+    
+    function logout() {
+        alert("Logged out");
+    }
+    </script>
+    
 </body>
 </html>
