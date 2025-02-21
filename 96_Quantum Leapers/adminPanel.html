@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="admin-panel" class="form-card">
+  <h3>Pending Tutor Approvals</h3>
+  <div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+          <th>Subjects</th>
+          <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="pending-tutors">
+      <tr>
+        <td>Jha Sir</td>
+        <td>Math, Science</td>
+        <td>
+        <button class="btn approve-btn" onclick="approveTutor(this)">Approve</button>
+        <button class="btn ignore-btn" onclick="ignoreTutor(this)">Ignore</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>Verified Tutors</h3>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Subjects</th>
+      </tr>
+    </thead>
+    <tbody id="verified-tutors"></tbody>
+  </table>
+  </div>
+  </div>
+    
+  <a href="index.html" class="btn back">🔙 Back</a>
+  <button class="btn" id="dark-mode-toggle">🌙 Dark Mode</button>
+  <a href="admin.html"><button class="btn" onclick="logout()">Logout</button></a>
+  <script src="admin.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+    function enableDarkMode() {
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("darkMode", "enabled");
+        darkModeToggle.textContent = "☀ Light Mode";
+    }
+
+    function disableDarkMode() {
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("darkMode", "disabled");
+        darkModeToggle.textContent = "🌙 Dark Mode";
+    }
+
+    if (localStorage.getItem("darkMode") === "enabled") {
+        enableDarkMode();
+    }
+
+    darkModeToggle.addEventListener("click", () => {
+        if (document.body.classList.contains("dark-mode")) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    });
+});
+function approveTutor(button) {
+  const row = button.parentElement.parentElement;
+  const name = row.cells[0].textContent;
+  const subjects = row.cells[1].textContent;
+
+  document.getElementById("verified-tutors").innerHTML += `
+    <tr>
+        <td>${name}</td>
+        <td>${subjects}</td>
+    </tr>
+  `;
+  row.remove();
+}
+function logout() {
+  alert("Logged out");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Tutors</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    .input {
+    width: 675px;
+    margin: 8px;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.3s, color 0.3s;
+}
+    </style>
+</head>
+<body>
+    <button id="dark-mode-toggle" class="btn toggle">🌙 Dark Mode</button>
+
+    <div class="container">
+        <h2 class="title">Find Nearby Tutors</h2>
+
+        <label for="student-name">Student Name</label>
+        <input type="text" id="student-name" class="input" placeholder="Enter student name">
+        <br>
+
+        <label for="student-class">Class/Grade</label>
+        <input type="text" id="student-class" class="input" placeholder="Enter your class (e.g., 10th Grade)">
+        <br>
+
+        <label for="student-contact">Contact Number</label>
+        <input type="tel" id="student-contact" class="input" placeholder="Enter contact number">
+        <br>
+
+        <label for="subject-preference">Preferred Subjects</label>
+        <input type="text" id="subject-preference" class="input" placeholder="E.g. Math, Science">
+        <br>
+
+        <label for="location">Location</label>
+        <input type="text" id="location" class="input" placeholder="Enter your location">
+        <button onclick="getCurrentLocation()" class="btn">📍 Use Current Location</button>
+        <div id="map" style="width: 100%; height: 400px;"></div>
+
+        <label for="preferred-time">Preferred Time</label>
+        <select id="preferred-time" class="input">
+            <option value="Morning">Morning</option>
+            <option value="Afternoon">Afternoon</option>
+            <option value="Evening">Evening</option>
+        </select>
+
+        <button onclick="findTutors()" class="btn">Find Tutors</button>
+
+        <div id="tutor-list" class="tutor-list" style="display: none;"></div>
+
+        <a href="index.html" class="btn back">🔙 Back</a>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+        function enableDarkMode() {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "enabled");
+            darkModeToggle.textContent = "☀ Light Mode";
+        }
+
+        function disableDarkMode() {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "disabled");
+            darkModeToggle.textContent = "🌙 Dark Mode";
+        }
+
+        if (localStorage.getItem("darkMode") === "enabled") {
+            enableDarkMode();
+        }
+
+        darkModeToggle.addEventListener("click", () => {
+            if (document.body.classList.contains("dark-mode")) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+    });
+    </script>
+</body>
+</html>

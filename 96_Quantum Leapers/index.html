@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Quest</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="dark-mode-toggle" class="btn toggle">🌙 Dark Mode</button>
+
+    <div class="container">
+        <h1>Welcome to Tutor Quest</h1>
+        <p>Select your role to proceed:</p>
+        <div class="button-group">
+            <a href="student.html" class="btn">Login as Student</a>
+            <a href="teacher.html" class="btn">Login as Teacher</a>
+            <a href="admin.html" class="btn">Login as Admin</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+        function enableDarkMode() {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "enabled");
+            darkModeToggle.textContent = "☀ Light Mode";
+        }
+
+        function disableDarkMode() {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "disabled");
+            darkModeToggle.textContent = "🌙 Dark Mode";
+        }
+
+        if (localStorage.getItem("darkMode") === "enabled") {
+            enableDarkMode();
+        }
+
+        darkModeToggle.addEventListener("click", () => {
+            if (document.body.classList.contains("dark-mode")) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+    });
+    </script>
+</body>
+</html>

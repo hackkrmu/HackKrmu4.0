@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Tutor Management</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+    .input {
+    width: 500px;
+    margin: 8px;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.3s, color 0.3s;
+}
+    </style>
+  </head>
+  <body>
+    <button id="dark-mode-toggle" class="btn toggle">🌙 Dark Mode</button>
+
+    <div class="container">
+      <div class="admin-card">
+        <h1 class="text-center">Tutor Management Admin Panel</h1>
+
+        <div id="login-section" class="form-card">
+          <h3>Admin Login</h3>
+          <input
+            type="text"
+            id="username"
+            class="input"
+            placeholder="Username"
+          />
+          <br>
+          <input
+            type="password"
+            id="password"
+            class="input mt-2"
+            placeholder="Password"
+          />
+          <button class="btn submit mt-2" onclick="adminLogin()">Login</button>
+          
+        <a href="index.html" class="btn back">🔙 Back</a>
+          <p id="login-message" class="error-message mt-2"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="admin.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+        function enableDarkMode() {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "enabled");
+            darkModeToggle.textContent = "☀ Light Mode";
+        }
+
+        function disableDarkMode() {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "disabled");
+            darkModeToggle.textContent = "🌙 Dark Mode";
+        }
+
+        if (localStorage.getItem("darkMode") === "enabled") {
+            enableDarkMode();
+        }
+
+        darkModeToggle.addEventListener("click", () => {
+            if (document.body.classList.contains("dark-mode")) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+    });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .input {
+        width: 675px;
+        margin: 8px;
+        padding: 8px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: background 0.3s, color 0.3s;
+    }
+        </style>
+</head>
+<body>
+    <button id="dark-mode-toggle" class="btn toggle">🌙 Dark Mode</button>
+
+    <div class="container">
+        <div class="registration-card">
+            <h2 class="title">Teacher Registration</h2>
+
+            <div class="photo-preview">
+                <img id="preview-img" src="default-avatar.png" alt="Profile Preview">
+            </div>
+
+            <form id="teacher-form">
+                <label for="teacher-name">Full Name</label>
+                <input type="text" id="teacher-name" class="input" placeholder="Enter your name">
+
+                <label for="teacher-address">Address</label>
+                <input type="text" id="teacher-address" class="input" placeholder="Enter your address">
+
+                <label for="teacher-experience">Experience (in years)</label>
+                <input type="number" id="teacher-experience" class="input" placeholder="Enter your experience">
+
+                <label for="teacher-subjects">Subjects You Teach</label>
+                <input type="text" id="teacher-subjects" class="input" placeholder="E.g. Math, Physics">
+
+                <label for="teacher-history">Educational History</label>
+                <input type="text" id="teacher-history" class="input" placeholder="E.g. MSc in Mathematics from XYZ University">
+
+                <label for="teacher-plus-points">Your Plus Points</label>
+                <textarea id="teacher-plus-points" class="input textarea" placeholder="E.g. Patient, Interactive teaching, Strong conceptual knowledge"></textarea>
+
+                <label for="teacher-photo">Upload Profile Picture</label>
+                <input type="file" id="teacher-photo" class="input" accept="image/*" onchange="previewPhoto(event)">
+
+                <h3>Verification Documents</h3>
+                <label for="degree-certificate">Upload Degree Certificate</label>
+                <input type="file" id="degree-certificate" class="input" accept="application/pdf,image/*">
+
+                <label for="institute-id">Upload Coaching Institute ID</label>
+                <input type="file" id="institute-id" class="input" accept="application/pdf,image/*">
+
+                <label for="demo-video">Upload Demo Teaching Video</label>
+                <input type="file" id="demo-video" class="input" accept="video/*">
+
+                <div class="verification-status">
+                    <strong>Verification Status:</strong> <span id="verification-status">Pending</span>
+                </div>
+
+                <button type="button" onclick="submitTeacherInfo()" class="btn submit">
+                    ✅ Submit
+                </button>
+                <a href="index.html" class="btn back">🔙 Back</a>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        function previewPhoto(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const img = document.getElementById("preview-img");
+                img.src = reader.result;
+                img.style.display = "block";
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function submitTeacherInfo() {
+            let name = document.getElementById('teacher-name').value.trim();
+            let address = document.getElementById('teacher-address').value.trim();
+            let experience = document.getElementById('teacher-experience').value.trim();
+            let subjects = document.getElementById('teacher-subjects').value.trim();
+            let history = document.getElementById('teacher-history').value.trim();
+            let plusPoints = document.getElementById('teacher-plus-points').value.trim();
+            let photo = document.getElementById('teacher-photo').files.length;
+            let degree = document.getElementById('degree-certificate').files.length;
+            let instituteId = document.getElementById('institute-id').files.length;
+            let demoVideo = document.getElementById('demo-video').files.length;
+
+            if (!name || !address || !experience || !subjects || !history || !plusPoints || !photo || !degree || !instituteId || !demoVideo) {
+                alert("⚠️ Please fill in all fields and upload required documents.");
+                return;
+            }
+
+            alert("✅ Teacher information submitted successfully!");
+
+            document.getElementById("verification-status").innerText = "Under Review";
+
+            document.getElementById("teacher-form").reset();
+
+            document.getElementById("preview-img").src = "default-avatar.png";
+        }
+                document.addEventListener("DOMContentLoaded", () => {
+            const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+            function enableDarkMode() {
+                document.body.classList.add("dark-mode");
+                localStorage.setItem("darkMode", "enabled");
+                darkModeToggle.textContent = "☀ Light Mode";
+            }
+
+            function disableDarkMode() {
+                document.body.classList.remove("dark-mode");
+                localStorage.setItem("darkMode", "disabled");
+                darkModeToggle.textContent = "🌙 Dark Mode";
+            }
+
+            if (localStorage.getItem("darkMode") === "enabled") {
+                enableDarkMode();
+            }
+
+            darkModeToggle.addEventListener("click", () => {
+                if (document.body.classList.contains("dark-mode")) {
+                    disableDarkMode();
+                } else {
+                    enableDarkMode();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

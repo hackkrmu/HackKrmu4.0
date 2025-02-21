@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher 1 Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="dark-mode-toggle" class="btn toggle">🌙 Dark Mode</button>
+
+    <div class="container teacher-profile">
+        <div class="profile-photo">
+            <img src="teacher1.jpeg" alt="Teacher 1">
+        </div>
+        <h2 class="teacher-name">Ms. Rema Sharma</h2>
+
+        <div class="teacher-info">
+            <h3>🎓 Education History</h3>
+            <p>Bachelor's in Mathematics - Manav Rachna University</p>
+            <p>Master's in Education - K.R. Mangalam University</p>
+
+            <h3>⭐ Plus Points</h3>
+            <ul>
+                <li>Friendly and Student-Focused Approach</li>
+                <li>Expert in Simplifying Complex Topics</li>
+                <li>Interactive Teaching Style</li>
+            </ul>
+
+            <h3>📚 Subjects & Topics</h3>
+            <ul>
+                <li><strong>Mathematics:</strong> Algebra, Calculus, Trigonometry, Geometry</li>
+                <li><strong>Physics:</strong> Mechanics, Thermodynamics, Electromagnetism</li>
+                <li><strong>Statistics:</strong> Probability, Data Analysis, Regression</li>
+            </ul>
+        </div>
+
+        <a href="student.html" class="btn back">🔙 Back</a>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+        function enableDarkMode() {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "enabled");
+            darkModeToggle.textContent = "☀ Light Mode";
+        }
+
+        function disableDarkMode() {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "disabled");
+            darkModeToggle.textContent = "🌙 Dark Mode";
+        }
+
+        if (localStorage.getItem("darkMode") === "enabled") {
+            enableDarkMode();
+        }
+
+        darkModeToggle.addEventListener("click", () => {
+            if (document.body.classList.contains("dark-mode")) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+    });
+    </script>
+</body>
+</html>
