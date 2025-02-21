@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Items</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header, nav, footer {
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            font-size: 1.2em;
+        }
+        main {
+            width: 80%;
+            max-width: 1000px;
+            margin-top: 20px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        #search-bar {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        #items-for-sale {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+        .item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #007bff;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        .item img {
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        .buy-box {
+            margin-top: 15px;
+        }
+        .buy-box button {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            color: white;
+            transition: background 0.3s;
+        }
+        .buy-box button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="header">Buy & Sell Platform</div>
+    </header>
+    <nav>
+        <div id="navbar">Home | Buy | Contact</div>
+    </nav>
+    <main>
+        <h1>Buy Items</h1>
+        <input type="text" id="search-bar" placeholder="Search for an item..." onkeyup="filterItems()">
+        <div id="items-for-sale">
+            <div class="item" data-name="watch">
+                <img src="https://m.media-amazon.com/images/I/71XtaHbGlwL._AC_SL1001_.jpg" alt="Watch">
+                <h2>Watch</h2>
+                <div class="buy-box">
+                    <button onclick="window.location.href='payment.html'">Buy</button>
+                </div>
+            </div>
+            <div class="item" data-name="blazer">
+                <img src="https://th.bing.com/th/id/OIP.cAMFORGUUf-THDrFRbQ-GgHaHa?rs=1&pid=ImgDetMain" alt="Blazer">
+                <h2>Blazer</h2>
+                <div class="buy-box">
+                    <button onclick="window.location.href='payment.html'">Buy</button>
+                </div>
+            </div>
+            <div class="item" data-name="household item">
+                <img src="https://thumbs.dreamstime.com/b/prague-czech-february-old-used-items-sale-flea-market-vintage-retail-objects-popular-shopping-europe-268371498.jpg" alt="Household Item">
+                <h2>Used Item</h2>
+                <div class="buy-box">
+                    <button onclick="window.location.href='payment.html'">Buy</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div id="footer">&copy; 2025 Buy & Sell Platform. All rights reserved.</div>
+    </footer>
+    <script src="../assets/js/scripts.js"></script>
+    <script>
+        async function loadComponent(id, url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${url}`);
+                }
+                const text = await response.text();
+                document.getElementById(id).innerHTML = text;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        loadComponent('header', '../components/header.html');
+        loadComponent('navbar', '../components/navbar.html');
+        loadComponent('footer', '../components/footer.html');
+
+        function filterItems() {
+            let input = document.getElementById("search-bar").value.toLowerCase();
+            let items = document.querySelectorAll(".item");
+            items.forEach(item => {
+                let itemName = item.getAttribute("data-name");
+                item.style.display = itemName.includes(input) ? "block" : "none";
+            });
+        }
+    </script>
+</body>
+</html>

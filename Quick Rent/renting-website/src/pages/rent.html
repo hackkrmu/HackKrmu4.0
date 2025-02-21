@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        header {
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        nav {
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            background-color: #0056b3;
+            color: white;
+        }
+        main {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            border: 2px solid #007bff;
+            width: 40%;
+        }
+        h1 {
+            margin-bottom: 25px;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #007bff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        input, button {
+            padding: 12px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="logo">📦 RentEase</div>
+    </header>
+    <nav>
+        <div id="navbar">Home | Rent | Contact</div>
+    </nav>
+    <main>
+        <h1>Rent Your Items</h1>
+        <form id="rent-form">
+            <label for="item-name">Item Name:</label>
+            <input type="text" id="item-name" name="item-name" required>
+            <label for="item-image">Upload Image:</label>
+            <input type="file" id="item-image" name="item-image" required>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    <footer>
+        <div id="footer">&copy; 2025 RentEase. All rights reserved.</div>
+    </footer>
+    <script src="../assets/js/scripts.js"></script>
+    <script>
+        document.getElementById('rent-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Item uploaded successfully!');
+        });
+    </script>
+</body>
+</html>

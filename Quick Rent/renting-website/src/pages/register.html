@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        main {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            border: 2px solid #007bff;
+            width: 350px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            text-align: left;
+            font-weight: bold;
+        }
+        input, button {
+            padding: 12px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="header"></div>
+    </header>
+    <nav>
+        <div id="navbar"></div>
+    </nav>
+    <main>
+        <h1>Register</h1>
+        <form id="register-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Register</button>
+        </form>
+    </main>
+    <footer>
+        <div id="footer"></div>
+    </footer>
+    <script src="../assets/js/scripts.js"></script>
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Registration successful! Redirecting to login...');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

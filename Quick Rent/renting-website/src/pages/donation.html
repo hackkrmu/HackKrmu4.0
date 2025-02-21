@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        main {
+            width: 50%;
+            margin-top: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: blue;
+            color: white;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="header"></div>
+    </header>
+    
+    <nav>
+        <div id="navbar"></div>
+    </nav>
+
+    <main>
+        <h1>Donate Items</h1>
+        <form id="donate-form">
+            <label for="item-name">Item Name:</label>
+            <input type="text" id="item-name" name="item-name" required>
+
+            <label for="item-description">Item Description:</label>
+            <textarea id="item-description" name="item-description" rows="4" required></textarea>
+
+            <label for="item-image">Upload Image:</label>
+            <input type="file" id="item-image" name="item-image" required>
+
+            <label for="donor-address">Your Address:</label>
+            <input type="text" id="donor-address" name="donor-address" placeholder="Enter your address" required>
+
+            <button type="submit">Donate</button>
+        </form>
+    </main>
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <script src="../assets/js/scripts.js"></script>
+    <script>
+        document.getElementById('donate-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Store points in local storage
+            let points = localStorage.getItem('donationPoints') || 0;
+            points = parseInt(points) + 10;
+            localStorage.setItem('donationPoints', points);
+
+            alert('Thank you for your donation! You have earned 10 points.');
+            window.location.href = 'choose-action.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Renting Website</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .left {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+        .left img {
+            width: 400px; /* Doubled the size */
+            height: 400px;
+        }
+        .right {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: white;
+            padding: 50px;
+            box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+        }
+        .buttons {
+            display: flex;
+            gap: 30px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: blue;
+            color: white;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="left">
+        <img src="C:\Users\Vivek\OneDrive\Desktop\hackkrmu\renting-website\src\pages\logo.svg" alt="Logo">
+    </div>
+    <div class="right">
+        <h1>Welcome!</h1>
+        <p>Rent & Save!<br>Dream You Rent!</p>
+        <div class="buttons">
+            <button onclick="window.location.href='register.html'">Register</button>
+            <button onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </div>
+</body>
+</html>
+
