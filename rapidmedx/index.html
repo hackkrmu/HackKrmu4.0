@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="loginstyle.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyDDcmwaDdofMGdvooyWPot0ohqdyJ4-J3w",
+        authDomain: "rapidmedx-dashboard.firebaseapp.com",
+        projectId: "rapidmedx-dashboard",
+        storageBucket: "rapidmedx-dashboard.firebasestorage.app",
+        messagingSenderId: "660430771575",
+        appId: "1:660430771575:web:e6789c940b1833b42d7d72",
+        measurementId: "G-PBJKJHD2ND"
+        };
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            console.log("Firebase initialized successfully on login page.");
+        } catch (error) {
+            console.error("Error initializing Firebase on login page:", error);
+            alert("Error initializing Firebase. Check console.");
+        }
+
+        const auth = firebase.auth();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="company-info">  
+            <img src="rapidmedxlogo.png" alt="Company Logo" class="logo">
+            <h1>RapidMedX</h1>  
+        </div>
+
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="options">
+            <a href="#">Forgot Password?</a>
+            <a href="signup.html">Sign Up</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log("Login successful. User:", user);
+                    window.location.href = "one_tap_booking.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Login error:", errorCode, errorMessage);
+                    alert("Invalid credentials: " + errorMessage);
+                });
+        });
+    </script>
+</body>
+</html>

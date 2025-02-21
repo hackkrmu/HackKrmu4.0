@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Tap Ambulance Booking</title>
+    <link rel="stylesheet" href="one_tap_booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyDDcmwaDdofMGdvooyWPot0ohqdyJ4-J3w",
+        authDomain: "rapidmedx-dashboard.firebaseapp.com",
+        projectId: "rapidmedx-dashboard",
+        storageBucket: "rapidmedx-dashboard.firebasestorage.app",
+        messagingSenderId: "660430771575",
+        appId: "1:660430771575:web:e6789c940b1833b42d7d72",
+        measurementId: "G-PBJKJHD2ND"
+        };
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            console.log("Firebase initialized successfully on one-tap booking page.");
+        } catch (error) {
+            console.error("Error initializing Firebase on one-tap booking page:", error);
+            alert("Error initializing Firebase. Check console.");
+        }
+
+        const auth = firebase.auth();
+        const db = firebase.firestore();  
+
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>One-Tap Ambulance Booking</h1>
+
+        <div id="locationStatus">
+            <p>Getting your location...</p>
+        </div>
+
+        <button id="retryLocationButton" class="hidden">Enable Location</button>
+
+        <div id="map" class="hidden"></div>
+
+        <div id="dummyMap" class="hidden"></div>
+
+        <div id="nearestAmbulanceInfo" class="hidden">
+            <p>Nearest Ambulance ETA: <span id="eta">Calculating...</span></p>
+        </div>
+
+        <button id="bookAmbulanceButton" disabled>One-Tap Booking</button>
+
+        <div id="confirmationMessage" class="hidden">
+            <p>Ambulance dispatched! ETA: <span id="confirmedEta"></span></p>
+        </div>
+
+        <button id="signOutButton">Sign Out</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Zi9VM3yRg5JknUv8YxE=" crossorigin=""></script>
+    <script>
+        let userLocation = null;
+        let map;
+        let dummyMap; 
+        let ambulanceMarkers = {};
+        const locationStatus = document.getElementById("locationStatus");
+        const retryLocationButton = document.getElementById("retryLocationButton");
+        const mapDiv = document.getElementById("map");
+        const dummyMapDiv = document.getElementById("dummyMap");  
+        const nearestAmbulanceInfo = document.getElementById("nearestAmbulanceInfo");
+        const etaDisplay = document.getElementById("eta");
+        const bookAmbulanceButton = document.getElementById("bookAmbulanceButton");
+        const confirmationMessage = document.getElementById("confirmationMessage");
+        const confirmedEtaDisplay = document.getElementById("confirmedEta");
+        const signOutButton = document.getElementById("signOutButton");
+
+        auth.onAuthStateChanged((user) => {
+            console.log("Authentication state changed. User:", user);
+
+            if (!user) {
+                console.log("User is NOT signed in. Redirecting to login page.");
+                window.location.href = "index.html";
+            } else {
+                console.log("User is signed in. Proceeding to get location.");
+                getLocation();
+            }
+        });
+
+        function initMap(latitude, longitude) {
+            map = L.map('map').setView([latitude, longitude], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            mapDiv.classList.remove("hidden"); 
+
+            return map; 
+        }
+
+         function initDummyMap() {
+            dummyMap = L.map('dummyMap').setView([34.0522, -118.2437], 12); 
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(dummyMap);
+            dummyMapDiv.classList.remove("hidden"); 
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    showPosition,
+                    handleLocationError
+                );
+            } else {
+                locationStatus.textContent = "Geolocation is not supported by your browser. Showing default map.";
+                initDummyMap(); 
+            }
+        }
+
+        function showPosition(position) {
+            userLocation = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };
+            locationStatus.textContent = "Location found!";
+            bookAmbulanceButton.disabled = false;
+        }
+
+       function getLiveAmbulanceLocations() {
+          try {
+            db.collection("ambulances")
+                .onSnapshot((snapshot) => {
+                      console.log("onSnapshot is triggered");
+                    snapshot.docChanges().forEach((change) => {
+                        const ambulance = change.doc.data();
+                        const ambulanceId = change.doc.id;
+                           console.log("Ambulance data from Firestore:", ambulance);
+
+                        if (change.type === "added" || change.type === "modified") {
+                            if (ambulanceMarkers[ambulanceId]) {
+                                ambulanceMarkers[ambulanceId].setLatLng([ambulance.latitude, ambulance.longitude]);
+                                   console.log("Ambulance Markers update is working ",ambulanceMarkers[ambulanceId] );
+                            } else {
+                                   console.log("Ambulance Markers adding is working" );
+                                const marker = L.marker([ambulance.latitude, ambulance.longitude])
+                                    .addTo(map)
+                                    .bindPopup(ambulance.name || "Ambulance");
+                                ambulanceMarkers[ambulanceId] = marker; 
+                            }
+                        }
+
+                        if (change.type === "removed") {
+                            if (ambulanceMarkers[ambulanceId]) {
+                                map.removeLayer(ambulanceMarkers[ambulanceId]);
+                                delete ambulanceMarkers[ambulanceId]; 
+                            }
+                        }
+                    });
+
+                       if(userLocation){
+                             if(!map){
+                                 map= initMap(userLocation.latitude,userLocation.longitude)
+                                   mapDiv.classList.remove("hidden"); 
+
+                             }
+                              map.setView([userLocation.latitude, userLocation.longitude], 13); 
+
+                            console.log("initMap called 2")
+                       }
+
+                }, (error) => {
+                    console.error("Error getting ambulance locations:", error);
+                     locationStatus.textContent = "Error getting ambulance locations. Showing default map.";
+                     initDummyMap(); 
+                });
+            } catch (error) {
+                console.error("An error occurred:", error);
+                locationStatus.textContent = "An error occurred while loading the map. Showing default map.";
+                 initDummyMap(); 
+            }
+        }
+
+        function handleLocationError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    locationStatus.textContent = "To book an ambulance, we need access to your location. Please enable location services in your browser settings or provide your location manually. Showing default map.";
+                    bookAmbulanceButton.disabled = true;
+                    retryLocationButton.classList.remove("hidden");
+                      initDummyMap(); 
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    locationStatus.textContent = "Location information is unavailable. Showing default map.";
+                      initDummyMap(); 
+                    break;
+                case error.TIMEOUT:
+                    locationStatus.textContent = "The request to get user location timed out. Showing default map.";
+                      initDummyMap(); 
+                    break;
+                case error.UNKNOWN_ERROR:
+                    locationStatus.textContent = "An unknown error occurred. Showing default map.";
+                      initDummyMap(); 
+                    break;
+            }
+        }
+
+        retryLocationButton.addEventListener("click", function() {
+            retryLocationButton.classList.add("hidden");
+            locationStatus.textContent = "Attempting to get your location again...";
+            getLocation();
+        });
+
+        bookAmbulanceButton.addEventListener("click", function() {
+            if (!userLocation) {
+                alert("Please allow location access to book an ambulance.");
+                return;
+            }
+
+            getNearestAmbulanceETA(userLocation)
+                .then(eta => {
+                    etaDisplay.textContent = eta;
+                    nearestAmbulanceInfo.classList.remove("hidden");
+                    return eta;
+                })
+                .then(eta => {
+                    return bookAmbulance(userLocation, eta);
+                })
+                .then(confirmedEta => {
+                    confirmedEtaDisplay.textContent = confirmedEta;
+                    nearestAmbulanceInfo.classList.add("hidden");
+                    confirmationMessage.classList.remove("hidden");
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    etaDisplay.textContent = "Error: Could not book ambulance.";
+                });
+
+            bookAmbulanceButton.disabled = true;
+            bookAmbulanceButton.textContent = "Booking...";
+        });
+
+        function getNearestAmbulanceETA(location) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const randomETA = Math.floor(Math.random() * 10) + 3; 
+                    resolve(`${randomETA} minutes`);
+                }, 1500);
+            });
+        }
+
+        function bookAmbulance(location, eta) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(eta); 
+                }, 2500);
+            });
+        }
+
+        signOutButton.addEventListener("click", function() {
+            auth.signOut().then(() => {
+                console.log("User signed out");
+                window.location.href = "index.html";
+            }).catch((error) => {
+                console.error("Error signing out:", error);
+                alert("Error signing out: " + error.message);
+            });
+        });
+    </script>
+
+</body>
+</html>
