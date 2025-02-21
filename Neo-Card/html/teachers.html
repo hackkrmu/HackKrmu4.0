@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="css/teachers.css">
+</head>
+<body>
+    <!-- Navigation Bar (Fixed Top) -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="neocard_logo.png" alt="NeoCard Logo">
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="#" class="navbar-link">Home</a></li>
+                <li><a href="#" class="navbar-link">Student</a></li>
+                <li><a href="#" class="navbar-link">School</a></li>
+                <li><a href="#" class="navbar-link">About Us</a></li>
+            </ul>
+        
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+
+        <!-- Side Menu (Vertical) -->
+        <aside class="side-menu">
+            <ul>
+                <li><a href="#dashboard" class="side-menu-link active">Dashboard</a></li>
+                <li><a href="#attendance" class="side-menu-link">Attendance</a></li>
+                <li><a href="#grades" class="side-menu-link">Grades</a></li>
+                <li><a href="#communication" class="side-menu-link">Communication</a></li>
+                <li><a href="#reports" class="side-menu-link">Reports</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content (Teacher Dashboard) -->
+        <main class="main-content">
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="slide active">
+                <h1>Teacher Dashboard</h1>
+                <div class="dashboard-overview">
+                    <div class="dashboard-card">
+                        <h3>My Classes</h3>
+                        <div id="class-list">
+                            <!-- Class list will be populated here -->
+                            <p>Loading classes...</p>
+                        </div>
+                    </div>
+<div class="dashboard-card">
+                        <h3>Teacher Details</h3>
+                        <div id="teacher-details">
+                            <!-- Teacher details will be populated here -->
+                            <div class="teacher-photo">
+                                <img src="teacher_photo.png" alt="Teacher Photo">
+                            </div>
+                            <ul>
+                                <li><strong>Name:</strong> Dr.Sanjeev</li>
+                                <li><strong>Email:</strong> sanjeev.ash@pietgroup.co.in</li>
+                                <li><strong>Subjects:</strong> Maths</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Announcements</h3>
+                        <div id="announcements">
+                           <p>Loading Announcements...</p>
+                        </div>
+                    </div>
+<div class="dashboard-card">
+                        <h3>Other Information</h3>
+                        <div id="other-info">
+                            <!-- Additional information can be added here -->
+                            <p>Additional information about the teacher or dashboard can be displayed here.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attendance Section -->
+            <section id="attendance" class="slide">
+                <h1>Attendance</h1>
+                <div id="attendance-controls">
+                   <!-- class selection, date selection etc. -->
+                   <label for="class-select">Select Class:</label>
+                    <select id="class-select">
+                      <!-- Populated dynamically by JavaScript -->
+                    </select>
+                    <button id="take-attendance-button">Take Attendance</button> <!-- Button to navigate the student list -->
+                </div>
+                <div id="attendance-display">
+                   <!-- Attendance Data will be displayed here -->
+                   <p>Select a class to view attendance.</p>
+                </div>
+            </section>
+
+            <!-- Grades Section -->
+            <section id="grades" class="slide">
+                <h1>Grades</h1>
+                <div id="grades-controls">
+                    <label for="grades-class-select">Select Class:</label>
+                    <select id="grades-class-select">
+                        <!-- Populated dynamically by JavaScript -->
+                    </select>
+                    <label for="grades-subject-select">Select Subject:</label>
+                    <select id="grades-subject-select">
+                        <!-- Populated dynamically by JavaScript -->
+                    </select>
+                </div>
+                <div id="grades-display">
+                  <!-- Grades will be displayed here (table) -->
+                  <p>Select a class and subject to view grades.</p>
+                </div>
+            </section>
+
+            <!-- Communication Section -->
+            <section id="communication" class="slide">
+                <h1>Communication</h1>
+                <div class="communication-options">
+                    <button id="post-announcement-button">Post Announcement</button>
+                    <button id="send-message-button">Send Message</button>
+                </div>
+                <div id="communication-display">
+                    <!-- Announcement or messages list -->
+                     <p>No announcements or messages to display yet.</p>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="slide">
+                <h1>Reports</h1>
+                <div class="report-options">
+                   <!-- options to generate the report -->
+                   <button id="generate-attendance-report">Generate Attendance Report</button>
+                   <button id="generate-performance-report">Generate Performance Report</button>
+                </div>
+                <div id="reports-display">
+                   <!-- show the report data here -->
+                    <p>No reports generated.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/teachers.js"></script>
+</body>
+</html>
