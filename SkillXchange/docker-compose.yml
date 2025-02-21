@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://user:password@db:5432/skillxchange
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=skillxchange
+
+volumes:
+  pg_data:

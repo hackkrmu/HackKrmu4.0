@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillXchange</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>SkillXchange</h1>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="profile.html" class="cta-button">Get Started</a></li>
+                <li><a href="#signup" id="signup-btn">Sign Up</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h2>Connect, Learn, and Grow</h2>
+            <p>Join a thriving community where learners and experts come together to share and develop skills.</p>
+            <a href="profile.html" class="cta-button">Start Now</a>
+        </div>
+    </header>
+    
+    <section id="features" class="features">
+        <div class="feature">
+            <h2>Find Your Perfect Skill Match</h2>
+            <p>Connect with people who have the skills you're looking for and exchange knowledge effortlessly.</p>
+        </div>
+        <div class="feature">
+            <h2>Showcase Your Expertise</h2>
+            <p>Highlight your strengths and let others discover what you’re great at.</p>
+        </div>
+        <div class="feature">
+            <h2>Stay Ahead with New Skills</h2>
+            <p>Learn and upskill with guidance from experienced professionals.</p>
+        </div>
+    </section>
+
+    <div id="signup-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <h2>Join SkillXchange</h2>
+            <form>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+                
+                <button type="submit" class="cta-button">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
