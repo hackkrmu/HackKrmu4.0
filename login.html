@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form action="/index.html" method="POST">
+      <label>Username:</label>
+      <input type="text" name="username" required /><br /><br />
+      <label>Password:</label>
+      <input type="password" name="password" required /><br /><br />
+      <button type="submit">Login</button>
+    </form>
+
+  <script>
+    async function postData(url, data) {
+      var response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      return await response.json();
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      try {
+        var result = await postData('/api/login', { username: username, password: password });
+        document.getElementById('response').textContent = result.response_from_server;
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

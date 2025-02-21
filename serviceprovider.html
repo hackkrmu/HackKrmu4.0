@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Provider Information</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .serviceProviderInfo {
+            max-width: 450px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.1);
+            padding: 15px;
+        }
+
+        .form-control, .form-select {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            width: 100%;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }    </style>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="serviceProviderInfo card shadow-lg">
+            <h2 class="text-center text-primary mb-4">Service Provider Information</h2>
+            <form>
+                <!-- name -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+
+                <!-- Profile Photo Upload -->
+                <div class="mb-3">
+                    <label for="profilePhoto" class="form-label">Upload Profile Photo:</label>
+                    <input type="file" id="profilePhoto" name="profilePhoto" class="form-control" accept="image/*">
+                </div>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" pattern="[0-9]{10}" placeholder="Enter 10-digit number" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location (State/UT):</label>
+                    <select id="location" name="location" class="form-select" required>
+                        <option value="">Select State/UT</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="profession" class="form-label">Profession:</label>
+                    <select id="profession" name="profession" class="form-select" required onchange="toggleOtherServiceInput()">
+                        <option value="">Select Profession</option>
+                        <option value="Electrician">Electrician</option>
+                        <option value="Plumber">Plumber</option>
+                        <option value="Carpenter">Carpenter</option>
+                        <option value="Cleaner">Cleaner</option>
+                        <option value="Painter">Painter</option>
+                        <option value="Mechanic">Mechanic</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="mb-3" id="otherServiceDiv" style="display: none;">
+                    <label for="otherService" class="form-label">Please specify your service:</label>
+                    <input type="text" id="otherService" name="otherService" class="form-control" placeholder="Enter your service">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Working Days:</label>
+                    <div class="working-days">
+                        <div><input type="checkbox" id="monday" name="workingDays" value="Monday"> <label for="monday">Mon</label></div>
+                        <div><input type="checkbox" id="tuesday" name="workingDays" value="Tuesday"> <label for="tuesday">Tue</label></div>
+                        <div><input type="checkbox" id="wednesday" name="workingDays" value="Wednesday"> <label for="wednesday">Wed</label></div>
+                        <div><input type="checkbox" id="thursday" name="workingDays" value="Thursday"> <label for="thursday">Thu</label></div>
+                        <div><input type="checkbox" id="friday" name="workingDays" value="Friday"> <label for="friday">Fri</label></div>
+                        <div><input type="checkbox" id="saturday" name="workingDays" value="Saturday"> <label for="saturday">Sat</label></div>
+                        <div><input type="checkbox" id="sunday" name="workingDays" value="Sunday"> <label for="sunday">Sun</label></div>
+                    </div>
+                </div>
+
+                <!-- Working Time From-To -->
+                <div class="mb-3">
+                    <label class="form-label">Working Time:</label>
+                    <div class="d-flex gap-2">
+                        <input type="time" id="workingTimeFrom" name="workingTimeFrom" class="form-control" required>
+                        <span class="align-self-center">to</span>
+                        <input type="time" id="workingTimeTo" name="workingTimeTo" class="form-control" required>
+                    </div>
+                </div>
+
+                <!-- Years of Experience -->
+                <div class="mb-3">
+                    <label for="experience" class="form-label">Years of Experience:</label>
+                    <input type="number" id="experience" name="experience" class="form-control" placeholder="Enter years of experience" min="0" required>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary shadow-sm" onclick="window.open('servicedb.html', '_blank')">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleOtherServiceInput() {
+            const profession = document.getElementById('profession').value;
+            const otherServiceDiv = document.getElementById('otherServiceDiv');
+
+            otherServiceDiv.style.display = profession === 'Other' ? 'block' : 'none';
+            document.getElementById('otherService').required = profession === 'Other';
+        }
+
+        document.querySelector('form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = {
+            name: document.getElementById('name').value,
+            username: document.getElementById('username').value,
+            phone: document.getElementById('phone').value,
+            location: document.getElementById('location').value,
+            profession: document.getElementById('profession').value,
+            otherService: document.getElementById('otherService').value || null,
+            workingDays: Array.from(document.querySelectorAll('input[name="workingDays"]:checked')).map(cb => cb.value),
+            workingTimeFrom: document.getElementById('workingTimeFrom').value,
+            workingTimeTo: document.getElementById('workingTimeTo').value,
+            experience: document.getElementById('experience').value
+        };
+
+        fetch('/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error('Error:', error));
+        });
+
+    </script>
+</body>
+
+</html>

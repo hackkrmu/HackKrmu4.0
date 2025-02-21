@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FixIt - Find & Report Services</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #0080ff;
+        }
+        .navbar {
+            background-color: #592cb25b!important;
+            font-family: serif;
+        }
+        .hero-section {
+            background-color: #3b1685;
+            padding: 100px 0;
+            color: #ac5050;
+        }
+        .btn-warning {
+            background-color: #f4f4f4;
+            border: none;
+        }
+        .btn-warning:hover {
+            background-color: #a8cff6;
+        }
+        .service-card {
+        background: #f8f9fa;
+        padding: 20px;
+        margin: 15px;
+        border-radius: 10px;
+        transition: transform 0.3s;
+        text-align: center;
+    }
+
+    .service-img {
+        width: 100%;  
+        height: 200px;  
+        object-fit: cover;  
+        border-radius: 10px;  
+        margin-top: 10px;
+    }
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            background-color: #003366;
+            color: #fffdfd;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">FixIt</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bidding">Bidding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#report">Report Issue</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="hero-section text-center text-light">
+        <div class="container">
+            <h1>FixIt - The Ultimate Solution</h1>
+            <p>Report issues, find service providers & get the best price through bidding!</p>
+        </div>
+    </header>
+
+<section id="services" class="container py-5">
+    <h2 class="text-center mb-4">Our Services</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="service-card text-center">
+                <h5>Plumbing Services</h5>
+                <p>Find trusted plumbers easily.</p>
+                <img src="plumbing.png" alt="Plumbing" class="service-img">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card text-center">
+                <h5>Electrician Service</h5>
+                <p>Get professional electrical repairs.</p>
+                <img src="electrician.jpg" alt="Electrician" class="service-img">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card text-center">
+                <h5>Home Cleaning</h5>
+                <p>Hire home and office cleaners.</p>
+                <img src="cleaning1jpg.webp" alt="Cleaning" class="service-img">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card text-center">
+                <h5>Carpentry Work</h5>
+                <p>Fixing loose hinges and misaligned doors.</p>
+                <img src="carpenting11.jpg" alt="Carpentry" class="service-img">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card text-center">
+                <h5>AC & Appliance Repair</h5>
+                <p>AC repairing services.</p>
+                <img src="Ac.jpg" alt="AC Repair" class="service-img">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card text-center">
+                <h5>Appliance Repair Services</h5>
+                <p>Fridge, Washer, & Oven Repairs.</p>
+                <img src="repair1.jpg" alt="Appliance Repair" class="service-img">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card text-center">
+                <h5>Pest Control Services</h5>
+                <p>Pest Infestation – Ants, roaches, or rodents.</p>
+                <img src="pestcontrol.jpg" alt="Pest Control" class="service-img">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card text-center">
+                <h5>Home Noise & Movement Solutions</h5>
+                <p>Squeaky doors & floors, garage door malfunctions.</p>
+                <img src="noise.jpg" alt="Noise Solutions" class="service-img">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card text-center">
+                <h5>Comfort & HVAC Services</h5>
+                <p>Inconsistent heating or cooling.</p>
+                <img src="hvac.jpg" alt="HVAC Services" class="service-img">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card text-center">
+                <h5>Structural & Maintenance Services</h5>
+                <p>Peeling paint, cracked tiles, roof leaks.</p>
+                <img src="paintingwall.jpg" alt="Structural Maintenance" class="service-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="issueDescription" class="container py-5">
+    <h2 class="text-center mb-4">Describe the Issue</h2>
+
+    <div class="card p-4 shadow-sm">
+        <div class="mb-3 text-center">
+            <label for="fileUpload" class="form-label">Upload Image/Video</label>
+            <input type="file" class="form-control" id="fileUpload" accept="image/*,video/*">
+        </div>
+
+        <div class="mb-3 text-center">
+            <button class="btn btn-primary" onclick="getLocation()">Get Current Location</button>
+            <p id="locationText" class="mt-2 text-muted"></p>
+        </div>
+        <div class="mb-3 text-center">
+            <label for="descriptionissue" class="form-label">Description</label>
+            <input type="input-box" class="form-control" id="descriptionissue">
+        </div>
+        </div>
+
+    </div>
+</section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
