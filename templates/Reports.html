@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='reports.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Incident Reports</h1>
+
+    <!-- Incident Summaries -->
+    <section id="incident-summaries">
+        <h2>Incident Summaries</h2>
+        <div class="search-filter">
+            <input type="text" placeholder="Search by keyword..." id="incident-search">
+            <input type="date" id="start-date" placeholder="Start Date">
+            <input type="date" id="end-date" placeholder="End Date">
+            <button id="filter-btn">Filter</button>
+        </div>
+        <div class="customizable-views">
+            <button class="custom-view-btn">Custom View 1</button>
+            <button class="custom-view-btn">Custom View 2</button>
+            <!-- Add more buttons as needed -->
+        </div>
+        <table class="incident-table">
+            <thead>
+                <tr>
+                    <th>Incident ID</th>
+                    <th>Date</th>
+                    <th>Severity</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for incident in incidents %}
+                <tr>
+                    <td><a href="{{ url_for('incidents', incident_id=incident.id) }}">{{ incident.id }}</a></td>
+                    <td>{{ incident.start_time }}</td>
+                    <td>{{ incident.severity }}</td>
+                    <td>{{ incident.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </section>
+
+    <!-- Detailed Incident Reports -->
+    <section id="detailed-reports">
+        <h2>Detailed Incident Reports</h2>
+        {% for incident in incidents %}
+        <div class="incident-overview">
+            <h3>Incident Overview: {{ incident.id }}</h3>
+            <p><strong>Key Findings:</strong> {{ incident.key_findings or 'Not Available' }}</p>
+            <p><strong>Recommendations:</strong> {{ incident.recommendations or 'Not Available' }}</p>
+        </div>
+        <div class="timeline">
+            <h3>Timeline</h3>
+            <ul>
+                {% for event in incident.timeline %}
+                <li><strong>{{ event.time }}:</strong> {{ event.event }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="evidence-analysis">
+            <h3>Evidence Analysis</h3>
+            <ul>
+                {% for evidence in incident.evidence %}
+                <li>
+                    <strong>{{ evidence.name }}</strong>: {{ evidence.analysis_result or 'Pending' }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="root-cause-analysis">
+            <h3>Root Cause Analysis</h3>
+            <p>{{ incident.root_cause or 'Not Available' }}</p>
+        </div>
+        {% endfor %}
+    </section>
+
+    <!-- Trend Analysis -->
+    <section id="trend-analysis">
+        <h2>Trend Analysis</h2>
+        <div class="charts">
+            <div id="incident-type-chart" class="chart"></div>
+            <div id="severity-chart" class="chart"></div>
+            <div id="frequency-chart" class="chart"></div>
+        </div>
+        <div class="anomaly-detection">
+            <h3>Anomaly Detection</h3>
+            <p>Unusual patterns or spikes in incident activity will be highlighted here.</p>
+        </div>
+        <div class="comparison-analysis">
+            <h3>Comparison Analysis</h3>
+            <p>Comparison of incident data over time or across different systems will be shown here.</p>
+        </div>
+    </section>
+
+    <!-- Custom Reporting -->
+    <section id="custom-reporting">
+        <h2>Custom Reporting</h2>
+        <div class="report-builder">
+            <h3>Report Builder</h3>
+            <p>Create custom reports based on specific requirements.</p>
+            <button>Create Report</button>
+        </div>
+        <div class="template-library">
+            <h3>Template Library</h3>
+            <ul>
+                <li>Template 1</li>
+                <li>Template 2</li>
+                <!-- Add more templates as needed -->
+            </ul>
+        </div>
+        <div class="data-export">
+            <h3>Data Export</h3>
+            <p>Export reports in various formats (PDF, CSV, Excel).</p>
+            <button>Export PDF</button>
+            <button>Export CSV</button>
+            <button>Export Excel</button>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='reports.js') }}"></script>
+{% endblock %}

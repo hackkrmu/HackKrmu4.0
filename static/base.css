@@ -1,0 +1,265 @@
+/* base.css */
+
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa; /* Light gray background for a clean look */
+    color: #333; /* Dark text for readability */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    padding-top: 80px; /* Adjust this to match the height of the fixed header */
+}
+
+/* Header Styles */
+header {
+    background: #003366; /* Dark blue header */
+    color: white;
+    padding: 15px 20px; /* Padding for top/bottom and left/right */
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space between logo, nav, and user profile */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    position: fixed; /* Fixed positioning */
+    top: 0; /* Stick to the top */
+    left: 0; /* Align to the left edge */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Make sure it stays above other content */
+}
+
+header:hover {
+    background-color: #00509e; /* Change background on hover */
+}
+
+.logo {
+    display: flex;
+    align-items: center; /* Center logo and text vertically */
+}
+
+.logo img {
+    height: 40px; /* Set logo height */
+    margin-right: 10px; /* Space between logo and text */
+}
+
+.nav {
+    display: flex;
+    margin: 0 20px; /* Margin for spacing around navigation */
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px; /* Space between links */
+    font-weight: bold; /* Bold text for emphasis */
+    padding: 10px 15px; /* Padding for clickable area */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for background and scaling */
+}
+
+.nav a:hover {
+    background-color: #00509e; /* Change background on hover */
+    transform: scale(1.05); /* Slightly enlarge the link on hover */
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.notification {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.notification-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Container for notifications */
+.notifications {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    z-index: 1000;
+}
+
+.notification {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+}
+
+.notification.success {
+    background-color: #4caf50; /* Green */
+}
+
+.notification.error {
+    background-color: #f44336; /* Red */
+}
+
+.notification.info {
+    background-color: #2196f3; /* Blue */
+}
+
+.notification.warning {
+    background-color: #ff9800; /* Orange */
+}
+
+.notification-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.notification-menu.active {
+    display: block;
+}
+
+.notification-menu .notification {
+    background-color: #f0f0f0;
+    color: #000;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.notification-menu .notification:last-child {
+    border-bottom: none;
+}
+
+.user-profile {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #dde2eb;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f4f7fa;
+}
+
+/* Main Content Styles */
+main {
+    flex: 1; /* Allow main content to grow and fill available space */
+    padding: 20px; /* Padding around main content */
+}
+
+/* Search Bar Styles */
+.search-bar {
+    margin-top: 20px; /* Space above the search bar */
+    display: flex;
+    justify-content: center; /* Center the search bar */
+}
+
+.search-bar input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Full width for the search bar */
+    max-width: 400px; /* Limit max width */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+.search-bar input:focus {
+    border-color: #00509e; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Footer Styles */
+footer {
+    background: #003366; /* Dark blue footer */
+    color: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+.links {
+    display: flex;
+    margin: 5px 0;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.links a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.social-media a {
+    color: white;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.social-media a:hover {
+    text-decoration: underline; /* Underline on hover */
+}

@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+  <section class="left-column">
+    <div class="incident-overview">
+      <h2>Incident Overview</h2>
+      <div class="overview-summary">
+        <p>{{ incident_details.overview }}</p>
+      </div>
+
+      <div class="incident-details">
+        <h4>Incident Details</h4>
+        <ul>
+          <li>Time of Detection: {{ incident_details.detection_time }}</li>
+          <li>Incident Type: {{ incident_details.incident_type }}</li>
+          <li>Severity: {{ incident_details.severity }}</li>
+          <li>Status: {{ incident_details.status }}</li>
+          <li>Assigned Team: {{ incident_details.assigned_team }}</li>
+        </ul>
+      </div>
+
+      <div class="incident-timeline">
+        <h4>Incident Timeline</h4>
+        <ul>
+          {% for event in incident_details.timeline %}
+            <li>{{ event }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <div class="affected-systems">
+        <h4>Affected Systems</h4>
+        <ul>
+          {% for system in incident_details.affected_systems %}
+            <li>{{ system.name }} - Vulnerability: {{ system.vulnerability }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="evidence-management">
+      <h3>Evidence Management</h3>
+      <div class="evidence-repository">
+        <h4>Evidence Repository</h4>
+        <ul>
+            {% for file in uploaded_files %}
+                <li>
+                    Filename: {{ file.filename }}<br>
+                    Uploaded at: {{ file.timestamp }}<br>
+                    File Type: {{ file.file_type }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="metadata">
+      <h4>Metadata</h4>
+      <ul>
+          {% for metadata in uploaded_files %}
+              <li>{{ metadata.file_name }}: Created on {{ metadata.created_on }}, Last accessed on {{ metadata.last_accessed }}</li>
+          {% endfor %}
+      </ul>
+    </div>
+
+      <div class="custody-tracking">
+        <h4>Chain of Custody Tracking</h4>
+        <form action="{{ url_for('add_coc_entry') }}" method="post">
+          <label for="evidence_id">Evidence ID:</label>
+          <input type="text" id="evidence_id" name="evidence_id" required><br>
+
+          <label for="handler_name">Handler Name:</label>
+          <input type="text" id="handler_name" name="handler_name" required><br>
+
+          <label for="action">Action:</label>
+          <input type="text" id="action" name="action" required><br>
+
+          <button type="submit">Add Chain of Custody Entry</button>
+        </form>
+
+        <form action="{{ url_for('reset_coc') }}" method="post">
+          <button type="submit">Reset Chain of Custody</button>
+        </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Evidence ID</th>
+              <th>Handler Name</th>
+              <th>Timestamp</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in coc_entries %}
+              <tr>
+                <td>{{ entry['evidence_id'] }}</td>
+                <td>{{ entry['handler_name'] }}</td>
+                <td>{{ entry['timestamp'] }}</td>
+                <td>{{ entry['action'] }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="right-column">
+    <div class="ai-ml-analysis">
+      <h3>AI/ML Analysis</h3>
+      <div class="chart-container">
+        <h4>Model Performance Metrics</h4>
+        <canvas id="modelPerformanceChart"></canvas>
+      </div>
+
+      <div class="anomaly-thresholds">
+        <h4>Anomaly Detection Thresholds</h4>
+        <form>
+          <label for="threshold">Adjust Threshold to Improve Detection Accuracy:</label>
+          <input type="range" id="threshold" name="threshold" min="0" max="100" value="{{ incident_details.current_threshold }}">
+        </form>
+      </div>
+
+      <div class="rule-engine">
+        <h4>Rule Engine</h4>
+        <ul>
+          {% for rule in incident_details.rules %}
+            <li>{{ rule }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="blockchain-integration">
+      <h3>Blockchain Integration</h3>
+      <div class="chart-container">
+        <h4>Smart Contract Interactions</h4>
+        <canvas id="smartContractInteractionsChart"></canvas>
+      </div>
+
+      <div class="consensus-status">
+        <h4>Consensus Algorithm Status</h4>
+        <p>Algorithm: {{ incident_details.consensus_algorithm }} - Network Latency: {{ incident_details.network_latency }}ms - Current Block: #{{ incident_details.current_block }}</p>
+      </div>
+
+      <div class="immutability-verification">
+        <h4>Immutability Verification</h4>
+        <p>Evidence #{{ incident_details.evidence_id }}: {{ incident_details.immutability_status }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottom-section">
+    <div class="collaboration-tools">
+      <h3>Collaboration Tools</h3>
+      <div class="chat">
+        <h4>Chat</h4>
+        <div id="chatWindow">
+          <div class="message">User A: Please review the evidence.</div>
+          <div class="message">User B: On it.</div>
+        </div>
+        <input type="text" id="chatInput" placeholder="Type a message">
+      </div>
+
+      <div class="video-conferencing">
+        <h4>Video Conferencing</h4>
+        <button id="startCallButton">Start Call</button>
+      </div>
+
+      <div class="document-sharing">
+        <h4>Document Sharing</h4>
+        <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+            <input type="file" id="docUpload" name="file">
+            <button type="submit" id="uploadButton">Upload Document</button>
+        </form>
+        <button id="resetButton">Reset Data</button>
+      </div>
+    </div>
+
+    <div class="external-tools">
+      <h3>Integration with External Tools</h3>
+      <div class="siem">
+        <h4>SIEM Integration</h4>
+        <p>Connected to SIEM Tool XYZ - Last log: {{ incident_details.siem_last_log }}</p>
+      </div>
+
+      <div class="edr">
+        <h4>EDR Integration</h4>
+        <p>Connected to EDR Tool ABC - Last event: {{ incident_details.edr_last_event }}</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% block additional_js %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+<script src="{{ url_for('static', filename='js/video_call.js') }}"></script>
+<script src="{{ url_for('static', filename='js/verification.js')}}"></script>
+<script src="{{ url_for('static', filename='js/document_sharing.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Example of initializing charts
+  const ctxModelPerformance = document.getElementById('modelPerformanceChart').getContext('2d');
+  new Chart(ctxModelPerformance, {
+    type: 'bar',
+    data: {
+      labels: ['Metric 1', 'Metric 2', 'Metric 3'], // Update with actual labels
+      datasets: [{
+        label: 'Performance Metrics',
+        data: [10, 20, 30], // Update with actual data
+        backgroundColor: 'rgba(0, 71, 171, 0.2)',
+        borderColor: 'rgba(0, 71, 171, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+
+  const ctxSmartContractInteractions = document.getElementById('smartContractInteractionsChart').getContext('2d');
+  new Chart(ctxSmartContractInteractions, {
+    type: 'line',
+    data: {
+      labels: ['Interaction 1', 'Interaction 2', 'Interaction 3'], // Update with actual labels
+      datasets: [{
+        label: 'Contract Interactions',
+        data: [5, 10, 15], // Update with actual data
+        backgroundColor: 'rgba(0, 71, 171, 0.2)',
+        borderColor: 'rgba(0, 71, 171, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+</script>
+{% endblock %}
+{% endblock %}

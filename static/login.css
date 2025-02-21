@@ -1,0 +1,147 @@
+/* login.css */
+
+/* Authentication Page Styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif; /* Use Roboto font */
+}
+
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure the container takes at least full viewport height */
+    background-color: #1a1a2e; /* Dark blue background */
+    color: #e0e0e0; /* Light grey text color */
+    padding: 0 20px; /* Ensure padding to prevent overflow */
+    overflow-y: auto; /* Allow vertical scrolling if content overflows */
+}
+
+.auth-container .logo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px; /* Reduced margin for better alignment */
+}
+
+.auth-container .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.auth-container .logo img {
+    width: 120px; /* Logo width */
+    height: auto;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(0, 150, 255, 0.7)); /* Glow effect */
+}
+
+.auth-container .logo h3 {
+    font-size: 28px;
+    color: #00aaff; /* Bright blue color */
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0, 150, 255, 0.7); /* Text glow effect */
+}
+
+.auth-container .form-container {
+    background-color: #2b2b40; /* Slightly lighter dark color */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 150, 255, 0.5); /* Blue glow around the form */
+    width: 100%; /* Make the width responsive */
+    max-width: 400px; /* Limit maximum width */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.auth-container .toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%; /* Full width for buttons */
+}
+
+.auth-container .toggle-buttons button {
+    flex: 1; /* Allow buttons to take equal space */
+    padding: 10px;
+    border: 1px solid #00aaff;
+    border-radius: 4px;
+    background-color: #2b2b40; /* Dark background for buttons */
+    color: #00aaff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0 5px; /* Space between buttons */
+    font-size: 16px; /* Maintain font size */
+}
+
+.auth-container .toggle-buttons button.active {
+    background-color: #00aaff; /* Bright blue for the active button */
+    color: #1a1a2e; /* Darker text for contrast */
+}
+
+.auth-container form {
+    display: none; /* Hide all forms by default */
+    width: 100%;
+    opacity: 0; /* Start with hidden opacity */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition */
+}
+
+.auth-container form.active {
+    display: flex; /* Show active form */
+    flex-direction: column;
+    opacity: 1; /* Show form with smooth transition */
+}
+
+.auth-container form h4 {
+    margin-bottom: 15px; /* Space below the form heading */
+}
+
+.auth-container form input {
+    width: calc(100% - 20px); /* Full width with padding */
+    padding: 10px;
+    border: 1px solid #00aaff;
+    border-radius: 4px;
+    background-color: #1a1a2e; /* Dark background for inputs */
+    color: #e0e0e0; /* Light text color */
+    margin-bottom: 15px;
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.auth-container form input:focus {
+    border-color: #00ccff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.auth-container form button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #00aaff; /* Bright blue button */
+    color: #1a1a2e; /* Dark text color */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Space from the last input */
+}
+
+.auth-container form button:hover {
+    background-color: #008fcc; /* Darker blue on hover */
+}
+
+.auth-container .flashes {
+    color: #ff4d4d; /* Red color for error messages */
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px; /* Space above messages */
+}
+
+.auth-container .form-container input::placeholder {
+    color: #aaa; /* Placeholder text color */
+}

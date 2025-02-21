@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <title>Triage-O-matic</title>
+</head>
+<script> src</script
+<body>
+    <div class="auth-container">
+        <div class="logo-container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Triage-O-matic Logo">
+                <h3>Triage-O-matic</h3>
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="toggle-buttons">
+                <button id="login-toggle" class="active">Login</button>
+                <button id="signup-toggle">Signup</button>
+            </div>
+            
+            <form id="login-form" method="POST" action="/login" class="active">
+                <h4>Login</h4>
+                <input type="text" name="username" placeholder="Username/Gmail/Phone Number" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            
+            <form id="signup-form" method="POST" action="/signup">
+                <h4>Signup</h4>
+                <input type="text" name="first_name" placeholder="First Name" required>
+                <input type="text" name="last_name" placeholder="Last Name" required>
+                <input type="text" name="phone" placeholder="Phone Number" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="username" placeholder="Create a Unique Username" required>
+                <input type="password" name="password" placeholder="Create a Password" required>
+                <input type="password" name="confirm_password" placeholder="Re-enter Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+    <script>
+        const loginToggle = document.getElementById('login-toggle');
+        const signupToggle = document.getElementById('signup-toggle');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+
+        loginToggle.addEventListener('click', () => {
+            loginForm.classList.add('active');
+            signupForm.classList.remove('active');
+            loginToggle.classList.add('active');
+            signupToggle.classList.remove('active');
+        });
+
+        signupToggle.addEventListener('click', () => {
+            signupForm.classList.add('active');
+            loginForm.classList.remove('active');
+            signupToggle.classList.add('active');
+            loginToggle.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

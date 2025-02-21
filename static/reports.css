@@ -1,0 +1,157 @@
+/* General Styles */  
+body {  
+    font-family: 'Arial', sans-serif;  
+    background-color: #f8f9fa; /* Light background for contrast */  
+    color: #343a40; /* Dark gray for text */  
+    margin: 0;  
+    padding: 0;  
+}  
+
+/* Container */  
+.container {  
+    width: 90%;  
+    max-width: 1200px;  
+    margin: 40px auto; /* Center the container with top margin */  
+    padding: 20px;  
+    background-color: #ffffff; /* White background for the container */  
+    border-radius: 8px; /* Slight rounding */  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */  
+}  
+
+/* Header Styles */  
+h1 {  
+    font-size: 2.5rem;  
+    color: #0047ab; /* Government blue */  
+    margin-bottom: 30px; /* Space below the main heading */  
+    text-align: center; /* Center the title */  
+}  
+
+/* Section Headings */  
+h2 {  
+    font-size: 2rem;  
+    color: #0047ab; /* Consistent color for section headings */  
+    margin-bottom: 20px; /* Space below each section heading */  
+}  
+
+/* Incident Summaries */  
+#incident-summaries {  
+    margin-bottom: 40px; /* Space below incident summaries */  
+}  
+
+.search-filter {  
+    display: flex;  
+    justify-content: space-between;  
+    margin-bottom: 20px; /* Space below search/filter */  
+}  
+
+.search-filter input[type="text"],  
+.search-filter input[type="date"],   
+.custom-view-btn,  
+#filter-btn {  
+    padding: 10px;  
+    border: 1px solid #ced4da;  
+    border-radius: 4px;  
+    margin-right: 10px; /* Space between input fields */  
+}  
+
+.customizable-views {  
+    margin-bottom: 20px; /* Space below customizable views */  
+}  
+
+.custom-view-btn {  
+    background-color: #0047ab; /* Button color */  
+    color: white;  
+    border: none;  
+    padding: 10px 15px;  
+    border-radius: 4px;  
+    cursor: pointer;  
+    transition: background-color 0.3s;  
+}  
+
+.custom-view-btn:hover {  
+    background-color: #003e8e; /* Darker shade on hover */  
+}  
+
+.incident-table {  
+    width: 100%;  
+    border-collapse: collapse; /* Collapse borders for better look */  
+    margin-top: 20px; /* Space above the table */  
+}  
+
+.incident-table th,  
+.incident-table td {  
+    padding: 10px; /* Padding for cells */  
+    border: 1px solid #dee2e6; /* Light border */  
+    text-align: left; /* Align text to the left */  
+}  
+
+.incident-table th {  
+    background-color: #e9ecef; /* Light gray background for headers */  
+}  
+
+/* Detailed Incident Reports */  
+.incident-overview {  
+    padding: 15px;  
+    border: 1px solid #dee2e6; /* Border for each overview box */  
+    border-radius: 6px;  
+    margin-bottom: 20px; /* Space below each overview */  
+    background-color: #ffffff; /* White background */  
+}  
+
+.timeline, .evidence-analysis, .root-cause-analysis {  
+    margin-bottom: 20px; /* Space between sections */  
+}  
+
+.timeline h3, .evidence-analysis h3, .root-cause-analysis h3 {  
+    margin-bottom: 10px; /* Space below subsection headings */  
+}  
+
+.timeline ul, .evidence-analysis ul {  
+    list-style: none; /* Remove default list styles */  
+    padding: 0; /* Remove padding */  
+}  
+
+.timeline li, .evidence-analysis li {  
+    margin-bottom: 5px; /* Space between list items */  
+    padding: 10px;  
+    border: 1px solid #dee2e6;  
+    border-radius: 4px;  
+}  
+
+/* Trend Analysis */  
+#trend-analysis {  
+    margin-bottom: 40px; /* Space below trend analysis section */  
+}  
+
+.charts {  
+    display: grid; /* Grid layout for charts */  
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */  
+    gap: 20px; /* Space between charts */  
+}  
+
+/* Custom Reporting */  
+#custom-reporting {  
+    margin-bottom: 40px; /* Space below custom reporting section */  
+}  
+
+.report-builder, .template-library, .data-export {  
+    padding: 15px;  
+    border: 1px solid #dee2e6; /* Border for each reporting box */  
+    border-radius: 6px;  
+    margin-bottom: 20px; /* Space below each reporting box */  
+    background-color: #ffffff; /* White background */  
+}  
+
+.report-builder button, .data-export button {  
+    background-color: #0047ab; /* Button color */  
+    color: white;  
+    border: none;  
+    padding: 10px 15px;  
+    border-radius: 4px;  
+    cursor: pointer;  
+    transition: background-color 0.3s;  
+}  
+
+.report-builder button:hover, .data-export button:hover {  
+    background-color: #003e8e; /* Darker shade on hover */  
+}

@@ -1,0 +1,174 @@
+/* General Styles */  
+body {  
+  font-family: 'Arial', sans-serif;  
+  background-color: #f8f9fa; /* Light background */  
+  color: #343a40; /* Dark gray for text */  
+  margin: 0;  
+  padding: 0;  
+}  
+
+/* Container Styles */  
+.container {  
+  width: 90%;  
+  max-width: 1200px;  
+  margin: 40px auto; /* Added top margin for spacing from the top */  
+  padding: 20px;  
+  background-color: #ffffff; /* White background for contrast */  
+  border-radius: 8px; /* Slight rounding for a softer look */  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */  
+}  
+
+/* Header Styles */  
+h1 {  
+  font-size: 2.5rem;  
+  color: #0047ab; /* Government blue */  
+  margin-bottom: 20px;  
+  padding-bottom: 10px;  
+  border-bottom: 3px solid #0047ab; /* More pronounced separator */  
+}  
+
+/* Incident List */  
+.incident-list {  
+  display: flex;  
+  flex-direction: column;  
+  gap: 30px; /* Increased gap between incidents */  
+}  
+
+/* Incident Card */  
+.incident-card {  
+  background-color: #ffffff;  
+  padding: 25px;  
+  border-radius: 10px;  
+  border-left: 5px solid #0047ab; /* Highlight left border */  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+}  
+
+/* Incident Info */  
+.incident-info {  
+  display: flex;  
+  flex-wrap: wrap;  
+  gap: 20px; /* Separate info items */  
+}  
+
+.info-item {  
+  flex: 1 1 calc(50% - 20px); /* Two columns layout with space */  
+  padding: 15px;  
+  border: 1px solid #dee2e6;  
+  border-radius: 6px; /* Rounding borders */  
+  background-color: #f8f9fa; /* Light background for info items */  
+}  
+
+/* Timeline */  
+.timeline {  
+  margin-top: 20px;  
+}  
+
+.timeline-item {  
+  margin-bottom: 15px;  
+  padding: 15px;  
+  border: 1px solid #dee2e6;  
+  border-radius: 6px;  
+  background-color: #ffffff;  
+}  
+
+.timeline-time {  
+  font-weight: bold;  
+  color: #343a40; /* Dark gray for time */  
+}  
+
+.timeline-event {  
+  margin-top: 5px;  
+}  
+
+/* Evidence Section */  
+.evidence-list {  
+  margin-top: 30px; /* Spacing above evidence section */  
+}  
+
+.evidence-item {  
+  margin-bottom: 25px; /* Space between evidence items */  
+  padding: 20px; /* Padding for evidence items */  
+  border: 1px solid #dee2e6;  
+  border-radius: 6px;  
+  background-color: #f8f9fa; /* Light background for evidence items */  
+}  
+
+.evidence-table {  
+  width: 100%; /* Full width of the item */  
+  border-collapse: collapse; /* No gaps between table cells */  
+}  
+
+.evidence-table td {  
+  padding: 10px; /* Padding for table cells */  
+  border-bottom: 1px solid #dee2e6; /* Border between rows */  
+}  
+
+.evidence-table td strong {  
+  color: #0047ab; /* Blue for labels */  
+}  
+
+/* Links */  
+.show-more-link {  
+  margin-top: 10px; /* Space above the link */  
+  color: #0047ab; /* Government blue */  
+  text-decoration: none;  
+  display: inline-block; /* Allows margin to work */  
+}  
+
+.show-more-link:hover {  
+  text-decoration: underline; /* Underline effect on hover */  
+}  
+
+/* Comments */  
+.comments {  
+  margin-top: 30px; /* Spacing above comments */  
+}  
+
+.comment-item {  
+  margin-bottom: 15px;  
+  padding: 15px;  
+  border: 1px solid #dee2e6;  
+  border-radius: 6px;  
+  background-color: #ffffff;  
+}  
+
+.comment-timestamp {  
+  font-weight: bold;  
+  color: #6c757d; /* Lighter gray for timestamp */  
+}  
+
+/* Form Styles */  
+.comment-form {  
+  margin-top: 20px;  
+  padding: 20px;  
+  background-color: #ffffff;  
+  border: 1px solid #dee2e6;  
+  border-radius: 6px;  
+}  
+
+textarea {  
+  width: 100%;  
+  height: 100px; /* Height for resizing */  
+  padding: 12px; /* Internal padding */  
+  border: 1px solid #ced4da;  
+  border-radius: 6px;  
+  resize: vertical; /* Allow vertical resizing only */  
+  background-color: #f8f9fa; /* Light background */  
+}  
+
+/* Button Styles */  
+button {  
+  background-color: #0047ab; /* Government blue */  
+  color: #ffffff;  
+  border: none;  
+  padding: 12px 25px; /* Padding for buttons */  
+  font-size: 1rem;  
+  cursor: pointer;  
+  border-radius: 6px; /* Rounded corners */  
+  transition: background-color 0.3s ease, transform 0.3s ease;  
+}  
+
+button:hover {  
+  background-color: #003e8e; /* Darker blue on hover */  
+  transform: scale(1.05); /* Slight scale effect */  
+}
