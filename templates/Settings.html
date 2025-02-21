@@ -1,0 +1,184 @@
+{% extends 'base.html' %}  
+
+{% block additional_css %}  
+<link rel="stylesheet" href="{{ url_for('static', filename='settings.css') }}">  
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">  
+<style>  
+    .custom-card {   
+        margin-bottom: 1rem;   
+    }  
+</style>  
+{% endblock %}  
+
+{% block content %}  
+<div class="container p-0">  
+    <h1 class="h3 mb-3">Settings</h1>  
+    <div class="row">  
+        <div class="col-md-5 col-xl-4">  
+            <div class="card custom-card">  
+                <div class="card-header">  
+                    <h5 class="card-title mb-0">Profile Settings</h5>  
+                </div>  
+                <div class="list-group list-group-flush" id="list-tab" role="tablist">  
+                    <a class="list-group-item list-group-item-action active" id="list-account-list" data-bs-toggle="list" href="#account" role="tab" aria-controls="account">Account</a>  
+                    <a class="list-group-item list-group-item-action" id="list-password-list" data-bs-toggle="list" href="#password" role="tab" aria-controls="password">Password</a>  
+                    <a class="list-group-item list-group-item-action" id="list-privacy-list" data-bs-toggle="list" href="#privacy" role="tab" aria-controls="privacy">Privacy and Safety</a>  
+                    <a class="list-group-item list-group-item-action" id="list-email-notifications-list" data-bs-toggle="list" href="#email-notifications" role="tab" aria-controls="email-notifications">Email Notifications</a>  
+                    <a class="list-group-item list-group-item-action" id="list-web-notifications-list" data-bs-toggle="list" href="#web-notifications" role="tab" aria-controls="web-notifications">Web Notifications</a>  
+                    <a class="list-group-item list-group-item-action" id="list-data-list" data-bs-toggle="list" href="#data" role="tab" aria-controls="data">Your Data</a>  
+                    <a class="list-group-item list-group-item-action" id="list-delete-account-list" data-bs-toggle="list" href="#delete-account" role="tab" aria-controls="delete-account">Delete Account</a>  
+                </div>  
+            </div>  
+        </div>  
+        <div class="col-md-7 col-xl-8">  
+            <div class="tab-content" id="nav-tabContent">  
+                <!-- Account Tab -->  
+                <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="list-account-list">  
+                    <div class="card custom-card">  
+                        <div class="card-body">  
+                            <form>  
+                                <div class="row">  
+                                    <div class="col-md-8">  
+                                        <div class="mb-3">  
+                                            <label for="inputUsername" class="form-label">Username</label>  
+                                            <input type="text" class="form-control" id="inputUsername" placeholder="Username" required>  
+                                        </div>  
+                                        <div class="mb-3">  
+                                            <label for="inputBio" class="form-label">Biography</label>  
+                                            <textarea rows="2" class="form-control" id="inputBio" placeholder="Tell something about yourself"></textarea>  
+                                        </div>  
+                                        <div class="mb-3">  
+                                            <label for="inputContact" class="form-label">Contact Info</label>  
+                                            <input type="text" class="form-control" id="inputContact" placeholder="Contact Information" required>  
+                                        </div>  
+                                    </div>  
+                                    <div class="col-md-4 text-center">  
+                                        <img alt="User Image" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle img-fluid mt-2" width="128" height="128">  
+                                        <div class="mt-2">  
+                                            <button class="btn btn-primary" type="button"><i class="bi bi-upload"></i> Upload</button>  
+                                        </div>  
+                                        <small>For best results, use an image at least 128px by 128px in .jpg format</small>  
+                                    </div>  
+                                </div>  
+                                <button type="submit" class="btn btn-primary">Save changes</button>  
+                            </form>  
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- Password Tab -->  
+                <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="list-password-list">  
+                    <div class="card custom-card">  
+                        <div class="card-body">  
+                            <h5 class="card-title">Password</h5>  
+                            <form>  
+                                <div class="mb-3">  
+                                    <label for="inputPasswordCurrent" class="form-label">Current Password</label>  
+                                    <input type="password" class="form-control" id="inputPasswordCurrent" required>  
+                                    <small><a href="#">Forgot your password?</a></small>  
+                                </div>  
+                                <div class="mb-3">  
+                                    <label for="inputPasswordNew" class="form-label">New Password</label>  
+                                    <input type="password" class="form-control" id="inputPasswordNew" required>  
+                                </div>  
+                                <div class="mb-3">  
+                                    <label for="inputPasswordNew2" class="form-label">Verify Password</label>  
+                                    <input type="password" class="form-control" id="inputPasswordNew2" required>  
+                                </div>  
+                                <button type="submit" class="btn btn-primary">Save changes</button>  
+                            </form>  
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- Privacy Tab -->  
+                <div class="tab-pane fade" id="privacy" role="tabpanel" aria-labelledby="list-privacy-list">  
+                    <div class="card custom-card">  
+                        <div class="card-body">  
+                            <h5 class="card-title">Privacy and Safety</h5>  
+                            <form>  
+                                <div class="mb-3 form-check">  
+                                    <input type="checkbox" class="form-check-input" id="showProfile">  
+                                    <label class="form-check-label" for="showProfile">Show my profile to everyone</label>  
+                                </div>  
+                                <div class="mb-3 form-check">  
+                                    <input type="checkbox" class="form-check-input" id="enable2FA">  
+                                    <label class="form-check-label" for="enable2FA">Enable Two-Factor Authentication</label>  
+                                </div>  
+                                <button type="submit" class="btn btn-primary">Save changes</button>  
+                            </form>  
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- Email Notifications Tab -->  
+                <div class="tab-pane fade" id="email-notifications" role="tabpanel" aria-labelledby="list-email-notifications-list">  
+                    <div class="card custom-card">  
+                        <div class="card-body">  
+                            <h5 class="card-title">Email Notifications</h5>  
+                            <form>  
+                                <div class="mb-3 form-check">  
+                                    <input type="checkbox" class="form-check-input" id="notifyNewMessages">  
+                                    <label class="form-check-label" for="notifyNewMessages">Notify me of new messages</label>  
+                                </div>  
+                                <div class="mb-3 form-check">  
+                                    <input type="checkbox" class="form-check-input" id="notifyAccountUpdates">  
+                                    <label class="form-check-label" for="notifyAccountUpdates">Notify me of account updates</label>  
+                                </div>  
+                                <button type="submit" class="btn btn-primary">Save changes</button>  
+                            </form>  
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- Web Notifications Tab -->  
+                <div class="tab-pane fade" id="web-notifications" role="tabpanel" aria-labelledby="list-web-notifications-list">  
+                    <div class="card custom-card">  
+                        <div class="card-body">  
+                            <h5 class="card-title">Web Notifications</h5>  
+                            <form>  
+                                <div class="mb-3 form-check">  
+                                    <input type="checkbox" class="form-check-input" id="webNotifyMessages">  
+                                    <label class="form-check-label" for="webNotifyMessages">Enable web notifications for messages</label>  
+                                </div>  
+                                <div class="mb-3 form-check">  
+                                    <input type="checkbox" class="form-check-input" id="webNotifyUpdates">  
+                                    <label class="form-check-label" for="webNotifyUpdates">Enable web notifications for updates</label>  
+                                </div>  
+                                <button type="submit" class="btn btn-primary">Save changes</button>  
+                            </form>  
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- Your Data Tab -->  
+                <div class="tab-pane fade" id="data" role="tabpanel" aria-labelledby="list-data-list">  
+                    <div class="card custom-card">  
+                        <div class="card-body">  
+                            <h5 class="card-title">Your Data</h5>  
+                            <p>Manage your data preferences here.</p>  
+                            <button class="btn btn-danger">Download Your Data</button>  
+                            <button class="btn btn-warning">Delete Your Data</button>  
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- Delete Account Tab -->  
+                <div class="tab-pane fade" id="delete-account" role="tabpanel" aria-labelledby="list-delete-account-list">  
+                    <div class="card custom-card">  
+                        <div class="card-body">  
+                            <h5 class="card-title">Delete Account</h5>  
+                            <p>Are you sure you want to delete your account? This action cannot be undone.</p>  
+                            <button class="btn btn-danger">Delete My Account</button>  
+                        </div>  
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
+    </div>  
+</div>  
+{% endblock %}  
+
+{% block scripts %}  
+<script src="{{ url_for('static', filename='settings.js') }}"></script>  
+{% endblock %}

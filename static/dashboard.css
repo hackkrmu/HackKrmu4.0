@@ -1,0 +1,224 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h2, h3, h4 {
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 2em;
+    margin-top: 30px;
+    text-align: center;
+    color: #0047ab; /* Government-like blue */
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-top: 25px;
+    border-bottom: 2px solid #0047ab;
+    padding-bottom: 10px;
+}
+
+h4 {
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: #00274d; /* Darker blue for subheadings */
+}
+
+.dashboard-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    box-sizing: border-box;
+}
+
+.dashboard-container > section {
+    flex: 1 1 48%; /* Ensure two sections per row with margin */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 25px;
+    box-sizing: border-box;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dashboard-container > section:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    background-color: #e6f0ff; /* Light blue for list items */
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 5px solid #0047ab;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+ul li:hover {
+    background-color: #cce0ff; /* Slightly darker blue on hover */
+    transform: scale(1.02);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table thead {
+    background-color: #0047ab;
+    color: white;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.3s;
+}
+
+ol {
+    padding-left: 25px;
+}
+
+ol li {
+    margin-bottom: 12px;
+}
+
+canvas {
+    display: block;
+    margin: 25px auto;
+    max-width: 100%;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#chatWindow {
+    height: 250px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    overflow-y: scroll;
+    background-color: #fff;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background-color: #e6f0ff;
+    border-left: 4px solid #0047ab;
+    transition: background-color 0.3s;
+}
+
+.message:hover {
+    background-color: #cce0ff;
+}
+
+input[type="text"], input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+button {
+    background-color: #0047ab;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #003580;
+    transform: scale(1.02);
+}
+
+form {
+    margin-top: 25px;
+}
+
+#startCallButton, #customizeDashboardButton, #generateReportButton {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+}
+
+input[type="text"]:focus, input[type="file"]:focus, button:focus {
+    outline: none;
+    border-color: #0047ab;
+    box-shadow: 0px 0px 6px #0047ab;
+}
+
+.flashes {
+    margin-top: 20px;
+}
+
+.flashes div {
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.flashes .success {
+    background-color: #4caf50;
+}
+
+.flashes .error {
+    background-color: #f44336;
+}
+
+.flashes .info {
+    background-color: #2196f3;
+}
+
+/* Equal Section Layout */
+.dashboard-container > section {
+    flex: 1 1 calc(50% - 30px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .dashboard-container > section {
+        flex: 1 1 100%;
+    }
+}

@@ -1,0 +1,111 @@
+/* share_evidence.css */
+
+.share-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    color: #0047ab;
+    margin-bottom: 20px;
+}
+
+.evidence-details {
+    margin-bottom: 20px;
+}
+
+.evidence-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.evidence-table th, .evidence-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.evidence-table th {
+    background-color: #0047ab;
+    color: #fff;
+    font-weight: bold;
+}
+
+.evidence-table td {
+    background-color: #fafafa;
+}
+
+.evidence-table tr:nth-child(even) td {
+    background-color: #f1f1f1;
+}
+
+.evidence-table tr:hover td {
+    background-color: #e2e2e2;
+}
+
+.share-buttons {
+    margin-top: 20px;
+}
+
+.share-buttons .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-twitter {
+    background-color: #1da1f2;
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+}
+
+.btn-linkedin {
+    background-color: #0077b5;
+}
+
+.btn-email {
+    background-color: #d14836;
+}
+
+.btn-copy {
+    background-color: #4caf50;
+    cursor: pointer;
+}
+
+.btn-twitter:hover {
+    background-color: #1a91da;
+}
+
+.btn-facebook:hover {
+    background-color: #2d4373;
+}
+
+.btn-linkedin:hover {
+    background-color: #005582;
+}
+
+.btn-email:hover {
+    background-color: #c13584;
+}
+
+.btn-copy:hover {
+    background-color: #45a049;
+}

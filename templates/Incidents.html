@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='incidents.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Incident Overview</h1>
+  
+  {% if incidents %}
+      <div class="incident-list">
+          {% for incident in incidents %}
+              <div class="incident-card">
+                  <h2>Incident ID: {{ incident.id }}</h2>
+                  <div class="incident-info">
+                      <div class="info-item"><strong>Status:</strong> {{ incident.status }}</div>
+                      <div class="info-item"><strong>Severity:</strong> {{ incident.severity }}</div>
+                      <div class="info-item"><strong>Start Time:</strong> {{ incident.start_time }}</div>
+                      {% if incident.end_time %}
+                          <div class="info-item"><strong>End Time:</strong> {{ incident.end_time }}</div>
+                      {% endif %}
+                      <div class="info-item"><strong>Affected Systems:</strong> {{ incident.affected_systems | join(', ') }}</div>
+                      <div class="info-item"><strong>Description:</strong> {{ incident.description }}</div>
+                      <div class="info-item"><strong>Root Cause:</strong> {{ incident.root_cause }}</div>
+                  </div>
+
+                  <h3>Timeline</h3>
+                  <div class="timeline">
+                      {% for event in incident.timeline %}
+                          <div class="timeline-item">
+                              <div class="timeline-time">{{ event.time }}</div>
+                              <div class="timeline-event">{{ event.event }}</div>
+                          </div>
+                      {% endfor %}
+                  </div>
+
+                  <h3>Evidence</h3>
+                  <div class="evidence-list">
+                    {% for evidence in incident.evidence %}
+                        <div class="evidence-item">
+                            <table class="evidence-table">
+                                <tr>
+                                    <td><strong>Name:</strong></td>
+                                    <td>{{ evidence.name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Timestamp:</strong></td>
+                                    <td>{{ evidence.timestamp }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Analysis Result:</strong></td>
+                                    <td>{{ evidence.analysis_result or 'Not Analyzed' }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Description:</strong></td>
+                                    <td>{{ evidence.description or 'No description available.' }}</td>
+                                </tr>
+                            </table>
+                            <a class="show-more-link" href="{{ url_for('evidence', evidence_id=evidence.id) }}" data-evidence-id="{{ evidence.id }}">Show More</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+
+                  <h3>Comments</h3>
+                  <div class="comments">
+                      {% for comment in incident.comments %}
+                          <div class="comment-item">
+                              <div class="comment-timestamp">{{ comment.timestamp }}</div>
+                              <div class="comment-text">{{ comment.comment }}</div>
+                          </div>
+                      {% endfor %}
+                  </div>
+
+                  <form action="{{ url_for('post_comment', incident_id=incident.id) }}" method="POST" class="comment-form">
+                      <textarea name="comment" placeholder="Add a comment..."></textarea>
+                      <button type="submit">Submit</button>
+                  </form>
+              </div>
+          {% endfor %}
+      </div>
+  {% else %}
+      <p>No incidents found.</p>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='incidents.js') }}"></script>
+{% endblock %}

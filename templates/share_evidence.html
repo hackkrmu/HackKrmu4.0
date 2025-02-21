@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='share_evidence.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="share-container">
+    <h1>Share Evidence</h1>
+    
+    <div class="evidence-details">
+        <table class="evidence-table">
+            <tbody>
+                <tr>
+                    <th>File Name:</th>
+                    <td>{{ evidence.filename }}</td>
+                </tr>
+                <tr>
+                    <th>File Type:</th>
+                    <td>{{ evidence.type }}</td>
+                </tr>
+                <tr>
+                    <th>Size:</th>
+                    <td>{{ evidence.size }} bytes</td>
+                </tr>
+                <tr>
+                    <th>Timestamp:</th>
+                    <td>{{ evidence.timestamp }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Share this Evidence</h2>
+    <div class="share-buttons">
+        <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20evidence%20-%20{{ evidence.filename }}%20at%20{{ url_for('view_evidence', index=index, _external=True) }}" target="_blank" class="btn btn-twitter">Share on Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('view_evidence', index=index, _external=True) }}" target="_blank" class="btn btn-facebook">Share on Facebook</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url_for('view_evidence', index=index, _external=True) }}" target="_blank" class="btn btn-linkedin">Share on LinkedIn</a>
+        <a href="mailto:?subject=Check%20out%20this%20evidence&body=I%20found%20this%20evidence%20interesting:%20{{ url_for('view_evidence', index=index, _external=True) }}" class="btn btn-email">Share via Email</a>
+        <button onclick="copyToClipboard('{{ url_for('view_evidence', index=index, _external=True) }}')" class="btn btn-copy">Copy Link</button>
+    </div>
+</div>
+
+<script>
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        alert('Link copied to clipboard');
+    }, function(err) {
+        console.error('Error copying link: ', err);
+    });
+}
+</script>
+{% endblock %}

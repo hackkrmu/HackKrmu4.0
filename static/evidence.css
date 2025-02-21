@@ -1,0 +1,33 @@
+.evidence-container {
+    padding: 20px;
+}
+
+.evidence-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.evidence-table th, .evidence-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.evidence-table th {
+    background-color: #0047ab;
+    color: aliceblue;
+}
+
+.action-link {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.action-link:hover {
+    text-decoration: underline;
+}
+
+iframe {
+    border: none;
+}

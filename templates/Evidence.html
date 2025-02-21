@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='evidence.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="evidence-container">
+    <h1>Evidence Management</h1>
+
+    <table class="evidence-table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Source</th>
+                <th>Collection Timestamp</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evidence in evidence_data %}
+            <tr>
+                <td>{{ evidence.type }}</td>
+                <td>{{ evidence.filename }}</td>
+                <td>{{ evidence.timestamp }}</td>
+                <td>{{ evidence.status if evidence.status else 'Pending' }}</td>
+                <td>
+                    <a class="action-link" href="{{ url_for('view_evidence', index=loop.index) }}">View</a>
+                    <a class="action-link" href="{{ url_for('analyze_evidence', index=loop.index, filename=evidence.filename) }}">Analyze</a>
+                    <a class="action-link" href="{{ url_for('download_evidence',index=loop.index, filename=evidence.filename) }}">Download</a>
+                    <a class="action-link" href="{{ url_for('share_evidence', index=loop.index) }}">Share</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

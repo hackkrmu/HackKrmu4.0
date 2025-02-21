@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triage-O-matic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}">
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Additional CSS for specific pages -->
+    {% block additional_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Triage-O-matic Logo" />
+            <span>Triage-O-matic</span>
+        </div>
+        <nav class="nav">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('incidents') }}">Incidents</a>
+            <a href="{{ url_for('evidence') }}">Evidence</a>
+            <a href="{{ url_for('reports') }}">Reports</a>
+        </nav>
+        <div class="header-actions">
+            <div class="notification" aria-label="Notifications" onclick="toggleNotificationMenu()">
+                <i class="fas fa-bell"></i>
+                <div id="notification-menu" class="notification-menu">
+                    <!-- Notifications will be appended here -->
+                </div>
+            </div>
+            
+            <div class="user-profile" aria-label="User Profile" onclick="toggleDropdown()">
+                <img src="{{ url_for('static', filename='user-icon.png') }}" alt="User Icon" class="user-icon" />
+                <div id="user-dropdown" class="dropdown-menu">
+                    <a href="{{ url_for('profile') }}">Profile</a>
+                    <a href="{{ url_for('settings') }}">Settings</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="notifications">
+                    {% for category, message in messages %}
+                        <div class="notification {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Triage-O-matic Inc.</p>
+            <div class="links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <p>Contact: support@blockchain.com</p>
+        </div>
+        <div class="social-media">
+            <a href="#">Twitter</a>
+            <a href="#">Facebook</a>
+        </div>
+    </footer>
+
+    <!-- Chat Button -->
+    <div id="chatButton" onclick="toggleChat()">
+        Chat
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container-unique" id="triageChatContainer">
+        <div class="chat-header-unique">
+            CrimeBot
+            <div class="theme-toggle-unique" id="themeToggleButton">Toggle Theme</div>
+        </div>
+        <div class="chat-messages-unique" id="triageChatMessages">
+            <div class="message bot-message">Hi! How can I help you today?</div>
+        </div>
+        <div class="chat-input-unique">
+            <input type="text" id="triageChatInput" placeholder="Type a message..." onkeydown="handleKeyDown(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+    <script>
+        // Toggle Chat Window
+        const chatButton = document.getElementById('chatButton');
+        const chatContainer = document.getElementById('triageChatContainer');
+        const chatMessages = document.getElementById('triageChatMessages');
+        let isChatOpen = false;
+
+        function toggleChat() {
+            isChatOpen = !isChatOpen;
+            chatContainer.style.display = isChatOpen ? 'flex' : 'none';
+            if (isChatOpen) {
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+            }
+        }
+
+        function handleKeyDown(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('triageChatInput');
+            const message = input.value.trim();
+            if (message) {
+                appendMessage('user', message);
+                input.value = '';
+                // Simulate bot response
+                setTimeout(() => {
+                    appendMessage('bot', "This is a simulated response.");
+                }, 1000);
+            }
+        }
+
+        function appendMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${sender}-message`;
+            messageElement.textContent = message;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+        }
+
+        // Toggle Dark/Light Theme
+        const themeToggle = document.getElementById('themeToggleButton');
+        themeToggle.onclick = function() {
+            document.body.classList.toggle('dark-theme');
+            const newText = document.body.classList.contains('dark-theme') ? 'Light Theme' : 'Dark Theme';
+            themeToggle.textContent = newText;
+        }
+    </script>
+</body>
+</html>

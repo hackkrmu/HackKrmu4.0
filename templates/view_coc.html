@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Chain of Custody</title>
+</head>
+<body>
+    <h1>Chain of Custody Entries</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Action</th>
+                <th>Timestamp</th>
+                <th>User</th>
+                <th>Location</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in coc_entries %}
+            <tr>
+                <td>{{ entry.evidence_id }}</td>
+                <td>{{ entry.action }}</td>
+                <td>{{ entry.timestamp }}</td>
+                <td>{{ entry.user }}</td>
+                <td>{{ entry.location }}</td>
+                <td>{{ entry.notes }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

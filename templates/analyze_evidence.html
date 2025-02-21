@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='analyse.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="analyze-container">
+    <h1>Analyze Evidence</h1>
+    
+    <h2>Evidence Details</h2>
+    <p><strong>File Name:</strong> {{ evidence.file_name }}</p>
+    <p><strong>File Type:</strong> {{ evidence.file_type }}</p>
+    <p><strong>Analyzed On:</strong> {{ evidence.created_on }}</p>
+    
+    <h2>Analysis Result</h2>
+    {% if "Analysis failed" in result %}
+    <div class="alert alert-danger">
+        <strong>Error:</strong> {{ result }}
+    </div>
+    {% else %}
+    <div class="alert alert-success">
+        <strong>Success:</strong> {{ result }}
+    </div>
+    {% endif %}
+    
+    <a href="{{ url_for('evidence') }}" class="btn btn-primary">Back to Evidence List</a>
+</div>
+{% endblock %}

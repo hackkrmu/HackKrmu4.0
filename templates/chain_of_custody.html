@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chain of Custody</title>
+    <link href="{{ url_for('static', filename='Chain.css') }}" rel="stylesheet"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Chain of Custody for Evidence ID: {{ evidence_id }}</h1>
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </header>
+
+    <main>
+        {% if coc %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Timestamp</th>
+                        <th>User</th>
+                        <th>Location</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in coc %}
+                        <tr>
+                            <td>{{ entry.action }}</td>
+                            <td>{{ entry.timestamp }}</td>
+                            <td>{{ entry.user }}</td>
+                            <td>{{ entry.location }}</td>
+                            <td>{{ entry.notes }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No chain of custody records found for Evidence ID {{ evidence_id }}.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+</body>
+</html>

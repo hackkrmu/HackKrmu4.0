@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='incidents.css') }}">
+{% endblock %}
+
+{% block content %}
+<script src="{{ url_for('static', filename='incidents.js') }}" defer></script>
+
+{% endblock %}

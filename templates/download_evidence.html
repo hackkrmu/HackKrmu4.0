@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='evidence.css') }}">
+{% endblock %}
+{% block content %}
+<div>
+    <h1>Download Evidence</h1>
+    <p>Your download request has been processed. The file should be available for download shortly.</p>
+</div>
+
+
+{% endblock %}

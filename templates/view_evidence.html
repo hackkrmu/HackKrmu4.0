@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='view_evidence.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="evidence-container">
+    <h1>View Evidence</h1>
+    <table class="evidence-details">
+        <tbody>
+            <tr>
+                <th>ID:</th>
+                <td>{{ index }}</td>
+            </tr>
+            <tr>
+                <th>Filename:</th>
+                <td>{{ evidence.filename }}</td>
+            </tr>
+            <tr>
+                <th>Type:</th>
+                <td>{{ evidence.type }}</td>
+            </tr>
+            <tr>
+                <th>Size:</th>
+                <td>{{ evidence.size }} bytes</td>
+            </tr>
+            <tr>
+                <th>Timestamp:</th>
+                <td>{{ evidence.timestamp }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="document-preview">
+        {% if evidence.type == 'pdf' %}
+            <iframe src="{{ url_for('download_evidence', filename=evidence.filename) }}" frameborder="0"></iframe>
+        {% elif evidence.type in ['png', 'jpg', 'jpeg'] %}
+            <img src="{{ url_for('download_evidence', filename=evidence.filename) }}" alt="Document Preview">
+        {% else %}
+            <p>Preview not available for this file type.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

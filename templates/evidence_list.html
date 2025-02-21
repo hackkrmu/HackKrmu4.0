@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='evidence_list.css') }}">
+{% endblock %}
+{% block content %}
+<h1>Evidence List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Filename</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evidence in evidence_list %}
+
+                <tr>
+                    <td>{{ evidence.id }}</td>
+                    <td>{{ evidence.description }}</td>
+                    <td><a href="{{ url_for('static', filename='uploads/' + evidence.filename) }}">{{ evidence.filename }}</a></td>
+                    <td>
+                        <a href="{{ url_for('view_evidence', evidence_id=evidence.id) }}">View Details</a> |
+                        <a href="{{ url_for('analyze_evidence', evidence_id=evidence.id) }}">Analyze</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('upload_evidence') }}">Upload New Evidence</a>
+
+
+{% endblock %}
