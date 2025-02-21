@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Information</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* General Styling */
+        body {
+          background: linear-gradient(to right, #6a11cb, #2575fc);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+    
+        /* Form Card */
+        .clientInfo {
+          max-width: 400px;
+          width: 100%;
+          border-radius: 15px;
+          background: white;
+          box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.1);
+          transition: 0.3s;
+        }
+    
+        .clientInfo:hover {
+          transform: scale(1.02);
+        }
+    
+        .form-control, .form-select {
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        .btn {
+          width: 100%;
+          font-weight: bold;
+          padding: 10px;
+          border-radius: 8px;
+          transition: all 0.2s ease-in-out;
+        }
+    
+        .btn:hover {
+          background: #0056b3;
+          box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+      </style>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="clientInfo card shadow-lg p-4">
+            <h2 class="text-center text-primary">Client Information</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" pattern="[0-9]{10}" placeholder="Enter 10-digit number" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location (State/UT):</label>
+                    <select id="location" name="location" class="form-select" required>
+                        <option value="">Select State/UT</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bengal">West Bengal</option>
+                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                        <option value="Lakshadweep">Lakshadweep</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Puducherry">Puducherry</option>
+                        <option value="Ladakh">Ladakh</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="timeslot" class="form-label">Preferred Time Slot:</label>
+                    <select id="timeslot" name="timeslot" class="form-select" required>
+                        <option value="">Select Time Slot</option>
+                        <option value="09:00 AM - 11:00 AM">09:00 AM - 11:00 AM</option>
+                        <option value="11:00 AM - 01:00 PM">11:00 AM - 01:00 PM</option>
+                        <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM</option>
+                        <option value="04:00 PM - 06:00 PM">04:00 PM - 06:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary shadow-sm" onclick="window.open('webpage.html', '_blank')">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
