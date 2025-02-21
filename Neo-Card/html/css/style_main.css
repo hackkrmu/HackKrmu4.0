@@ -1,0 +1,70 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5e1e1;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+    min-height: 100vh;       
+}
+
+
+.container {
+  width: 100%;         
+  max-width: 800px;      
+  padding: 20px;        
+}
+
+/* Neo-Card Styles */
+.neo-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+    width: 80%; 
+    max-width: 500px; 
+}
+
+.neo-card-title {
+    font-size: 3.5em;  
+    margin-bottom: 30px;
+    color: #3204ff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);  
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: space-around;  
+    margin-top: 30px;
+}
+
+
+#sign-in-button, #sign-up-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#sign-in-button {
+    background-color: #4CAF50;  /* Green */
+    color: rgb(255, 255, 255);
+}
+
+#sign-up-button {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+#sign-in-button:hover {
+    background-color: #3e8e41; /* Darker green */
+}
+
+#sign-out-button:hover {
+    background-color: #da190b; /* Darker red */
+}

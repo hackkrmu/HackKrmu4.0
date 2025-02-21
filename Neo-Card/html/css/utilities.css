@@ -1,0 +1,257 @@
+/* CSS Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2C3E50;
+    color: white;
+    padding: 15px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+  
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 98%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item-section {
+    width: 65%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.bill-section {
+    width: 35%;
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #ffffff;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.item-group {
+    margin-bottom: 20px;
+}
+
+.item-group h3 {
+    color: #0056b3;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.minus-button {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.minus-button:hover {
+    background-color: #ba000d;
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.item h4 {
+    margin-top: 0;
+    color: #0056b3;
+}
+
+.item p {
+    text-align: center;
+}
+
+.add-to-bill {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-to-bill:hover {
+    background-color: #367c39;
+}
+
+.bill-card {
+    margin-top: 0;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    height: 100%;
+}
+
+.bill-card h2 {
+    margin-top: 0;
+}
+
+.bill-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.bill-item:last-child {
+    border-bottom: none;
+}
+
+.total-amount {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: right;
+    font-size: 1.1em;
+}
+
+.minus-button {
+    background-color: #5ad52d;
+    color: white;
+    padding: 4px 4px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.minus-button:hover {
+    background-color: #ff0516;
+}
+
+.generate-bill {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.generate-bill:hover {
+    background-color: #003366;
+}
+
+.nfc-placeholder {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+}
+
+.reset-button {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.reset-button:hover {
+    background-color: #ba000d;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        flex-direction: column;
+    }
+
+    .item-section {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .bill-section {
+        width: 100%;
+    }
+
+    .item-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+.item-ai-image {
+    width: 100px; 
+    height: 100px; 
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+}
