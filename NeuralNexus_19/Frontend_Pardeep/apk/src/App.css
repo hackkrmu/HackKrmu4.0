@@ -1,0 +1,44 @@
+#root {
+  max-width: 1280px; 
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+*{
+  background-color: white;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: white;
+}
+
+.card {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+  max-width: 400px;
+  margin: auto;
+
+}
+
+.logo {
+  margin: 0 auto 1.5rem auto;
+  width: 6rem;
+  height: 6rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #6b7280;
+}

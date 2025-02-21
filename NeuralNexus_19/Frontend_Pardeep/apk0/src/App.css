@@ -1,0 +1,84 @@
+#root {
+  max-width: 1280px; 
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+*{
+  background-color: white;
+}
+.language-container {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.language-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #000;
+}
+
+.language-option {
+  width: 80%;
+  padding: 15px;
+  margin: 10px 0;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.language-option:hover {
+  background: #f0f0f0;
+}
+
+.selected {
+  background-color: #e0eefe;
+  border-color: #007bff;
+  font-weight: bold;
+}
+
+.confirmation-box {
+  margin: 20px 0;
+  padding: 10px;
+  background: #e0ffe0;
+  border-radius: 8px;
+  font-weight: bold;
+  color: green;
+}
+
+.continue-button {
+  width: 80%;
+  padding: 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.continue-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.continue-button:hover:not(:disabled) {
+  background-color: #218838;
+}
