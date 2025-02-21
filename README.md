@@ -14,3 +14,10 @@ Stop applying on over competitive job portals.
 Use MailStorm.
 Increase the probablity of receiving job opporrtunities.
 
+TECH STACK
+
+1. Frontend - Vite React
+2. Backend - SupaBase
+3. LLM - DeepSeek
+4. Email Search - FindAnyMail, SerpAPI
+5. Auto - mailing - EmailJS
