@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Guidance App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Welcome to the Career Guidance App</h1>
+        <p class="lead">Discover your potential career paths based on your skills and interests.</p>
+        <form action="/submit" method="post">
+            <div class="form-group">
+                <label for="score">Enter your score:</label>
+                <input type="number" class="form-control" id="score" name="score" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Get Career Guidance</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
