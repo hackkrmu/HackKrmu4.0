@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Items</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        main {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            border: 2px solid #007bff;
+        }
+        h1 {
+            margin-bottom: 25px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, textarea, select, button {
+            padding: 12px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="header"></div>
+    </header>
+    
+    <nav>
+        <div id="navbar"></div>
+    </nav>
+
+    <main>
+        <h1>Upload Your Items for Rent</h1>
+        <form id="upload-form" enctype="multipart/form-data">
+            <label for="item-name">Item Name:</label>
+            <input type="text" id="item-name" name="item-name" required>
+
+            <label for="item-description">Description:</label>
+            <textarea id="item-description" name="item-description" required></textarea>
+
+            <label for="item-images">Upload Images:</label>
+            <input type="file" id="item-images" name="item-images" accept="image/*" multiple required>
+
+            <label for="item-type">Choose Item Type:</label>
+            <select id="item-type" name="item-type" required>
+                <option value="rent">Rent</option>
+                <option value="buy">Buy</option>
+            </select>
+
+            <label for="government-docs">Upload Government Verification Documents:</label>
+            <input type="file" id="government-docs" name="government-docs" accept=".pdf,.jpg,.jpeg,.png" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <script src="../assets/js/scripts.js"></script>
+</body>
+</html>

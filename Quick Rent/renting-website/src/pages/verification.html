@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        main {
+            width: 50%;
+            margin-top: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: blue;
+            color: white;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        #loading {
+            display: none;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="header"></div>
+    </header>
+    
+    <nav>
+        <div id="navbar"></div>
+    </nav>
+
+    <main>
+        <h1>Verification</h1>
+        <form id="verification-form">
+            <label for="document">Upload National ID Card:</label>
+            <input type="file" id="document" name="document" required>
+            <button type="submit">Submit</button>
+            <p id="loading">Verifying, please wait...</p>
+        </form>
+    </main>
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <script src="../assets/js/scripts.js"></script>
+    <script>
+        document.getElementById('verification-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('document');
+            if (!fileInput.files.length) {
+                alert("Please upload a document.");
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append("file", file);
+
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch("https://api.ocr.space/parse/image", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "apikey": "helloworld" // Replace with your actual API key
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to verify document.");
+                }
+
+                const result = await response.json();
+                document.getElementById('loading').style.display = 'none';
+
+                if (result.ParsedResults) {
+                    const extractedText = result.ParsedResults[0].ParsedText.toLowerCase();
+
+                    // Custom Logic: Check if the text contains a keyword like "school ID"
+                    if (extractedText.includes("school id") || extractedText.includes("student card")) {
+                        alert("Document verified successfully!");
+                        window.location.href = "choose-action.html";
+                    } else {
+                        alert("Invalid ID. Please upload a valid document.");
+                    }
+                } else {
+                    alert("Could not extract text from the document.");
+                }
+            } catch (error) {
+                console.error("Error verifying document:", error);
+                alert("An error occurred while verifying the ID. Please try again later.");
+                document.getElementById('loading').style.display = 'none';
+            }
+        });
+
+        async function loadComponent(id, url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${url}`);
+                }
+                const text = await response.text();
+                document.getElementById(id).innerHTML = text;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        loadComponent('header', '../components/header.html');
+        loadComponent('navbar', '../components/navbar.html');
+        loadComponent('footer', '../components/footer.html');
+    </script>
+</body>
+</html>
