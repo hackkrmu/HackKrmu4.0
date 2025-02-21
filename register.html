@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Food</title>
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body class="register-body">
+
+    <nav>
+        <a href="https://www.google.com/maps" target="_blank">
+            <img src="logo.png" class="logo" alt="Logo" title="Refoodify Hub">
+        </a>
+        
+        <ul class="navbar">
+            <li>
+                <a href="index.html">Home</a>
+                <a href="index.html#fwmanage">What We Do</a>
+                <a href="register.html">Get Involved</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="registration">
+        <div class="register-form">
+            <h1>Donate <span>Food</span></h1>
+            <p>It's not how much we give, but how much love we put into giving!</p> <br>
+            <form id="donateForm">
+                <input type="text" name="myname1" placeholder="Your Name" id="name" required>
+                <input type="email" name="myemail" placeholder="Your Email" id="email" required>
+                <input type="tel" name="myphone" placeholder="Your Phone No." id="phonenum" required>
+                <input type="text" name="myadd" placeholder="Collection Address" id="address" required>
+                <h4>Category</h4>
+                <input type="radio" name="myfood" id="veg" value="Veg" required> Veg &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                <input type="radio" name="myfood" id="nonveg" value="Non-Veg"> Non-Veg &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                <input type="radio" name="myfood" id="both" value="Both"> Both 
+                <h4>Food Items</h4>
+                <input type="text" name="fooditems" placeholder="List of food items" id="fooditems" required>
+                <h4>Quantity (in Kg)</h4>
+                <input type="number" name="quantity" placeholder="Enter quantity" id="quantity" required>
+                <h4>Food Preparation Date and Time</h4>
+                <input type="datetime-local" name="fooddate" id="fooddate" required> <br> <br>
+                <textarea name="note" id="note" cols="2" rows="3" placeholder="Special Note"></textarea>
+                <br><br>
+                <input type="checkbox" name="t&c" id="terms" checked required> I accept the Terms & Conditions.
+                <br>
+                <button type="submit" class="submitbtn">Submit</button>
+                <div id="loading" class="loading-spinner" style="display: none;">Loading...</div>
+                <div id="successMessage" class="success-message" style="display: none;">Thank you for your donation!</div>
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer">
+        <div class="foot">
+            <div class="footer-content">
+                <div class="footlinks">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="register.html">Donate</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footlinks">
+                    <h4>Connect</h4>
+                    <div class="social">
+                        
+                        <a href="https://www.instagram.com/refoodify_hub?igsh=cDB0YWh0eDFyaG1t" target="_blank"><i class='bx bxl-instagram' ></i></a>
+                        <a href="https://twitter.com/refoodifyHub" target="_blank"><i class='bx bxl-twitter'></i></a>  
+                        <a href="mailto:redistributionfood@gmail.com" target="_blank"><i class='bx bxl-gmail' ></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="end">
+            <p>
+                Tel: <a href="tel:1800000000" style="color: rgb(99, 195, 240);">1800-00-000</a> | 
+                Email: <a href="mailto:redistributionfood@gmail.com" style="color: rgb(99, 195, 240);">redistributionfood@gmail.com</a> <br>
+                Copyright © 2025 Refoodify Hub | All Rights Reserved.<br>
+                Website developed by: RAKESH | PARTH BEHERA | ANIMESH YADAV | AAKRITI SINGH
+            </p>
+        </div>
+    </section>
+
+    <!-- Firebase and Custom Script -->
+    <script type="module">
+        // Import Firebase functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCx5_xd6Dq90NNEyORCvzS0ESHWaEnNz44",
+            authDomain: "refoodify-ed0b0.firebaseapp.com",
+            databaseURL: "https://refoodify-ed0b0-default-rtdb.firebaseio.com",
+            projectId: "refoodify-ed0b0",
+            storageBucket: "refoodify-ed0b0.firebasestorage.app",
+            messagingSenderId: "599325163528",
+            appId: "1:599325163528:web:487dd62be5a28d41ff51bd",
+            measurementId: "G-NTRK8CBC8C"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Handle form submission
+        const donateForm = document.getElementById('donateForm');
+        donateForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Validate form
+            if (!validateform()) return;
+
+            // Show loading spinner
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phonenum').value;
+            const address = document.getElementById('address').value;
+            const category = document.querySelector('input[name="myfood"]:checked').value;
+            const foodItems = document.getElementById('fooditems').value;
+            const quantity = document.getElementById('quantity').value;
+            const foodDate = document.getElementById('fooddate').value;
+            const note = document.getElementById('note').value;
+
+            // Debugging: Log form data
+            console.log('Submitting data:', {
+                name: name,
+                email: email,
+                phone: phone,
+                address: address,
+                category: category,
+                foodItems: foodItems,
+                quantity: quantity,
+                foodDate: foodDate,
+                note: note
+            });
+
+            // Save data to Firebase
+            push(ref(database, 'donations/'), {
+                name: name,
+                email: email,
+                phone: phone,
+                address: address,
+                category: category,
+                foodItems: foodItems,
+                quantity: quantity,
+                foodDate: foodDate,
+                note: note
+            }).then(() => {
+                // Hide loading spinner and show success message
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                donateForm.reset();
+            }).catch((error) => {
+                // Show error message
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('errorMessage').textContent = 'Error: ' + error.message;
+                document.getElementById('errorMessage').style.display = 'block';
+                console.error('Firebase Error:', error); // Log the error to the console
+            });
+        });
+
+        // Form validation
+        function validateform() {
+            const tel = document.getElementById("phonenum").value;
+
+            if (tel.length < 10) {
+                alert("Phone number must be at least 10 digits!");
+                return false;
+            } else if (isNaN(tel)) {
+                alert("Phone number should not include characters!");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
