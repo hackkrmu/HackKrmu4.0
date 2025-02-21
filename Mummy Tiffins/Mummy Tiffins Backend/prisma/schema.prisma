@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  email      String   @unique
+  password   String
+  role       Role
+  Address    String?
+  City       String?
+  Pincode    Int?
+  University String?
+  createdAt  DateTime @default(now())
+  Post       Post[]
+}
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  content   String?
+  authorId  String   @db.ObjectId
+  author    User     @relation(fields: [authorId], references: [id])
+  quantity  Int
+  serving   Int
+  createdAt DateTime @default(now())
+}
+
+model Menu {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  price     Int
+  dishes    MenuDishes[]
+  createdAt DateTime @default(now())
+}
+
+model Dishes {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  price     Int
+  createdAt DateTime @default(now())
+  menuDishes MenuDishes[]
+}
+
+model MenuDishes {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  menuId    String  @db.ObjectId
+  dishId    String  @db.ObjectId
+  menu      Menu    @relation(fields: [menuId], references: [id])
+  dish      Dishes  @relation(fields: [dishId], references: [id])
+}
+
+enum Role {
+  MUMMY
+  STUDENT
+}
+
+model Otp {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  otp       String
+  createdAt DateTime @default(now())
+}
