@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniAccess Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        .container {
+            margin-top: 80px;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1, h2, p {
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+        }
+
+        .btn-payment { background: #4CAF50; color: white; }
+        .btn-scan { background: #008CBA; color: white; }
+        .btn-logout { background: #f44336; color: white; }
+        .btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .wallet {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .transaction-log {
+            text-align: left;
+            color: white;
+            font-size: 14px;
+            max-height: 100px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .dropdown-content {
+            display: none;
+            margin-top: 10px;
+        }
+        
+        input {
+            padding: 10px;
+            width: 90%;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">🏠 Dashboard</a>
+        <a href="payment.html">💳 Payment</a>
+        <a href="scan.html">📡 Scan</a>
+        <a href="admin.html" class="btn-logout">🚪 Logout</a>
+    </nav>
+
+    <div class="container">
+        <img src="assets/img/logo.jpeg" alt="Logo" class="logo">
+        <h1>🚀 UniAccess Dashboard</h1>
+        <p>One card, multiple possibilities. Manage payments, home appliances, and metro recharge securely.</p>
+        
+        <h2>💰 Wallet Balance: ₹<span id="wallet">1000</span></h2>
+
+        <button class="btn btn-home" onclick="toggleDropdown('addMoneyDiv')">➕ Add Money</button>
+        <div id="addMoneyDiv" class="dropdown-content">
+            <input type="number" id="addAmount" placeholder="Enter amount to add">
+            <button class="btn btn-home" onclick="addMoney()">Confirm Add Money</button>
+        </div>
+
+        <button class="btn btn-metro" onclick="toggleDropdown('metroRechargeDiv')">🚆 Metro Recharge</button>
+        <div id="metroRechargeDiv" class="dropdown-content">
+            <button class="btn btn-metro" onclick="makeMetroPayment()">Confirm Metro Recharge (₹50)</button>
+        </div>
+
+        <h3>📜 Transaction History</h3>
+        <div class="transaction-log" id="transactionLog">No transactions yet.</div>
+
+        <a href="payment.html" class="btn btn-payment">💳 Make Payment</a>
+        <a href="scan.html" class="btn btn-scan">📡 Scan Your Card</a>
+    </div>
+
+    <script>
+        let walletBalance = 1000;
+        let transactionHistory = [];
+
+        function updateWalletDisplay() {
+            document.getElementById('wallet').innerText = walletBalance;
+        }
+
+        function logTransaction(message) {
+            transactionHistory.unshift(message);
+            if (transactionHistory.length > 5) transactionHistory.pop();
+            document.getElementById('transactionLog').innerHTML = transactionHistory.join('<br>');
+        }
+
+        function addMoney() {
+            let amount = parseInt(document.getElementById('addAmount').value);
+            if (amount > 0) {
+                walletBalance += amount;
+                updateWalletDisplay();
+                logTransaction(`➕ Added ₹${amount}`);
+                document.getElementById('status').innerText = `✅ ₹${amount} added!`;
+            } else {
+                alert("Enter a valid amount");
+            }
+        }
+
+        function makePayment() {
+            let amount = parseInt(document.getElementById('paymentAmount').value);
+            if (amount > 0 && amount <= walletBalance) {
+                walletBalance -= amount;
+                updateWalletDisplay();
+                logTransaction(`💳 Paid ₹${amount}`);
+                document.getElementById('status').innerText = `✅ ₹${amount} payment successful!`;
+            } else {
+                alert("Insufficient balance or invalid amount");
+            }
+        }
+
+        function makeMetroPayment() {
+            if (walletBalance >= 50) {
+                walletBalance -= 50;
+                updateWalletDisplay();
+                logTransaction("🚆 Metro recharge ₹50");
+                document.getElementById('status').innerText = "✅ Metro recharge successful!";
+            } else {
+                alert("Insufficient balance for metro recharge");
+            }
+        }
+
+        function toggleDropdown(id) {
+            let dropdown = document.getElementById(id);
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+    </script>
+</body>
+</html>

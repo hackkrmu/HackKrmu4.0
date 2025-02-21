@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniAccess Admin Panel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(-45deg, #ff6b6b, #ffcc5c, #24c6dc, #0073e6);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; background-color: #ff6b6b; }
+            25% { background-position: 50% 100%; background-color: #ffcc5c; }
+            50% { background-position: 100% 50%; background-color: #24c6dc; }
+            75% { background-position: 50% 0%; background-color: #0099e6; }
+            100% { background-position: 0% 50%; background-color: #0073e6; }
+        }
+
+        .container {
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.3s;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1, p {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 14px;
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            font-size: 18px;
+            text-align: center;
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            transform: scale(1.05);
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-login { background: #0073e6; color: white; }
+        .btn-forgot { background: #ffcc5c; color: white; font-size: 14px; padding: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="assets/img/logo.jpeg" alt="" class="logo">
+        <h1>🚀 UniAccess Admin Panel</h1>
+        <p>Securely access and manage IoT devices</p>
+        <input type="text" id="username" placeholder="👤 Username">
+        <input type="password" id="password" placeholder="🔒 Password">
+        <button class="btn btn-login" onclick="login()">Login</button>
+        <button class="btn btn-forgot">Forgot Password?</button>
+    </div>
+    <script>
+        function login() {
+            let user = document.getElementById('username').value;
+            let pass = document.getElementById('password').value;
+            if (user === 'admin' && pass === 'password') {
+                window.location.href = "index.html";
+            } else {
+                alert("❌ Invalid Credentials");
+            }
+        }
+    </script>
+</body>
+</html>
