@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Gesture and Finger Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+        .camera-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: white;
+        }
+        .camera-section canvas {
+            border: 1px solid #ccc;
+        }
+        .gesture-section {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: white;
+            position: relative;
+        }
+        #gesture-drawing {
+            width: 100%;
+            height: 400px;
+            border: 2px solid green;
+            position: relative;
+        }
+        .gesture-point {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: blue;
+            border-radius: 50%;
+        }
+        #recognized-text {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Camera section with bounding box -->
+    <div class="camera-section">
+        <h2>Hand Detection</h2>
+        <video id="video" autoplay muted playsinline style="display:none;"></video>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <!-- Gesture section -->
+    <div class="gesture-section">
+        <h2>Recognized Hand Gesture</h2>
+        <div id="gesture-drawing"></div>
+        <div id="recognized-text">No gestures detected.</div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+<script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const canvasContext = canvas.getContext('2d');
+    const gestureSidebar = document.getElementById('gesture-drawing');
+    const recognizedTextElement = document.getElementById('recognized-text');
+    let model;
+
+    // Set canvas size
+    canvas.width = 640;
+    canvas.height = 480;
+
+    // Setup camera
+    async function setupCamera() {
+        video.width = 640;
+        video.height = 480;
+
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: { width: 640, height: 480 }
+            });
+            video.srcObject = stream;
+            return new Promise(resolve => {
+                video.onloadedmetadata = () => {
+                    video.play();
+                    resolve(video);
+                };
+            });
+        } catch (error) {
+            console.error("Error accessing the camera: ", error);
+            alert("Unable to access the camera. Please check your permissions.");
+        }
+    }
+
+    // Load Handpose model
+    async function loadModel() {
+        try {
+            model = await handpose.load();
+            console.log("Handpose model loaded successfully.");
+        } catch (error) {
+            console.error("Error loading Handpose model: ", error);
+            alert("Failed to load Handpose model. Check the console for errors.");
+        }
+    }
+
+    // Draw bounding box
+    function drawBoundingBox(landmarks) {
+        const boundingBox = getBoundingBox(landmarks);
+        canvasContext.strokeStyle = 'green';
+        canvasContext.lineWidth = 4;
+        canvasContext.strokeRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
+    }
+
+    // Draw gesture points in the second section
+    function drawGesturePoints(landmarks) {
+        gestureSidebar.innerHTML = ''; // Clear previous points
+        landmarks.forEach(([x, y]) => {
+            const point = document.createElement('div');
+            point.classList.add('gesture-point');
+            point.style.left = `${(x / video.videoWidth) * 100}%`;
+            point.style.top = `${(y / video.videoHeight) * 100}%`;
+            gestureSidebar.appendChild(point);
+        });
+    }
+
+    // Get bounding box for hand landmarks
+    function getBoundingBox(landmarks) {
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        landmarks.forEach(([x, y]) => {
+            if (x < minX) minX = x;
+            if (x > maxX) maxX = x;
+            if (y < minY) minY = y;
+            if (y > maxY) maxY = y;
+        });
+        return {
+            x: minX * canvas.width / video.width,
+            y: minY * canvas.height / video.height,
+            width: (maxX - minX) * canvas.width / video.width,
+            height: (maxY - minY) * canvas.height / video.height
+        };
+    }
+
+    let lastDetectionTime = 0;
+
+    // Detect hands and gestures
+    async function detectHands() {
+        const now = Date.now();
+        if (now - lastDetectionTime < 100) {
+            requestAnimationFrame(detectHands);
+            return; // Only detect every 100ms
+        }
+        lastDetectionTime = now;
+
+        try {
+            const predictions = await model.estimateHands(video);
+            canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw video feed on the canvas
+            canvasContext.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            if (predictions.length > 0) {
+                let recognizedGestures = [];
+                let fingerCounts = [];
+
+                for (const prediction of predictions) {
+                    const landmarks = prediction.landmarks;
+
+                    // Ensure the landmarks array has 21 points
+                    if (landmarks.length !== 21) continue;
+
+                    drawBoundingBox(landmarks); // Draw green box in the camera section
+                    drawGesturePoints(landmarks); // Draw 21 points in the second section
+
+                    // Count fingers
+                    const fingerCount = countFingers(landmarks);
+                    fingerCounts.push(fingerCount);
+
+                    // Dummy gesture recognition (replace with actual logic)
+                    const gesture = await identifyGesture(landmarks);
+                    if (gesture) {
+                        recognizedGestures.push(gesture);
+                    }
+                }
+
+                recognizedTextElement.textContent = `Recognized Gestures: ${recognizedGestures.join(', ')} | Number of Fingers: ${fingerCounts.join(', ')}`;
+            }
+        } catch (error) {
+            console.error("Error detecting hands: ", error);
+        }
+
+        requestAnimationFrame(detectHands);
+    }
+
+    // Count the number of fingers extended
+    function countFingers(landmarks) {
+        let extendedFingers = 0;
+
+        // Validate that all necessary landmarks are present
+        if (!landmarks[4] || !landmarks[8] || !landmarks[12] || !landmarks[16] || !landmarks[20]) return extendedFingers;
+
+        const thumbUp = landmarks[4][1] < landmarks[3][1];
+        const indexFingerUp = landmarks[8][1] < landmarks[7][1];
+        const middleFingerUp = landmarks[12][1] < landmarks[11][1];
+        const ringFingerUp = landmarks[16][1] < landmarks[15][1];
+        const pinkyFingerUp = landmarks[20][1] < landmarks[19][1];
+
+        if (thumbUp) extendedFingers++;
+        if (indexFingerUp) extendedFingers++;
+        if (middleFingerUp) extendedFingers++;
+        if (ringFingerUp) extendedFingers++;
+        if (pinkyFingerUp) extendedFingers++;
+
+        return Math.max(extendedFingers - 1, 0);
+    }
+
+    // Dummy gesture recognition (replace with actual recognition logic)
+    async function identifyGesture(landmarks) {
+        // Replace this with actual gesture recognition code
+        return "Sample Gesture";
+    }
+
+    // Main function to initialize everything
+    async function main() {
+        await setupCamera();
+        await loadModel();
+        detectHands(); // Start detecting hands
+    }
+
+    main();
+</script>
+
+</body>
+</html>

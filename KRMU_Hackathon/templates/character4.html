@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Add this inside <head> -->
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        font-family: Poppins;
+        color: #1e1e1e;
+        background-color: #cdcdcd;
+        background-image: repeating-linear-gradient(
+            to right,
+            transparent 0 150px,
+            #0001 150px 151px
+          ),
+          repeating-linear-gradient(
+            to bottom,
+            transparent 0 150px,
+            #0001 150px 151px
+          ),
+          linear-gradient(to right, #cdcdcdcc, #cdcdcdcc),
+          url(static/c4_images/bg.jpg);
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      header {
+        width: min(1200px, 90vw);
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 50px;
+        flex-wrap: wrap;
+      }
+
+      header h1 {
+        font-family: "Karantina", system-ui;
+        font-size: 16vw;
+        line-height: 0.8em;
+      }
+
+      header .author {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      header h3 {
+        font-family: "Karantina", system-ui;
+        font-size: 5vw;
+      }
+
+      header .author div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header .author div p:nth-child(2) {
+        font-weight: 500;
+      }
+
+      header .author img {
+        width: 250px;
+      }
+
+      .banner {
+        margin-top: -150px;
+        height: 80vh;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      model-viewer {
+        width: 550px;
+        height: 600px;
+        transition: transform 0.3s;
+      }
+
+      .rock {
+        position: absolute;
+        inset: 0 0 0 0;
+        width: 100%;
+        pointer-events: none;
+      }
+
+      .rock img:nth-child(1) {
+        position: absolute;
+        height: 170px;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 30px;
+        transition: 0.7s;
+        z-index: 1;
+      }
+
+      .rock img:nth-child(2) {
+        position: absolute;
+        height: 50%;
+        left: 0;
+        bottom: 0;
+        transition: 0.7s;
+      }
+
+      .rock img:nth-child(3) {
+        position: absolute;
+        height: 100%;
+        right: 0;
+        bottom: -100px;
+        rotate: -25deg;
+        transition: 0.7s;
+      }
+
+      .banner:has(model-viewer:hover) .rock img:nth-child(1) {
+        transform: translateX(-50%) translateY(50px);
+      }
+
+      .banner:has(model-viewer:hover) .rock img:nth-child(2) {
+        transform: translateX(-100px) translateY(100px);
+      }
+
+      .banner:has(model-viewer:hover) .rock img:nth-child(3) {
+        transform: translateX(100px) translateY(100px);
+      }
+
+      @media screen and (max-width: 767px) {
+        header img {
+          display: none;
+        }
+
+        header .author {
+          width: 100%;
+        }
+      }
+
+      .input-container {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 15px;
+        border-radius: 10px;
+        z-index: 1000;
+      }
+
+      .input-container input {
+        padding: 10px;
+        width: 200px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .input-container button {
+        padding: 10px;
+        border: none;
+        background: #333;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+      }
+
+      .input-container button:hover {
+        background: #555
+        ;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="left">
+        <h1>Drakhen</h1>
+        <img src="static/c4_images/2.png" alt="" />
+        
+        <p style="position: absolute; top: 39%; left: 83%; transform: translateY(-50%); font-weight: bold;">
+            Enter text for conversion:
+          </p>
+          <form action="/convert_textc4" method="post" class="convert-form">
+          <div class="input-container">
+            <input
+              type="text"
+              id="text"
+              name="text"
+              class="input-box"
+              placeholder="Enter text for conversion ..."
+              required
+            />
+            <div class="button-container">
+            <button type="submit" class="submit-button">Submit</button>
+          </div>
+          </div>
+        </form>
+      </div>
+      <div class="author">
+        <h3>The Undead</h3>
+        <div>
+          <p>Created By</p>
+          <p>ECHOSIGNS</p>
+        </div>
+        <img src="static/c4_images/code.png" alt="" />
+      </div>
+    </header>
+
+    <div class="banner">
+      <!-- 3D Model Viewer -->
+      <model-viewer
+        id="interactive-model"
+        src="static/model/plague_doctor.glb"
+        camera-controls
+        environment-image="neutral"
+        shadow-intensity="1"
+        exposure="1"
+        field-of-view="30deg"
+      >
+      </model-viewer>
+
+      <div class="rock">
+        <img src="static/c4_images/rock.png" alt="" />
+        <img src="static/c4_images/rock2.png" alt="" />
+        <img src="static/c4_images/rock3.png" alt="" />
+      </div>
+    </div>
+
+    <script>
+      function handleSubmit() {
+        let userInput = document.getElementById("user-input").value;
+        alert("You entered: " + userInput);
+      }
+    </script>
+    <script>
+      const modelViewer = document.getElementById("interactive-model");
+
+      modelViewer.addEventListener("mouseenter", () => {
+        modelViewer.setAttribute("auto-rotate", "");
+      });
+
+      modelViewer.addEventListener("mouseleave", () => {
+        modelViewer.removeAttribute("auto-rotate");
+      });
+    </script>
+  </body>
+</html>

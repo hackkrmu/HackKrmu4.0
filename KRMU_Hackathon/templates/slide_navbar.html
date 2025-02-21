@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=======Title=======-->
+
+    <title>AI Login & Sign-up Form</title>
+
+    <!--=======Remix Icon=======-->
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+
+    <!--=======CSS=======-->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root{
+    --bg-color: linear-gradient(to right, #15191c , #263336);
+    --neon-color: #08d1eb;
+    --green-color: #496b09;
+    --red-color: #ac1c1c;
+    --white-color: #ffffff;
+    --input-bg: rgba(255, 255, 255, 0.1);
+    --hover-bg: rgba(255, 255, 255, 0.2);
+    --gray-color: #d9d9d9;
+    --angle: 0deg;
+    --black-color: #222222;
+}
+
+body {
+    background-image: linear-gradient(to right, #15191c , #263336);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh;
+}
+
+.container{
+    display: flex;
+    max-width: 900px;
+    width: 90%;
+    min-height: 500px;
+} 
+
+.image-section{
+    width: 50%;
+    position: relative;
+
+    border-radius: 30px;
+}
+
+.image-section img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+.form-section{
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form h2{
+    font-size: 32px;
+    color: var(--neon-color);
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: zoomIn 0.8s ease-out;
+}
+
+.btn{
+    width: 100%;
+    padding: 12px 20px 12px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s; 
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+.btn .left-icon,
+.btn .right-icon{
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+}
+
+.google,
+.email{
+    background: var(--input-bg);
+    color: var(--white-color);
+}
+
+.google:hover,
+.email:hover{
+    background: var(--hover-bg); 
+}
+
+
+.terms{
+    font-size: 12px;
+    margin-top: 30px;
+    color: var(--gray-color);
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+.terms a{
+    color: var(--white-color);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.form-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5px 0 5px 0;
+}
+
+.signup-form,
+.signin-form{
+    display: none;
+}
+
+.signup-form h2,
+.signin-form h2{
+    font-size: 26px;
+    animation: zoomIn 0.8s ease-out;
+}
+
+.input-group{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+.input-group:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.input-group:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.input-group:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.input-group:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.input-group input{
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--white-color);
+    color: var(--white-color);
+    font-size: 16px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.input-group i{
+    position: absolute;
+    right: 12px;
+    font-size: 16px;
+    color: var(--gray-color);
+}
+
+input{
+    border: 2px solid var(--white-color);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+input.valid{
+    border-color: var(--green-color);
+    box-shadow: 0 0 10px var(--green-color);
+}
+
+input.invalid{
+    border-color: var(--red-color);
+    box-shadow: 0 0 10px var(--red-color);
+}
+
+.back-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--input-bg);
+    border-radius: 50%;
+    color: var(--white-color);
+    font-size: 20px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover{
+    background-color: var(--hover-bg);
+}
+
+.switch-form{
+    background: none;
+    border: none;
+    color: var(--white-color);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+    margin-top: 10px;
+    animation-delay: 1s;
+}
+
+.switch-form a{
+    color: var(--neon-color);
+    border: 1px solid var(--neon-color);
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 5px 10px;
+    margin-left: 15px;
+    transition: all 0.5s;
+}
+
+.switch-form a:hover{
+    box-shadow: 0 0 10px var(--neon-color);
+}
+
+.neon-btn{
+    padding: 15px 30px 15px 30px;
+    background: var(--black-color);
+    color: var(--neon-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 40px;
+    overflow: visible;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.neon-btn::before{
+    content: '';
+    position: absolute;
+    box-sizing: content-box;
+    border-radius: 40px;
+    width: 100%;
+    height: 100%;
+    translate: -50% -50%;
+    left: 50%;
+    top: 50%;
+    z-index: -2;
+    transition: all 0.5s;
+    animation: rotateus_neon_glowing_button_effect_elementor_227f38b0 2000ms linear infinite;
+    filter: blur(20px) brightness(1);
+    background: conic-gradient(from var(--angle), #ff003700 50deg, var(--neon-color) 360deg);
+}
+
+.neon-btn::after{
+    content: '';
+    position: absolute;
+    box-sizing: content-box;
+    border-radius: calc(40px + 2px);
+    width: 100%;
+    height: 100%;
+    translate: -50% -50%;
+    left: 50%;
+    top: 50%;
+    z-index: -1;
+    transition: all 0.5s;
+    animation: rotateus_neon_glowing_button_effect_elementor_227f38b0 2000ms linear infinite;
+    padding: 2px;
+    background: conic-gradient(from var(--angle), #ff003700 50deg, var(--neon-color) 360deg);
+}
+
+.neon-btn:hover{
+    background-color: var(--neon-color);
+    color: var(--black-color);
+}
+
+.neon-btn:hover::before,
+.neon-btn:hover::after{
+    transition: all 0.5s;
+    animation-play-state: paused;
+    background: conic-gradient(from var(--angle), var(--neon-color) 0deg, var(--neon-color) 360deg);
+}
+
+@property --angle{
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@property --hueuc_neon_glowing_button_effect_elementor_227f38b0{
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotateus_neon_glowing_button_effect_elementor_227f38b0{
+    0%{
+        --angle: 0deg;
+    }
+
+    100%{
+        --angle: 360deg;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+img {
+    filter: drop-shadow(0 0 10px cyan);
+    background: transparent;
+}
+
+
+
+    </style>
+    
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Login & Sign-up Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <style>
+        /* Add your CSS styles here */
+        .input-group input{
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--white-color);
+            color: var(--white-color);
+            font-size: 16px;
+            border-radius: 8px;
+            outline: none;
+        }
+        /* Other CSS styles */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-section">
+            <img src="static/images/model.png">
+        </div>
+        <div class="form-section">
+            <div class="login-form">
+                <h2>Experience the Future<br> with AI-Powered Innovation</h2>
+                <button class="btn google">
+                    <i class="ri-google-fill left-icon"></i>
+                    Continue with Google
+                    <i class="ri-meta-fill right-icon"></i>
+                </button>
+                <button class="btn email">
+                    <i class="ri-mail-line left-icon"></i>
+                    Continue with Email
+                    <i class="ri-arrow-right-line right-icon"></i>
+                </button>
+                <p class="terms">By signing in, you agree to Generative AI’s 
+                    <a href="#">Terms of Service</a>, 
+                    <a href="#">Privacy Policy</a>, and 
+                    <a href="#">Data Usage Provisions</a>.
+                </p>
+            </div>
+            <div class="signup-form">
+                <h2>Create Your Account</h2>
+                <div class="form-header">
+                    <i class="ri-arrow-left-line back-btn"></i>
+                    <p class="switch-form">Already have an account? <a id="LogInLink">Log In</a></p>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="text" placeholder="Your Name">
+                    <i class="ri-user-fill"></i>
+                </div>
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email">
+                    <i class="ri-mail-fill"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Enter your password">
+                    <i class="ri-lock-fill"></i>
+                </div>
+                <a href="#" class="neon-btn">Sign Up</a>
+                <p class="terms">By signing in, you agree to Generative AI’s 
+                    <a href="#">Terms of Service</a>, 
+                    <a href="#">Privacy Policy</a>, and 
+                    <a href="#">Data Usage Provisions</a>.
+                </p>
+            </div>
+            <div class="signin-form">
+                <h2>Welcome Back</h2>
+                <div class="form-header">
+                    <i class="ri-arrow-left-line back-btn"></i>
+                    <p class="switch-form">Don't have an account yet? <a id="SignUpLink">Sign Up</a></p>
+                </div> 
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email">
+                    <i class="ri-mail-fill"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Enter your password">
+                    <i class="ri-lock-fill"></i>
+                </div>
+                <a href="#" class="neon-btn">Log In</a>
+                <p class="terms">By signing in, you agree to Generative AI’s 
+                    <a href="#">Terms of Service</a>, 
+                    <a href="#">Privacy Policy</a>, and 
+                    <a href="#">Data Usage Provisions</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loginButton = document.querySelector('.neon-btn');
+            const emailInput = document.querySelector('.signin-form input[name="email"]');
+            const passwordInput = document.querySelector('.signin-form input[name="password"]');
+            
+            const specificEmail = "example@gmail.com";
+            const specificPassword = "123456789";
+
+            loginButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                
+                const email = emailInput.value;
+                const password = passwordInput.value;
+                
+                if (email === specificEmail && password === specificPassword) {
+                    alert("Login successful!");
+                    window.location.href = "home.html";
+                } else {
+                    alert("Invalid email or password. Please try again.");
+                }
+            });
+
+            document.querySelector(".email").addEventListener("click", () => {
+                document.querySelector(".login-form").style.display = "none";
+                document.querySelector(".signup-form").style.display = "block";
+            });
+
+            document.querySelectorAll('.back-btn').forEach(btn => {
+                btn.addEventListener("click", () => {
+                    document.querySelector(".signup-form").style.display = "none";
+                    document.querySelector(".signin-form").style.display = "none";
+                    document.querySelector(".login-form").style.display = "block";
+                });
+            });
+
+            document.querySelector("#LogInLink").addEventListener("click", () => {
+                document.querySelector(".signup-form").style.display = "none";
+                document.querySelector(".signin-form").style.display = "block";
+            });
+
+            document.querySelector("#SignUpLink").addEventListener("click", () => {
+                document.querySelector(".signin-form").style.display = "none";
+                document.querySelector(".signup-form").style.display = "block";
+            });
+
+            document.querySelectorAll(".input-group input").forEach(input => {
+                input.addEventListener("input", function () {
+                    validateInput(this);
+                });
+            });
+
+            function validateInput(input) {
+                let isValid = true;
+            
+                if (input.type === "text") {
+                    isValid = input.value.trim().length >= 3;
+                } else if (input.type === "email") {
+                    isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+                } else if (input.type === "password") {
+                    isValid = input.value.length >= 6;
+                }
+
+                input.classList.remove("valid", "invalid");
+
+                if (isValid) {
+                    input.classList.add("valid");
+                } else {
+                    input.classList.add("invalid");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

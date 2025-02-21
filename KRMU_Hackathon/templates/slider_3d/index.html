@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Models</title>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+        @import url('https://fonts.cdnfonts.com/css/poppins');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #D2D2D2;
+            background-image:
+                repeating-linear-gradient(to right, transparent 0 100px, #25283b22 100px 101px),
+                repeating-linear-gradient(to bottom, transparent 0 100px, #25283b22 100px 101px);
+            overflow: hidden;
+        }
+
+        .banner {
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .model {
+            background-image: url('static/images/model.png');
+            width: 100%;
+            height: 75vh;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: top center;
+            z-index: 1;
+            animation: slideUp 1.5s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .content {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1400px, 100vw);
+            padding-bottom: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInText 1.5s ease-in forwards 1.5s;
+        }
+
+        @keyframes fadeInText {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .content h1 {
+            font-family: 'ICA Rubrik';
+            font-size: clamp(3em, 8vw, 16em);
+            line-height: 1em;
+            color: #25283B;
+            position: relative;
+            transform: translateY(-150%);
+            opacity: 0;
+            animation: dropIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards 1.5s;
+        }
+
+        @keyframes dropIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .content h2 {
+            font-size: 3em;
+            transform: translateY(-150%);
+            opacity: 0;
+            animation: dropIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards 2s;
+        }
+
+        .content p {
+            transform: translateY(-150%);
+            opacity: 0;
+            animation: dropIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards 2.5s;
+        }
+
+        /* New styles for cards */
+        .card {
+            position: absolute;
+            width: 150px;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: all 1s ease-out;
+            cursor: pointer;
+        }
+
+        .card:nth-child(1) { background-image: url('static/characters/c1.png'); }
+        .card:nth-child(2) { background-image: url('static/characters/c2.png'); }
+        .card:nth-child(3) { background-image: url('static/characters/c3.png'); }
+        .card:nth-child(4) { background-image: url('static/characters/c4.png'); }
+        .card:nth-child(5) { background-image: url('static/characters/c5i.png'); }
+
+        /* New styles for the select text */
+        .select-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'ICA Rubrik', sans-serif;  /* Same as "AI MODELS" text */
+            font-size: clamp(2em, 5vw, 6em);
+            line-height: 1em;
+            color: #25283B;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* New styles for the character label */
+        .character-label {
+            font-family: 'ICA Rubrik', sans-serif; /* Match font with Select a Character */
+            font-size: clamp(1em, 2.5vw, 3em); /* Half the size compared to previous */
+            color: #25283B;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="model"></div>
+        <div class="content">
+            <h1 data-content="AI MODELS">AI MODELS</h1>
+            <div class="author">
+                <h2>ECHO SIGNS</h2>
+                <p>Choose one of the AI MODELS</p>
+            </div>
+        </div>
+        <div class="deck">
+            <!-- Add click functionality to each card -->
+            <div class="card" style="z-index: 7;" data-id="Azurael" onclick="window.location.href='/characters'"></div>
+            <div class="card" style="z-index: 6;" data-id="Spider-man" onclick="window.location.href='/character2'"></div>
+            <div class="card" style="z-index: 5;" data-id="Kaelith" onclick="window.location.href='/character3'"></div>
+            <div class="card" style="z-index: 4;" data-id="Drakhan" onclick="window.location.href='/character4'"></div>
+            <div class="card" style="z-index: 3;" data-id="Mr. Bean" onclick="window.location.href='/character5'"></div>
+        </div>
+
+        <!-- Select a character text -->
+        <div class="select-text" id="select-text">
+            Select a Character :
+            <span class="character-label" id="character-label"></span>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.card');
+            const h1 = document.querySelector('h1');
+            const h2 = document.querySelector('h2');
+            const p = document.querySelector('p');
+            const selectText = document.getElementById('select-text');
+            const characterLabel = document.getElementById('character-label');
+            
+            // Wait for text animations to finish before showing cards
+            Promise.all([h1, h2, p].map(el => new Promise(resolve => {
+                const observer = new IntersectionObserver(([entry], obs) => {
+                    if (entry.isIntersecting) {
+                        obs.disconnect();
+                        resolve();
+                    }
+                }, { once: true });
+                observer.observe(el);
+            }))).then(() => {
+                // Position and animate cards
+                cards.forEach((card, index) => {
+                    // Set initial positions
+                    switch(index) {
+                        case 0: 
+                            card.style.left = '7%';
+                            card.style.top = '25%';
+                            break;
+                        case 1:
+                            card.style.left = '15%';
+                            card.style.top = '25%';
+                            break;
+                        case 2:
+                            card.style.left = '23%';
+                            card.style.top = '25%';
+                            break;
+                        case 3:
+                            card.style.left = '73%';
+                            card.style.top = '25%';
+                            break;
+                        case 4:
+                            card.style.left = '82%';
+                            card.style.top = '25%';
+                            break;
+                    }
+
+                    // Animate card appearance with delay
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 500 * (index + 1));
+                });
+
+                // After all cards have appeared, show the "Select a Character" text
+                setTimeout(() => {
+                    selectText.style.opacity = '1';
+                }, 500 * cards.length); // Delay based on number of cards
+            });
+            
+            // Change the text based on which card is hovered over
+            cards.forEach(card => {
+                card.addEventListener('mouseover', () => {
+                    characterLabel.textContent = card.dataset.id;
+                });
+                card.addEventListener('mouseleave', () => {
+                    characterLabel.textContent = '';
+                });
+            });
+        }, 4000);
+    </script>
+</body>
+</html>

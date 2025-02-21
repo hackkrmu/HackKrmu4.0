@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        /* Video Container */
+        #videoContainer {
+            width: 90%;
+            max-width: 700px;
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #videoContainer:hover {
+            transform: scale(1.02);
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Display Text */
+        #displayText {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-top: 25px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 100px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            #displayText {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Sign Language Result</h1>
+    <div id="videoContainer">
+        <video id="videoPlayer" controls autoplay></video>
+    </div>
+    <div id="displayText"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = {{ videos | tojson }};
+            let index = 0;
+            const videoPlayer = document.getElementById('videoPlayer');
+            const displayText = document.getElementById('displayText');
+            let displayedText = "";
+
+            function playNextVideo() {
+                if (index >= videos.length) return;
+
+                videoPlayer.src = "{{ url_for('static', filename='') }}" + videos[index];
+                videoPlayer.play();
+
+                videoPlayer.onended = function() {
+                    const currentLetter = videos[index].split('/').pop().replace('.mp4', '');
+                    displayedText += currentLetter.toUpperCase();
+                    displayText.innerText = displayedText;
+                    
+                    index++;
+                    playNextVideo();
+                };
+            }
+
+            playNextVideo();
+        });
+    </script>
+</body>
+</html>

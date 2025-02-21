@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            margin: 20px 0;
+            color: #333;
+        }
+        #imageContainer {
+            position: relative;
+            margin: auto;
+            width: 80%;
+            max-width: 800px;
+            height: 500px;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #imageContainer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+        #imageContainer img.active {
+            opacity: 1;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .back-link {
+            display: block;
+            margin: 20px 0;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sign Language Result</h1>
+    <div id="imageContainer"></div>
+
+    <div class="controls">
+        <button id="playBtn" class="btn">Play</button>
+        <button id="pauseBtn" class="btn disabled">Pause</button>
+    </div>
+
+    <a href="home" class="back-link">Go back</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = {{ images|tojson }};
+            let index = 0;
+            const container = document.getElementById('imageContainer');
+            let timeout;
+            let isPlaying = true;
+
+            function showImage() {
+                if (images.length === 0) return;
+
+                const img = document.createElement('img');
+                img.src = '{{ url_for('static', filename='') }}' + images[index];
+                img.classList.add('active');
+                container.innerHTML = '';
+                container.appendChild(img);
+
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    img.classList.remove('active');
+                    setTimeout(() => {
+                        index++;
+                        if (index < images.length) {
+                            showImage();
+                        } else {
+                            container.innerHTML = '';
+                            setTimeout(() => {
+                                index = 0;
+                                if (isPlaying) {
+                                    showImage();
+                                }
+                            }, 1000); // White screen duration
+                        }
+                    }, 500); // Time for image to fade out
+                }, 1500); // Time for image to stay visible
+            }
+
+            function playSlideshow() {
+                isPlaying = true;
+                document.getElementById('playBtn').classList.add('disabled');
+                document.getElementById('pauseBtn').classList.remove('disabled');
+                showImage();
+            }
+
+            function pauseSlideshow() {
+                isPlaying = false;
+                document.getElementById('playBtn').classList.remove('disabled');
+                document.getElementById('pauseBtn').classList.add('disabled');
+                clearTimeout(timeout);
+            }
+
+            document.getElementById('playBtn').addEventListener('click', playSlideshow);
+            document.getElementById('pauseBtn').addEventListener('click', pauseSlideshow);
+
+            playSlideshow(); // Start the slideshow initially
+        });
+    </script>
+</body>
+</html>

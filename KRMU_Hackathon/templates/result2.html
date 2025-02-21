@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* General Styles */
+        body {
+        color: #eee;
+        font-family: Poppins;
+        margin: 0;
+        overflow: hidden;
+        cursor: none; /* Hides the default cursor */
+        background-image: repeating-linear-gradient(
+            to right,
+            #2d2a44 0 1px,
+            transparent 2px 200px
+          ),
+          repeating-linear-gradient(
+            to bottom,
+            #2d2a44 0 1px,
+            transparent 2px 200px
+          ),
+          radial-gradient(at 50% 50%, #2d2a44, #1d1b34);
+      }
+
+      ::-webkit-scrollbar {
+        width: 0;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        list-style: none;
+      }
+      header img {
+        width: 30px;
+      }
+      header {
+        width: min(1200px, 90vw);
+        margin: auto;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header nav ul {
+        display: flex;
+        gap: 30px;
+      }
+      main {
+      }
+      main .banner {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        text-align: center;
+        margin-top: -70px;
+      }
+      h1,
+      h2,
+      h4,
+      h5,
+      h6 {
+        font-weight: 500;
+      }
+      .banner button {
+        all: unset;
+        border: 1px solid #afaeae55;
+        padding: 10px 20px;
+        border-radius: 20px;
+        background-image: linear-gradient(to bottom, #eee1, transparent, #eee1);
+        cursor: pointer;
+        transition: 0.5s;
+      }
+      .banner button:hover {
+        background-color: #c691e6;
+        color: #040018;
+        box-shadow: 0 0 50px #c691e6;
+      }
+      h1 {
+        --to: left;
+        font-size: 4em;
+        font-weight: bold;
+        background-image: linear-gradient(
+          to var(--to),
+          #89a5df,
+          #e46e7f,
+          #e8e191
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        line-height: 1em;
+      }
+      h1.right {
+        --to: right;
+      }
+
+      .banner {
+        position: relative;
+      }
+      .banner #dotsCanvas {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+      }
+        /* Video Container */
+        #videoContainer {
+            position: absolute;
+        top: 10%;
+        right: 5%;
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
+        }
+
+        #videoContainer:hover {
+            transform: scale(1.02);
+            margin: 0;
+        width: 100%;
+        padding: 10px;
+        font-size: 1.3em;
+        text-align: center;
+        background: #25283b;
+        overflow: hidden;
+        color: white;
+        border-radius: 8px 8px 0 0;
+        }
+
+        video {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 0 0 12px 12px;
+        overflow: hidden;
+        padding: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        background-color: transparent;
+        }
+
+        /* Display Text */
+        #displayText {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-top: 25px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 100px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        h2 {
+        font-size: 3em;
+        background-image: linear-gradient(to right, red, #ffcc00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+      }
+
+      p {
+        max-width: 500px;
+        margin: 20px auto;
+        font-size: 1.2em;
+      }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+    #videoContainer {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+}
+
+canvas {
+    width: 100vw;
+    height: 100vh;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Sign Language Result</h1>
+    <div id="videoContainer">
+        <video id="videoPlayer" controls autoplay></video>
+    </div>
+    <div id="displayText"></div>
+<div>
+    <canvas id="dotsCanvas"></canvas>
+</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = {{ videos | tojson }};
+            let index = 0;
+            const videoPlayer = document.getElementById('videoPlayer');
+            const displayText = document.getElementById('displayText');
+            let displayedText = "";
+
+            function playNextVideo() {
+                if (index >= videos.length) return;
+
+                videoPlayer.src = "{{ url_for('static', filename='') }}" + videos[index];
+                videoPlayer.play();
+
+                videoPlayer.onended = function() {
+                    const currentLetter = videos[index].split('/').pop().replace('.mp4', '');
+                    displayedText += currentLetter.toUpperCase();
+                    displayText.innerText = displayedText;
+                    
+                    index++;
+                    playNextVideo();
+                };
+            }
+
+            playNextVideo();
+        });
+    </script>
+ <script
+ type="module"
+ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+></script>
+<script>
+ document.addEventListener("DOMContentLoaded", () => {
+   const spider = document.createElement("img");
+   spider.src = "/static/images/spider.webp"; // Update path if needed
+   spider.style.position = "absolute";
+   spider.style.width = "40px"; // Adjust size
+   spider.style.pointerEvents = "none"; // Prevent blocking clicks
+   spider.style.transform = "translate(-50%, -50%)"; // Center it on cursor
+   document.body.appendChild(spider);
+
+   document.addEventListener("mousemove", (event) => {
+     spider.style.left = `${event.clientX}px`;
+     spider.style.top = `${event.clientY}px`;
+   });
+
+   // Web Shoot Effect with Smooth Animation
+   document.querySelector(".web-button").addEventListener("click", () => {
+     const webEffect = document.createElement("img");
+     webEffect.src = "/static/c2_images/spider-web.png"; // Web effect PNG
+     webEffect.style.position = "fixed";
+     webEffect.style.top = "0";
+     webEffect.style.left = "0";
+     webEffect.style.width = "100vw"; // Full width
+     webEffect.style.height = "100vh"; // Full height
+     webEffect.style.objectFit = "cover";
+     webEffect.style.zIndex = "9999"; // Make sure it appears above everything
+     webEffect.style.opacity = "0"; // Initially hidden
+     webEffect.style.transform = "scale(0)"; // Start from smaller size
+
+     // Append the web effect to the body
+     document.body.appendChild(webEffect);
+
+     // Smooth animation (fade-in + scale up)
+     setTimeout(() => {
+       webEffect.style.transition =
+         "opacity 0.6s ease, transform 0.6s ease";
+       webEffect.style.opacity = "1"; // Fade in
+       webEffect.style.transform = "scale(1)"; // Scale to normal size
+     }, 10); // Small delay to ensure styles are applied
+
+     // Remove the effect after 1 second
+     setTimeout(() => {
+       webEffect.remove();
+     }, 1500);
+   });
+ });
+</script>
+
+<script>
+ let banner = document.querySelector(".banner");
+ let canvas = document.getElementById("dotsCanvas");
+ canvas.width = canvas.offsetWidth;
+ canvas.height = canvas.offsetHeight;
+ const ctx = canvas.getContext("2d");
+ let dots = [];
+ const arrayColors = ["#eee", "#545454", "#596d91", "#bb5a68", "#696541"];
+
+ for (let index = 0; index < 50; index++) {
+   dots.push({
+     x: Math.floor(Math.random() * canvas.width),
+     y: Math.floor(Math.random() * canvas.height),
+     size: Math.random() * 3 + 5,
+     color: arrayColors[Math.floor(Math.random() * 5)],
+   });
+ }
+
+ const drawDots = () => {
+   dots.forEach((dot) => {
+     ctx.fillStyle = dot.color;
+     ctx.beginPath();
+     ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+     ctx.fill();
+   });
+ };
+
+ drawDots();
+
+ banner.addEventListener("mousemove", (event) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawDots();
+
+    let mouse = {
+        x: event.pageX - banner.getBoundingClientRect().left,
+        y: event.pageY - banner.getBoundingClientRect().top,
+    };
+
+    dots.forEach((dot) => {
+        let distance = Math.sqrt((mouse.x - dot.x) ** 2 + (mouse.y - dot.y) ** 2);
+        
+        // Only draw a connection if the cursor is close (less than 100px)
+        if (distance < 100) {
+            ctx.strokeStyle = dot.color;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(dot.x, dot.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+        }
+    });
+    banner.addEventListener("mouseout", () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawDots();
+      });
+});
+
+</script>
+</body>
+</html>

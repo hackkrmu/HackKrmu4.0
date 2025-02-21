@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            list-style: none;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        nav ul li .auth {
+            color: #0d6efd;
+            cursor: pointer;
+        }
+        #menu-btn {
+            display: none;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                background-color: #000000;
+                right: 0;
+                top: 60px;
+                width: 200px;
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+            nav ul.open {
+                display: flex;
+            }
+            #menu-btn {
+                display: block;
+            }
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .footer-container div {
+            text-align: center;
+        }
+        .social-icon i {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        iframe {
+            width: 100%;
+            height: 550px;
+            border: none;
+        }
+        /* Navbar and modal container */
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            list-style: none;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+        nav ul li .auth {
+            color: #0d6efd;
+            cursor: pointer;
+        }
+        /* Button hover effects */
+.btn, .btn-outline {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-radius: 18px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid #0d6efd;
+    color: #0d6efd;
+    border-radius: 18px;
+}
+
+.btn:hover, .btn-outline:hover {
+    transform: translateY(-5px); /* Rise effect */
+    box-shadow: 0px 0px 15px rgba(13, 110, 253, 0.7); /* Glow effect */
+}
+
+/* Custom animations */
+@keyframes buttonGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(13, 110, 253, 0.7);
+    }
+}
+/* Card shadows and hover animations */
+.service-card {
+    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow */
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <h3><span style="color: #0d6efd;">ECHO</span><span>SIGNS</span></h3>
+            <div id="menu-btn">
+                <i class="ri-menu-line"></i>
+            </div>
+            <ul id="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About us</a></li>
+                <li><a href="#services">Key Features</a></li>
+                <li><a href="#contact">Contact</a></li> 
+            </ul>
+            <button class="btn-toggle" id="dark-mode-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero-container">
+        <div class="content">
+            <h2>Artificial Intelligence Supported Sign Language Translator System</h2>
+            <p>
+                We enable hearing impaired and deaf individuals who have difficulty in understanding
+                what they read or are illiterate to access information, services, and video content 
+                with the AI-powered sign language, which is their mother tongue.
+            </p>
+            <div>
+                <button class="btn" onclick="window.location.href='/sign_to_text'">
+                    <i class="fa-regular fa-circle-play"></i> Sign to text
+                </button>
+                <button class="btn-outline" onclick="window.location.href='/model'">
+                    <i class="fa-regular"></i> Text to Sign
+                </button>
+            </div>
+        </div>
+        <div>
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/zoWP1qPilwtgUZJs/scene.splinecode" style="width: 105%; height: 550px;"></spline-viewer>            
+                
+        </div>
+    </section>
+
+    <!-- About section -->
+    <section id="about">
+        <div class="about">
+            <h2>About us</h2>
+            <p>We provide practical, entrepreneurial, and innovative services to improve the quality of life for individuals with disabilities in essential areas like education, banking, insurance, and communication.</p>
+        </div>
+        <div class="container">
+            <div class="left-side">
+                <img src="/static/images/objective.jpg" alt="Objective Image" />
+            </div>
+            <div class="right-side">
+                <h2>Our Objective</h2>
+                <p>
+                    In today's technology world, we advocate that everyone has the
+                    right to access information and services and that everyone should
+                    live under equal conditions. That's why we are developing artificial
+                    intelligence-supported digital accessibility solutions to eliminate
+                    the problems experienced by hearing impaired and deaf individuals who
+                    have difficulty in understanding what they read, and in accessing
+                    services and information in digital environments!
+                </p>
+                <button class="btn" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">Contact Us</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service section -->
+    <section id="services">
+        <div class="about">
+            <h2>Why choose us?</h2>
+            <p>
+                In today's technology world, we advocate that everyone has the right to access information and services and that everyone should live under equal conditions. That's why we are developing artificial intelligence-supported digital accessibility solutions to eliminate the problems experienced by hearing impaired and deaf individuals who have difficulty in understanding what they read, and in accessing services and information in digital environments!
+            </p>
+        </div>
+        <div class="services">
+            <div class="service-card">
+                <div class="number">01</div>
+                <div class="service-text">
+                    <h3>AI-Driven Digital Accessibility</h3>
+                    <p>Provides sustainable digital accessibility with AI support.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="number">02</div>
+                <div class="service-text">
+                    <h3>Enhanced Information Access</h3>
+                    <p>Helps individuals access information and services more easily.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="number">03</div>
+                <div class="service-text">
+                    <h3>Barrier-Free Service Solutions</h3>
+                    <p>Provides barrier-free and accessible services.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section -->
+    <section id="contact">
+        <div class="about">
+            <h2>Contact us</h2>
+            <p>Have any questions or remarks? Just write us a message!</p>
+        </div>
+        <div class="container">
+            <div class="left-side">
+                <img src="/static/images/contact.jpg" alt="Contact Image" />
+            </div>
+            <div class="right-side">
+                <h2>Let's talk. Tell us more about your project!</h2>
+                <div class="form">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" placeholder="Type your name here" required />
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" placeholder="Your email address here" required />
+                    <label for="message">Message:</label>
+                    <textarea name="message" id="message" cols="50" rows="10" placeholder="Message" required></textarea>
+                </div>
+                <button class="btn">Send Message</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer section -->
+    <footer>
+        <div class="footer-container">
+            <div>
+                <p>&copy; 2024 All rights reserved by <a href="#">EchoSigns</a></p>
+            </div>
+            <div>
+                <h3>Social Links</h3>
+                <div class="social-icon">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function redirectTo(page) {
+            if (page === 'sign_to_text') {
+                window.location.href = "{{ url_for('sign_to_text') }}";
+            } else if (page === 'text_to_sign') {
+                window.location.href = "{{ url_for('text_to_sign') }}";
+            }
+        }
+
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+        const menuBtnIcon = menuBtn.querySelector("i");
+
+        menuBtn.addEventListener("click", () => {
+            navLinks.classList.toggle("open");
+            const isOpen = navLinks.classList.contains("open");
+            menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+        });
+
+        navLinks.addEventListener("click", (e) => {
+  navLinks.classList.remove("open");
+  menuBtnIcon.setAttribute("class", "ri-menu-line");
+});
+
+const scrollRevealOption = {
+  distance: "50px",
+  origin: "bottom",
+  duration: 1000,
+};
+
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+
+        ScrollReveal().reveal(".hero-container .content", { distance: "50px", origin: "bottom", duration: 1000 });
+        ScrollReveal().reveal(".about, .services, .contact", { distance: "50px", origin: "bottom", duration: 1000 });
+        ScrollReveal().reveal(".header__image img", {
+  ...scrollRevealOption,
+  origin: "right",
+});
+
+ScrollReveal().reveal(".header__content h1", {
+  ...scrollRevealOption,
+  delay: 500,
+});
+
+ScrollReveal().reveal(".header__content p", {
+  ...scrollRevealOption,
+  delay: 1000,
+});
+
+ScrollReveal().reveal(".header__content form", {
+  ...scrollRevealOption,
+  delay: 1500,
+});
+
+ScrollReveal().reveal(".header__content .bar", {
+  ...scrollRevealOption,
+  delay: 2000,
+});
+
+ScrollReveal().reveal(".header_image_card", {
+  duration: 1000,
+  interval: 500,
+  delay: 2500,
+});
+
+
+    </script>
+</body>
+</html>

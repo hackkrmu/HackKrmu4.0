@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to EchoSigns</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 1;
+            opacity: 1;
+            animation: fadeOutOverlay 2s ease-in forwards;
+        }
+
+        @keyframes fadeOutOverlay {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .fade-out {
+            animation: fadeOut 2s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Full-Screen Video Container -->
+<div id="video-container">
+    <video id="intro-video" autoplay muted playsinline>
+        <source src="static/videoes/ECHOSIGNS.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<!-- Overlay for Transition Effect -->
+<div id="overlay"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const video = document.getElementById("intro-video");
+        const overlay = document.getElementById("overlay");
+        
+        // When the video ends, fade out and redirect
+        video.addEventListener("ended", () => {
+            // Add fade-out animation
+            video.classList.add("fade-out");
+            overlay.style.animation = "fadeOutOverlay 2s ease-in forwards";
+
+            // Redirect after animation
+            setTimeout(() => {
+                window.location.href = "/home"; // Redirect to your index page
+            }, 2000); // Match the duration of the fade-out animation
+        });
+    });
+</script>
+
+</body>
+</html>

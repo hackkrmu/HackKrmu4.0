@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+body{
+    background-color: #010302;
+    margin :0;
+    font-family: 'Josefin Sans', sans-serif;    font-size: 15px;
+    overflow-x: hidden;
+}
+.model-container {
+            position: absolute;
+            top: 40%;
+            right: 5%;
+            width: 350px;
+            height: 450px;
+            display: flex;
+    justify-content: center;
+    align-items: center;
+        }
+
+       
+        .model-box {
+            width: 110%;
+            height: 120%;
+            padding: 10px;
+            
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            max-width: 100%;
+    max-height: 100%;
+    display: block;
+        }
+
+*::-webkit-scrollbar{
+    width: 0;
+}
+.container{
+    overflow: hidden;
+    height: max-content;
+
+}
+.banner{
+    height: 50vw;
+    position: relative;
+    overflow: hidden;
+}
+.banner .bg{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100%;
+    background-position: center bottom;
+    transition: 0.1s;
+}
+.banner .bg:nth-child(1){
+    background-image: url(static/c1_images/images/banner_0.png);
+}
+.banner .bg:nth-child(2){
+    background-image: url(static/c1_images/images/banner_1.png);
+}
+.banner .bg:nth-child(3){
+    top: 32%;
+    text-align: center;
+} 
+.banner .bg:nth-child(3) h1, 
+.banner .bg:nth-child(3) h5
+{
+    color: #d1c3ae;
+    font-size: 50px;
+    margin: 0;
+    text-shadow: 0 0px 20px #d2af76;
+}
+.banner .bg:nth-child(3) h1
+{
+    font-size: 7vw;
+}
+.banner .bg:nth-child(4){
+    background-image: url(static/c1_images/images/banner_2.png);
+}
+.banner .bg:nth-child(5){
+    background-image: url(static/c1_images/images/banner_3.png);
+}
+.tab{
+    min-height: 100vh;
+    background-color: #010302;
+    z-index: 1;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.tab::before{
+    position: absolute;
+    height: 200px;
+    width: 100vw;
+    background: linear-gradient(
+        to top, #010302, transparent
+    );
+    content: '';
+    bottom: 100%;
+    left: 0;
+}
+
+.tab.tab1{
+    background:linear-gradient(
+        to top, #010302 0%, transparent 20% , #010302 80%
+   ),url(static/c1_images/images/tab1.jpg);
+}
+.tab.tab2{
+    background:linear-gradient(
+        to top, #010302 0%, transparent 20% , #010302 80%
+   ),url(static/c1_images/images/tab2.jpg);
+}
+.tab.tab1 .content{
+    width: 700px;
+    max-width: 90%;
+    color: #eee;
+}
+.tab.tab2 .content{
+    color: #eee;
+    width: 900px;
+    max-width: 90%;
+}
+.tab.tab2 .content .des{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 50px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            background-color: transparent;
+            border-radius: 10px;
+            border: 2px solid red;
+            position: fixed;
+            bottom: 20px;
+            left: 20%;
+            z-index: 1000;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: #d1c3ae;
+            font-size: 16px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .input-box input {
+            width: calc(100% - 50px);
+            padding: 10px;
+            background-color: transparent;
+            border: none;
+            color: #d1c3ae;
+        }
+
+        .input-box .voice-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #d1c3ae;
+            color: #010302;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #a89674;
+        }
+</style>
+</head>
+<body>
+    <div class="model-container">
+                      
+        <div class="model-box">
+            <model-viewer 
+    src="static/model/cool_man.glb" 
+    camera-controls 
+    auto-rotate 
+    environment-image="neutral" 
+    shadow-intensity="1"
+    camera-orbit="0deg 90deg 4m"
+    shadow-softness="0.8"
+    exposure="1"
+    field-of-view="40deg"
+    min-camera-orbit="auto auto 3m"
+    max-camera-orbit="auto auto 6m"
+>
+</model-viewer>
+
+        </div>
+       </div>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</div>
+    <div class="container">
+        <div class="banner">
+            <div class="bg-group">
+                <div class="bg"></div>
+                <div class="bg"></div>
+                <div class="bg">
+                    <h5>Azurael</h5>
+                    <h1>@EchoSigns</h1>
+                </div>
+                <div class="bg"></div>
+                <div class="bg"></div>
+            </div>
+        </div>
+        <div class="tab tab1">
+            <div class="content">
+                <div class="des">
+                    In a world filled with mysteries and adventure, Azurael stands as a beacon of courage and curiosity. Dressed in his signature trench coat, stylish boots, and fingerless gloves, he is always ready for the next challenge. Whether venturing into the unknown or solving ancient riddles, Azurael thrives on excitement and discovery. With his keen intellect and unwavering determination, he is the perfect companion for any daring quest.
+                </div>
+            </div>
+        </div>
+        <div class="tab tab2">
+            <div class="content">
+                <div class="des">
+                    <div>
+                        Azurael isn’t just any adventurer—he’s a strategist, a thinker, and a survivor. Behind his sharp glasses and calm demeanor lies a mind always calculating the next move. Every journey he embarks on is a puzzle waiting to be solved, and every challenge is an opportunity to learn and grow. With a mix of charm, wit, and resilience, he turns every encounter into an unforgettable story.
+                    </div>
+                    <div>
+                        From dark forests to ancient ruins, Azurael navigates through danger with precision and grace. He’s not just about exploring; he’s about uncovering the truth. His journey isn’t just about where he goes, but what he discovers along the way. Follow his adventures and step into a world where mystery and excitement never end.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <form action="/convert_textc1" method="post" class="convert-form">
+        <div class="input-container">
+            <div class="input-box">
+                <input
+              type="text"
+              id="text"
+              name="text"
+              class="input-box"
+              placeholder="Enter text for conversion ..."
+              required
+            />
+            
+                <img src="static/images/mic.webp" class="voice-icon" id="start-recording" alt="Voice Icon" width="30" height="30">
+            </div>
+            <div class="button-container">
+                <button type="submit" class="submit-button">Submit</button>
+        </div>
+    </form>
+    </header>
+
+    <section id="result" class="result-section container">
+        <!-- Results will be injected here -->
+    </section>
+</div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <h1>Sign Language Converter</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h2>Convert Text to Sign Language</h2>
+            <form action="/convert_text" method="post" class="convert-form">
+                <label for="text">Enter text:</label>
+                <input type="text" id="text" name="text" required>
+                <button type="submit">Convert</button>
+            </form>
+
+            <div class="voice-input">
+                <button id="start-recording">Start Voice Recognition</button>
+                <p id="status">Press the button to start speaking...</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="result" class="result-section container">
+        <!-- Results will be injected here -->
+    </section>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+            const startBtn = document.getElementById('start-recording');
+            const textInput = document.getElementById('text');
+            let recognition;
+
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+
+                recognition.onstart = function() {
+                    console.log('Listening...');
+                };
+
+                recognition.onspeechend = function() {
+                    console.log('Processing...');
+                    recognition.stop();
+                };
+
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    textInput.value = transcript;
+                    console.log('Voice input detected:', transcript);
+                    printInputText();
+                    sendTextToAPI(transcript);
+                };
+
+                recognition.onerror = function(event) {
+                    console.log(`Error occurred: ${event.error}`);
+                };
+
+                startBtn.addEventListener('click', function() {
+                    if (recognition) recognition.start();
+                });
+
+            } else {
+                startBtn.disabled = true;
+                console.log('Voice recognition not supported in this browser.');
+            }
+
+            function printInputText() {
+                console.log('Input text:', textInput.value);
+            }
+
+            function sendTextToAPI(text) {
+                fetch('/process', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: text })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('NLP Entities:', data.entities);
+                    displayEntities(data.entities);
+                })
+                .catch(error => console.error('Error:', error));
+            }
+
+            function displayEntities(entities) {
+                const resultSection = document.getElementById('result');
+                resultSection.innerHTML = '';
+                entities.forEach(entity => {
+                    const entityElement = document.createElement('p');
+                    entityElement.textContent = `${entity.text} (${entity.label})`;
+                    resultSection.appendChild(entityElement);
+                });
+            }
+        });
+    </script>
+  
+    <script>
+        let listBg = document.querySelectorAll('.bg');
+let banner = document.querySelector('.banner');
+let tabs = document.querySelectorAll('.tab');
+let container = document.querySelector('.container');
+let heightDefault = container.offsetHeight;
+let topBefore = 0;
+let body = document.querySelector('body');
+
+window.addEventListener('wheel', function(event){
+    event.preventDefault();
+    const scrollSpeed = 0.2;
+    const scrollValue = window.scrollY + (event.deltaY/3) * scrollSpeed;
+    window.scrollTo(0, scrollValue);
+
+
+
+    let top = scrollValue;
+    listBg.forEach((bg, index) => {
+        if(index != 0){
+            bg.animate({
+                transform: `translateY(${(-top*index)}px)`
+            }, { duration: 1000, fill: "forwards" });
+        }
+        if(index == listBg.length - 1){
+            tabs.forEach(tab => {
+                tab.animate({
+                    transform: `translateY(${(-top*index)}px)`
+                }, { duration: 500, fill: "forwards" });
+            })
+
+            if(topBefore < top){
+                setHeight = heightDefault-window.scrollY*index;
+                container.animate({
+                    height: `${(setHeight + 100)}px`
+                }, { duration: 50, fill: "forwards" });
+                topBefore = window.scrollY;
+            }
+        }
+        tabs.forEach((tab, index) => {
+            // console.log(tab.offsetTop - top, window.innerHeight);
+            if((tab.offsetTop - top) <= window.innerHeight*(index+1)){
+                let content = tab.getElementsByClassName('content')[0];
+                let transformContent = window.innerHeight*(index+1) - (tab.offsetTop - top);
+                console.log(tab);
+                content.animate({
+                    transform: `translateY(${(-transformContent + (100*index))}px)`
+                }, { duration: 500, fill: "forwards" });
+            }
+        })
+    })
+}, { passive: false });
+    </script>
+</body>
+</html>

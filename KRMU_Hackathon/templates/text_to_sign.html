@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <h1>Sign Language Converter</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h2>Convert Text to Sign Language</h2>
+            <form action="/convert_text" method="post" class="convert-form">
+                <label for="text">Enter text:</label>
+                <input type="text" id="text" name="text" required>
+                <button type="submit">Convert</button>
+            </form>
+
+            <div class="voice-input">
+                <button id="start-recording">Start Voice Recognition</button>
+                <p id="status">Press the button to start speaking...</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="result" class="result-section container">
+        <!-- Results will be injected here -->
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startBtn = document.getElementById('start-recording');
+            const textInput = document.getElementById('text');
+            const statusDisplay = document.getElementById('status');
+            let recognition;
+
+            // Check for browser support for SpeechRecognition
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+
+                recognition.onstart = function() {
+                    statusDisplay.textContent = 'Listening...';
+                };
+
+                recognition.onspeechend = function() {
+                    statusDisplay.textContent = 'Processing...';
+                    recognition.stop();
+                };
+
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    textInput.value = transcript;
+                    statusDisplay.textContent = 'Voice input detected. You can now convert the text!';
+                };
+
+                recognition.onerror = function(event) {
+                    statusDisplay.textContent = `Error occurred: ${event.error}`;
+                };
+
+                startBtn.addEventListener('click', function() {
+                    if (recognition) recognition.start();
+                });
+
+            } else {
+                startBtn.disabled = true;
+                statusDisplay.textContent = 'Voice recognition not supported in this browser.';
+            }
+        });
+    </script>
+</body>
+</html>

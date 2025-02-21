@@ -1,0 +1,487 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+    width: 100%;
+    max-width: 1280px;
+    background:rgb(248, 249, 250);
+    margin: 0 auto;
+    height: 100vh;
+    font-family: 'Outfit', sans-serif;
+    padding: 0 25px;
+}
+
+/* header */
+header{
+    padding: 15px 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.nav{
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav ul{
+    display: flex;
+}
+.nav ul li{
+    list-style-type: none;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.nav ul li a{
+    text-decoration: none;
+    color: #00000097;
+}
+
+.nav ul li a:hover{
+    color: #0d6efd;
+    /* text-decoration: underline; */
+    border-bottom: 3px solid #e91e61;
+}
+
+/* .nav ul li a:active, .nav ul li a:visited{
+    color: #5855555e;
+} */
+
+body.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode header {
+    background: #1e1e1e;
+}
+
+body.dark-mode .btn, 
+body.dark-mode .btn-outline {
+    color: white;
+}
+
+body.dark-mode .btn {
+    background-color: #0056b3;
+}
+
+body.dark-mode .btn-outline {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+}
+
+body.dark-mode .service-card {
+    background-color: #222;
+}
+
+body.dark-mode footer {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode a {
+    color: #0d6efd;
+}
+
+/* Dark Mode Toggle Button */
+.btn-toggle {
+    background: none;
+    border: buttons;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #000;
+    transition: color 0.3s ease;
+    box-shadow: #000;
+}
+
+.btn-toggle:hover {
+    color: #ffd700;
+}
+
+.menu{
+    display: none;
+}
+
+/* hero section */
+.hero-container{
+    margin-top: 55px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    height: 90vh;
+    padding-top: 80px;
+}
+
+.content{
+    width: 50%;
+}
+
+.content h2{
+    font-size: 3.8em;
+}
+.content p{
+    margin: 20px 0;
+    font-size: 1.5em;
+    color: rgb(59, 61, 62);
+    line-height: 2.18rem;
+}
+
+button{
+    padding: 0.75rem 1.2rem ;
+    border-radius: 20px;
+    font-size: 1.25em;
+    cursor: pointer;
+    transition: all ease-in-out .15s;
+    align-items: center;
+}
+.btn{
+    background: #4384e6;
+    color: #fff;
+    border: none;
+}
+
+.btn:hover{
+    background: #0066ff;
+}
+
+.btn-outline{
+    border: 1px solid #0d6efd;
+    background: transparent;
+    color: #0d6efd;
+    margin-left: 5px;
+}
+
+button i{
+    font-size: 0.78em;
+}
+
+/* blob */
+.blob{
+    background-image: url('/static/images/header.png');
+    width: 380px;
+    height: 380px;
+    background-size: cover;
+    -webkit-background-position: center;
+    background-position: center center;
+    margin: 20px;
+    box-shadow: 0 5px 5px 5px rgba(13, 110, 253, 0.2);
+    animation: animate 5s ease-in-out infinite;
+    transition: all 1s ease-in-out;
+}
+
+@keyframes animate {
+    0%, 100%{
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50%{
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+}
+
+
+/* about styles */
+.about{
+    padding: 100px 0;
+    text-align: center;
+    width: 78%;
+    margin: 0 auto;
+}
+
+.about h2{
+    font-size: 2.5em;
+}
+
+.about p, .right-side p{
+    font-size: 1.2em;
+    color: rgb(59, 61, 62);
+    line-height: 1.67rem;
+    padding-top: 20px;
+}
+
+/* Container for 3D effect */
+.card-container {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* The 3D card */
+.card {
+    width: 300px;
+    height: 400px;
+    background: linear-gradient(135deg, #4384e6, #0066ff);
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d;
+    transform: rotateY(0deg) rotateX(0deg);
+    transition: transform 0.1s ease-out;
+}
+
+/* Card Content */
+.card-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    transform: translateZ(50px);
+}
+ 
+.container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.left-side,.right-side {
+    width: 50%;
+    margin: 20px 0;
+}
+
+.left-side img{
+    width: 90%;
+    /* height: 500px; */
+    border-radius: 4px;
+    /* background-position: center center; */
+    object-fit: cover;
+}
+
+.right-side .btn{
+    margin-top: 20px;
+}
+
+/* Service section */
+.services{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.services .service-card{
+    position: relative;
+    width: 350px;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.services .service-card::before{
+    content: '';
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 2;
+}
+
+.service-card .number{
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 40px;
+    font-weight: 700;
+    transition: 1s;
+}
+.service-card:nth-child(1) a,
+.service-card:nth-child(1) .number{
+    background: #e91e61;
+    box-shadow: 0 0 0 #e91e61;
+}
+
+.service-card:nth-child(1):hover .number{
+    box-shadow: 0 0 0 400px #e91e61;
+}
+
+.service-card:nth-child(2) a,
+.service-card:nth-child(2) .number{
+    background: #23e627;
+    box-shadow: 0 0 0 #23e627;
+}
+
+.service-card:nth-child(2):hover .number{
+    box-shadow: 0 0 0 400px #23e627;
+}
+
+.service-card:nth-child(3) a,
+.service-card:nth-child(3) .number{
+    background: #2196f4;
+    box-shadow: 0 0 0 #2196f4;
+}
+
+.service-card:nth-child(3):hover .number{
+    box-shadow: 0 0 0 400px #2196f4;
+}
+
+.service-card .service-text{
+    position: relative;
+    transition: .5s;
+}
+.service-card:hover .service-text{
+    color: #fff;
+}
+
+.service-card:hover .number{
+    color: #000;
+    background: #fff;
+}
+
+.service-card:hover .service-text a{
+    background: #fff;
+}
+
+.service-text h3{
+    margin: 20px 0;
+}
+.service-text a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: .5s;
+}
+
+/* contact form */
+.form{
+    margin: 30px 0;
+}
+input, textarea{
+    display: block;
+    width: 76%;
+    padding: 15px 10px;
+    margin: 15px 0;
+    background: #fff;
+    border-radius: 4px;
+    border: none;
+    resize: none;
+}
+
+footer{
+    position: absolute;
+    width: 100%;
+    background: #000;
+    left: 0;
+    right: 0;
+    margin-top: 100px;
+    min-height: 96px;
+    color: #fff;
+}
+
+.footer-container{
+    max-width: 1280px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 25px;
+
+}
+.footer-container h3{
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+.footer-container p{
+    width: 380px;
+    margin: 15px 0;
+}
+
+.footer-container a{
+    color: #fff;
+    font-weight: 500;
+}
+
+.social-icon{
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.social-icon i{
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.social-icon i:hover{
+    transform: scale(1.2);
+    transition: all .4s;
+}
+
+
+/* Media Quary */
+@media screen and (max-width: 576px) {
+
+    .nav ul{
+        display: none;
+    }
+
+    .menu{
+        display: block;
+    }
+
+    .hero-container{
+        flex-direction: column-reverse;
+        height: 100%;
+    }
+    .content{
+        width: 100%;
+    }
+    .content h2{
+        font-size: 2.4em;
+    }
+    .blob{
+        width: 280px;
+        height: 280px;
+    }
+
+    .about{
+        width: 100%;
+    }
+    .container{
+        flex-direction: column;
+    }
+    .left-side, .right-side{
+        width: 100%;
+    }
+    input, textarea{
+        width: 100%;
+    }
+    .footer-container{
+        flex-direction: column-reverse;
+    }
+}
