@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        nav {
+            width: 100%;
+            background-color: #0047ab;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .payment-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #0047ab;
+        }
+        .payment-card {
+            margin-top: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #0047ab;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #003580;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">🏠 Dashboard</a>
+        <a href="scan.html">📡 Scan</a>
+        <a href="admin.html" class="btn-logout">🚪 Logout</a>
+    </nav>
+
+    <div class="payment-container">
+        <h1>💳 Secure Payment</h1>
+        <p>Enter your details to proceed with the payment.</p>
+
+        <div class="payment-card">
+            <input type="number" id="payAmount" placeholder="Enter Amount (Min ₹100)" min="100">
+            <button class="btn" onclick="processPayment()">Pay Now</button>
+        </div>
+    </div>
+
+    <script>
+        function processPayment() {
+            let amount = document.getElementById('payAmount').value;
+            if (amount >= 100) {
+                alert(`✅ Payment of ₹${amount} Successful!`);
+                document.getElementById('payAmount').value = "";
+                updateBalance(amount);
+            } else {
+                alert("⚠ Minimum payment amount is ₹100.");
+            }
+        }
+
+        function updateBalance(amount) {
+            let balance = localStorage.getItem('balance') ? parseFloat(localStorage.getItem('balance')) : 0;
+            balance += parseFloat(amount);
+            localStorage.setItem('balance', balance);
+            alert(`Your updated balance is ₹${balance}`);
+        }
+    </script>
+</body>
+</html>

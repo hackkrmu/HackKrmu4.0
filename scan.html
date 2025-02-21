@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFID & QR Scanner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/styles.css">
+
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-gray-800">
+
+    <div class="bg-white shadow-lg rounded-xl p-8 text-center w-96">
+        <h1 class="text-2xl font-bold text-blue-600 mb-4">📡 RFID & QR Scanner</h1>
+        <p class="text-gray-600 mb-4">Scan your RFID card or the QR code below to control home appliances.</p>
+
+        <!-- QR Code -->
+        <div class="flex justify-center">
+            <img src="assets/QR_RIFD.jpg" alt="Scan Here to Control Home Appliances" class="w-48 h-48 rounded-lg shadow-md">
+        </div>
+        <p class="mt-2 text-gray-700 text-sm">Scan this QR code to control home appliances.</p>
+
+        <!-- Buttons -->
+        <div class="mt-6 space-y-3">
+            <button onclick="scanCard()" class="w-full bg-blue-600 text-white py-2 rounded-lg shadow-md hover:bg-blue-700">
+                Control Your Home Appliances
+            </button>
+            <button onclick="window.location.href='index.html'" class="w-full bg-gray-500 text-white py-2 rounded-lg shadow-md hover:bg-gray-600">
+                ⬅ Back to Dashboard
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
