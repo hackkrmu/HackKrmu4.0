@@ -1,0 +1,467 @@
+
+
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+nav {
+    height: 70px;
+    width: 100%;
+    background-color: #6f964b; 
+    position: fixed;
+    top: 0;
+    z-index: 20;                                
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: relative; 
+}
+
+.logo img {
+    position: fixed;
+    top: 0;
+    margin: 0 30px;
+    height: 80px;
+    /* background-color: rebeccapurple; */
+}
+
+.srchIcon{
+    height: 45px;
+    width: 60px;
+    position: fixed;
+    top: 10px;
+    left: 350px;
+    border-radius: 10px 0px 0px 10px;
+    background-color: darkgreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.threeLine {
+    display: none; 
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute; 
+    top: 50%; 
+    right: 20px; 
+    transform: translateY(-50%); /
+}
+
+.line1, .line2, .line3 {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px;
+    transition: all 0.3s ease;
+}
+
+.active .line1 {
+    transform: rotate(-45deg) translate(-3px, 6px);
+}
+
+.active .line2 {
+    opacity: 0;
+}
+
+.active .line3 {
+    transform: rotate(45deg) translate(-3px, -6px);
+}
+
+
+
+@media screen and (max-width: 768px) {
+    nav {
+        height: 100px; 
+    }
+
+    .main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px; 
+    }
+
+    .logo img {
+        height: 100px; 
+    }
+   
+    #language, #notitxt, #notification, #search, #login{
+        display: none;
+    }
+   
+    .srchIcon{
+        color: red;
+    }
+
+}
+
+
+
+ 
+.hero {
+   
+    display: inline-block; 
+    vertical-align: top;
+    height: 400px; 
+    width: 100%;
+    overflow: hidden; 
+    margin-right: 20px; 
+}
+
+.slider {
+    position: relative;
+    top: 10px;
+    display: flex; 
+    width: 770px;
+    height: 650px; 
+    gap: 10px;
+    animation: slide 10s infinite; 
+    position: relative;
+}
+
+.slider img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+}
+
+*/
+
+
+#language{
+    float: right;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    margin: 0 50px;
+    height: 45px;
+    width: 170px;
+    position: fixed;
+    top: 10px;
+    left: 820px;
+    border-radius: 10px;
+    background-color: white;
+}
+#language a{
+    color: green;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 20px;
+}
+#language i{
+    align-items: center;
+    justify-content: center;
+    float: left;
+    display: flex;
+    height: 45px;
+    width: 35px;
+    font-size: 30px;
+ 
+}
+
+#lngtxt{
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 100px;
+    position: relative;
+    display: flex;
+    float: right;
+    font-weight: bold;
+}
+
+
+#notification{
+    float: right;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    margin: 0 50px;
+    height: 45px;
+    width: 170px;
+    position: fixed;
+    top: 10px;
+    left: 1010px;
+    border-radius: 10px;
+    background-color: white;
+}
+#notification a{
+    height: 40px;
+    position: fixed;
+    color: green;
+    text-decoration: none;
+   padding: 0 5px;
+    font-size: 20px;
+}
+#notification i{
+    align-items: center;
+    justify-content: center;
+    float: left;
+    display: flex;
+    height: 45px;
+    width: 35px;
+    font-size: 30px;
+ 
+}
+
+#notitxt{
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 100px;
+    font-weight: bold;
+    position: relative;
+    display: flex;
+    float: right;
+ 
+}
+
+.bioFertilizer{
+    height: 250px;
+    width: 65%;
+    margin: 10px 10px;
+    display: flex;
+    align-items: center;
+    float: left;
+    padding: 65px;
+}
+.bioFertilizer img{
+    height: 200px;
+    border: 2px solid black;
+
+}
+#wheatImage{
+    height: 200px;
+    width: 450px;
+}
+
+.bioFertilizer h3{
+    width: 250px;
+
+}
+.bioFertilizer a{
+    text-decoration: none;
+}
+.artical{
+    margin: 0 20px;
+    position: relative;
+    
+}
+
+
+#image1{background-image: url(./image/bioFer.jpg);}
+
+#image2{background-image: url(./image/smartFarming.jpg);
+border: 2px solid black;
+width: 1250px;
+height: 200px;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center center;
+
+}
+
+#image3{background-image: url(./image/plantFertlizer.jpg);}
+
+#image1, #image3{
+border: 2px solid black;
+width: 800px;
+height: 200px;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center center;
+}
+
+.alert{
+
+    height: 1000px;
+    width: 450px;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    margin: 60px;
+    border: 2px solid black;
+
+}
+
+.alert h2{
+    margin: 50px 0;
+    height: 100px;
+    width: 100%;
+    padding: 50px 100px;
+    position: absolute;
+}
+
+.aleartmsg{
+    height: 50px;
+    width: 100%;
+    position: absolute;
+}
+
+#tree{
+    height: 800px;
+    width: 400px;
+    margin-top: 175px;
+    background-image: url(./image/tree.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+footer{
+    background-color: rgb(19, 17, 17);
+    height: 500px;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+
+.dev{
+    height: 70px;
+    width: 390px;
+    position: absolute;
+    right: 300px;
+    top: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+    float: right;
+}
+
+
+
+
+
+#login{
+    background-color: white;
+    top: 10px;
+    position: fixed;
+    right: 100px;
+    color: green;
+    border: none;
+    height: 45px;
+    width: 170px;
+    font-size: 25px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+#searchIcon{
+    color: white;
+    margin-right: 10px;
+    font-size: 30px;
+
+}
+
+#srch{
+    height: 45px;    
+    padding: 10px 30px;
+    border-radius: 0px 10px 10px 0px;
+    border: none;
+    top: 10px;
+    left: 400px;
+    width: 450px;
+    position: fixed;
+    outline: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
+
+.feedback{
+    border: 2px solid white;
+    height: 400px;
+    width: 400px;
+    margin: 40px 70px;
+    border-radius: 10px 10px 15px 15px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    float: left;
+}
+
+.feedback h3{
+    color: white;
+    margin-top: 20px;
+    font-size: 30px;
+    height: 40px;
+    width: 100%;
+    padding-left: 120px;
+    position: relative;
+}
+
+#nameInFeedbox{
+    height: 30px;
+    width: 80%;
+    margin: 10px 30px;
+    color: black;
+}
+
+#emailInFeedbox{
+    height: 30px;
+    width: 80%;
+    margin: 10px 30px;
+    color: black;
+}
+.nameFeed, .emailFeed, .msg{
+    color: white;
+    margin-left: 30px;
+}
+.terms{
+    color: white;
+    width: 90%;
+    font-size: 15px;
+    display: flex;
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    gap: 5px;
+    
+}
+.terms a{
+    color: white;
+}
+
+#submit{
+    background-color: white;
+    color: black;
+    text-transform: uppercase;
+    height: 50px;
+    overflow: hidden;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0 0 10px 10px;
+    cursor: pointer;
+}
+#feedMsg{
+    height: 100px;
+    width: 80%;
+    margin-left: 30px;
+}
+

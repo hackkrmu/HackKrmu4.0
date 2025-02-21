@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+ <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmfolio</title>
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  
+    <nav>
+        <div class="main">
+
+            
+            <div class="logo"><img src="./image/logoW.png" alt="Logo"></div>
+
+
+            <div class="srchIcon"><i class="material-icons" id="searchIcon">search</i></div>
+
+            <div id="search"> <input type="search" name="" id="srch" placeholder="Search something on farmfolio"></div>
+
+            <div id="language"> <a href="#"><i class="material-icons" id="lang">translate</i> <div id="lngtxt">Language</div></a> </div>
+
+
+            <div id="notification"> <a href="#"><i class="material-icons" id="noti">notifications</i> <div id="notitxt">Notification</div></a> </div>
+
+            
+            <button id="login"> Login</button>
+            
+             
+
+         
+           
+
+            <div class="threeLine" onclick="toggleMenu()">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+      <section class="hero">
+        <div class="slider">
+            <img src="./image/img 1.jpg" alt="Slide 1">
+            <img src="./image/img 2.png" alt="Slide 2">
+            <img src="./image/img 3.jpg" alt="Slide 3">
+            <img src="./image/img 4.jpg" alt="Slide 4">
+            <img src="./image/img 5.jpg" alt="Slide 5">
+        </div>
+    </section>
+
+
+
+<div class="bioFertilizer">
+    <div id="image1"></div>
+
+    <div class="artical">
+
+        <h3>Organic Farming Guide </h3>
+        
+        <p>
+            <br> <br> 
+            Biofertilizers are natural supplements containing living microorganisms, which when applied to soil or plants, enhance nutrient availability and uptake, ultimately promoting plant growth and health. <br> <br> </p>
+            <a href="#" target="_blank" id="bioFert">Learn more</a>
+    </div>
+</div>
+
+<div class="bioFertilizer">
+    <div id="image2"></div>
+
+
+    <div class="artical">
+
+        <h3> Smart Farming </h3>
+        
+        <p>
+            <br> <br> 
+            Explore the frontier of agriculture with Smart Farming, where technology meets tradition to revolutionize crop management and increase efficiency. Discover how data-driven insights, automation, and IoT are reshaping farming practices for a sustainable and prosperous future. <br> <br> </p>
+            <a href="#" target="_blank">Learn more</a>
+    </div>
+</div>
+
+<div class="bioFertilizer">
+    <div id="image3"></div>
+
+    <div class="artical">
+
+        <h3>Healthy Farming </h3>
+        
+        <p>
+            <br> <br> 
+            Nurture thriving crops sustainably with Healthy Farming. Explore innovative techniques for a healthier harvest and a greener planet. Join us in cultivating a brighter, healthier future. <br> <br> </p>
+            <a href="#" target="_blank">Learn more</a>
+    </div>
+</div>
+
+<div class="bioFertilizer">
+    <img src="./image/bio.jpg" alt="">
+
+    <div class="artical">
+
+        <h3>Quality Assurance Systems </h3>
+        
+        <p>
+            <br> <br> 
+            Discover the backbone of agricultural excellence with Quality Assurance Systems. From rigorous inspections to meticulous record-keeping, these systems ensure that every step of the farming process meets stringent quality standards. Learn how farmers uphold integrity, safety, and consumer trust through effective quality control measures. <br> <br> </p>
+            <a href="#" target="_blank">Learn more</a>
+    </div>
+</div>
+
+
+
+<div class="alert">
+    <h2>Government Scheme</h2>
+    
+    <div id="tree"></div>
+    <p class="aleartmsg"><marquee behavior="scroll" direction="left">we are working on it</marquee></p>
+</div>
+    
+
+<footer>
+
+    <div class="feedback">
+        <h3>FEEDBACK</h3>
+
+        <label for="nameInFeedbox" name="" class="nameFeed">Name</label>
+        <input type="text" name="" id="nameInFeedbox" maxlength="20" required placeholder="Enter your name">
+
+        <label for="emailInFeedbox" class="emailFeed">Email</label>
+        <input type="email" name="" id="emailInFeedbox"  maxlength="30" required placeholder="example@xyz.com">
+
+        <label for="feedMsg" class="msg">message</label>
+        <textarea name="feedmessage" id="feedMsg" required maxlength="300" placeholder="Give your suggestion under 300 words"></textarea>
+
+       
+        <label class="terms" for="agree">  <input type="radio" name="agree" id="agreeBtn" class="radio"> I have read and agree to the<a href="#" target="_blank">Terms and Conditions</a></label>
+
+        <input type="submit" value="submit" id="submit">
+    </div>
+
+    
+
+   
+  
+</footer>
+
+    <script src="scripts.js" defer></script>
+</body>
+</html>
+
+

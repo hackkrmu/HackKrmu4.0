@@ -1,0 +1,203 @@
+
+/* this css page is for how to make organic fertilizer  */
+
+
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+nav {
+    height: 70px;
+    width: 100%;
+    background-color: #6f964b; 
+    position: fixed;
+    top: 0;
+    z-index: 20;                                
+}
+
+.logo img {
+    position: fixed;
+    top: 0;
+    margin: 0 30px;
+    height: 80px;
+}
+
+
+#language{
+    float: right;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    margin: 0 50px;
+    height: 45px;
+    width: 170px;
+    position: fixed;
+    top: 10px;
+    left: 820px;
+    border-radius: 10px;
+    background-color: white;
+}
+#language a{
+    color: green;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 20px;
+}
+#language i{
+    align-items: center;
+    justify-content: center;
+    float: left;
+    display: flex;
+    height: 45px;
+    width: 35px;
+    font-size: 30px;
+ 
+}
+
+#lngtxt{
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 100px;
+    position: relative;
+    display: flex;
+    float: right;
+    font-weight: bold;
+}
+
+
+#notification{
+    float: right;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    margin: 0 50px;
+    height: 45px;
+    width: 170px;
+    position: fixed;
+    top: 10px;
+    left: 1010px;
+    border-radius: 10px;
+    background-color: white;
+}
+#notification a{
+    height: 40px;
+    position: fixed;
+    color: green;
+    text-decoration: none;
+   padding: 0 5px;
+    font-size: 20px;
+}
+#notification i{
+    align-items: center;
+    justify-content: center;
+    float: left;
+    display: flex;
+    height: 45px;
+    width: 35px;
+    font-size: 30px;
+}
+
+#notitxt{
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 100px;
+    font-weight: bold;
+    position: relative;
+    display: flex;
+    float: right;
+}
+
+.sign{
+    height: 100px;
+    width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    margin: 100px 50px;
+}
+
+.sign img{ height: 70px; }
+
+#login{
+    background-color: white;
+    top: 10px;
+    position: fixed;
+    right: 100px;
+    color: green;
+    border: none;
+    height: 45px;
+    width: 170px;
+    font-size: 25px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.srchIcon{
+    height: 45px;
+    width: 60px;
+    position: fixed;
+    top: 10px;
+    left: 350px;
+    border-radius: 10px 0px 0px 10px;
+    background-color: darkgreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+
+#searchIcon{
+    color: white;
+    margin-right: 10px;
+    font-size: 30px;
+}
+
+#srch{
+    height: 45px;    
+    padding: 10px 30px;
+    border-radius: 0px 10px 10px 0px;
+    border: none;
+    top: 10px;
+    left: 400px;
+    width: 450px;
+    position: fixed;
+    outline: none;
+}
+input[type="search"]::-webkit-search-cancel-button { display: none; }
+
+
+.video{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.artical{
+    height: 100vh;
+    width: 100vw;
+    margin: 20px;
+    padding: 30px;
+}
+.second{
+    height: 100vh;
+    width: 100vw;
+    margin: 20px;
+    padding: 30px;
+}
+#i2{
+    height: 300px;
+}

@@ -1,0 +1,73 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;  
+    font-family: Arial, sans-serif;
+}
+
+.bg-image {
+    background: linear-gradient(to bottom, #85D860, #4CAF50);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.container {
+    width: 300px;
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 250px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+input:focus {
+    outline: none;
+}
+
+#submit{
+
+    width: 100px;
+    padding: 8px;
+    margin: 1px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    
+}
+
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+.altrnativ:hover {
+    text-decoration: underline;
+}
+
+.social-login {
+    margin-top: 20px;
+}
+
+.social-icon {
+    width: 25px;
+    margin: 0 5px;
+    cursor: pointer;
+}
