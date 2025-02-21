@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher 2 Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="dark-mode-toggle" class="btn toggle">🌙 Dark Mode</button>
+
+    <div class="container teacher-profile">
+        <div class="profile-photo">
+            <img src="teacher2.jpg" alt="Teacher 2">
+        </div>
+        <h2 class="teacher-name">Ms. Shalu Pandey</h2>
+
+        <div class="teacher-info">
+            <h3>🎓 Education History</h3>
+            <p>Bachelor's in Computer Science - Delhi University</p>
+            <p>Master's in Education - Jawaharlal Nehru University</p>
+
+            <h3>⭐ Plus Points</h3>
+            <ul>
+                <li>Engaging and Communicative Teaching Style</li>
+                <li>Deep Understanding of Programing Languages</li>
+                <li>Encourages Creative and Critical Thinking</li>
+            </ul>
+
+            <h3>📚 Subjects & Topics</h3>
+            <ul>
+                <li><strong>Python:</strong> Variables, Strings, Loops</li>
+                <li><strong>Data Structures:</strong> Types of Data Structures, Arrays</li>
+            </ul>
+
+            <h3>🎥 Demo Teaching Video</h3>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/sq0M4JStsHU" 
+                    title="Demo Teaching Video" frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
+
+            <h3>🌟 Student Reviews & Ratings</h3>
+            <div class="reviews">
+                <div class="review">
+                    <p><strong>Sneha R.</strong> ⭐⭐⭐⭐⭐</p>
+                    <p>"Ms. Shalu's classes are super interactive and engaging. Love the way she explains everything!"</p>
+                </div>
+                <div class="review">
+                    <p><strong>Vikram T.</strong> ⭐⭐⭐⭐</p>
+                    <p>"Her python lessons are very effective and easy to understand."</p>
+                </div>
+                <div class="review">
+                    <p><strong>Neha M.</strong> ⭐⭐⭐⭐⭐</p>
+                    <p>"I gained so much information in programing languages because of her. Highly recommended!"</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="student.html" class="btn back">🔙 Back</a>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+        function enableDarkMode() {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "enabled");
+            darkModeToggle.textContent = "☀ Light Mode";
+        }
+
+        function disableDarkMode() {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "disabled");
+            darkModeToggle.textContent = "🌙 Dark Mode";
+        }
+
+        if (localStorage.getItem("darkMode") === "enabled") {
+            enableDarkMode();
+        }
+
+        darkModeToggle.addEventListener("click", () => {
+            if (document.body.classList.contains("dark-mode")) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+    });
+    </script>
+</body>
+</html>
