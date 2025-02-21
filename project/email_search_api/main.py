@@ -17,7 +17,6 @@ JOBS_API_KEY = os.getenv('JOBS_API_KEY')
 
 app = FastAPI()
 
-# ✅ Enable CORS for React (localhost:5173)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -26,12 +25,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ API Keys
 ANYMAILFINDER_URL = "https://api.anymailfinder.com/v5.0/search/company.json"
 
 SERP_API_URL = "https://google.serper.dev/search"
 
-# ✅ Request model
+
 class CompanyRequest(BaseModel):
     company_name: str
 
@@ -40,7 +38,7 @@ class JobRequest(BaseModel):
     location : str
 
 def fetch_company_emails(company_name):
-    """Fetch emails from Anymailfinder API."""
+    
     headers = {
         "Authorization": f"Bearer {ANYMAILFINDER_API_KEY}",
         "Content-Type": "application/json",
@@ -61,7 +59,7 @@ def fetch_company_emails(company_name):
         raise HTTPException(status_code=500, detail=f"Error contacting Anymailfinder API: {str(e)}")
 
 def fetch_email_titles(emails):
-    """Fetch job titles from Google Search via SerpAPI."""
+    
     email_title_map = {}
 
     for email in emails:
@@ -76,7 +74,7 @@ def fetch_email_titles(emails):
             response.raise_for_status()
             response_json = response.json()
 
-            # Extract title from the first search result (likely LinkedIn)
+
             search_results = response_json.get("organic", [])
             title = search_results[0].get("title", "Unknown") if search_results else "No relevant result"
 
