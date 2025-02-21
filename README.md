@@ -1,23 +1,13 @@
 # HackKrmu4.0
 HackKrmu4.0
 
-team SU 
-team id 129
+Team Name: Team SU 
+team id: 129
 
+Members : 
 kshitij 
-kushagra 
-mridul 
+kushagra (Team Leader) 
+Mridul 
 sumedha 
 
-Students living away from home often miss the warmth of home-cooked meals, while homemakers have the skills to provide them. We’ve built a web application that connects them! Our platform enables mothers to list their meals, students to order easily, and day scholars to deliver – making affordable, home-cooked food accessible to those who need it.
-
-Our tech stack is
-Frontend:
-    Framework: React 
-    Language: TypeScript and JavaScript.
-    Styling: Tailwind CSS.
-
-Backend:
-    Runtime: Node.js 
-    Database: Prisma ORM 
-
+Mummy's Tiffin is a platform that connects homemaker mothers with students living away from home, ensuring they receive fresh, home-cooked meals. Day-scholar students carry extra tiffins prepared by their mothers and exchange them with hostel students for a reasonable fee. This initiative benefits students by providing nutritious meals and allows homemakers to earn extra income. Our vision is to expand with a mobile app, secure payments, and a rating system to enhance quality and reliability. Join us in bringing a taste of home to every student!
