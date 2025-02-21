@@ -1,0 +1,30 @@
+.App {
+  background-color: #07abd4;
+  min-height: 100vh;
+  /* margin-top: 1rem; */
+}
+
+.App header {
+  background: #ffffff;
+}
+
+.App__header {
+  display: flex;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  height: 4em;
+}
+
+.App__switcher {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+}
+
+.App__switcher-switch {
+  margin: 0 0.25rem;
+}
