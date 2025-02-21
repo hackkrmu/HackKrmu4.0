@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="css/students.css">
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Neo Card</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Students</a></li>
+                <li><a href="#">School</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#" onclick="showContent('personalInfo')">Personal Info</a></li>
+                <li><a href="#" onclick="showContent('attendance')">Attendance</a></li>
+                <li><a href="#" onclick="showContent('marksheet')">Marksheet</a></li>
+                <li><a href="#" onclick="showContent('schoolFees')">School Fees</a></li>
+                <li><a href="#" onclick="showContent('transactions')">Transaction History</a></li>
+                <li><a href="#" onclick="showContent('neoCardRecharge')">NeoCard Recharge</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div id="personalInfo" class="content-box">
+                <h2>Personal Information</h2>
+                <div class="student-info">
+                    <img src="assets/images/DALL·E 2025-02-20 17.32.19 - A realistic image of an Indian child wearing a school uniform with an ID card. The ID card has 'NeoCard' written on it. The child is standing confiden.webp" alt="Student Image" class="student-image" id="studentImage">
+                    <p class="student-name" id="studentNamePlaceholder">Hi, Aditya</p>
+                </div>
+                <p><strong>Class:</strong> <span id="studentClass">10th</span></p>
+                <p><strong>Roll No:</strong> <span id="studentRollNo">21</span></p>
+                <p><strong>School Name:</strong> <span id="studentSchoolName">XYZ High School</span></p>
+                <p><strong>Father's Name:</strong> <span id="studentFatherName">Rajesh Kumar</span></p>
+                <p><strong>Mother's Name:</strong> <span id="studentMotherName">Sunita Devi</span></p>
+                <p><strong>Contact:</strong> <span id="studentContact">9876543210</span></p>
+                <p><strong>Email ID:</strong> <span id="studentEmailId">9876543210</span></p>
+                <p><strong>Year of Admission:</strong> <span id="studentAdmissionYear">2018</span></p>
+            </div>
+
+            <div id="attendance" class="content-box">
+                <h2>Attendance</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Total Classes</th>
+                            <th>Classes Attended</th>
+                            <th>Classes Missed</th>
+                            <th>Absence Dates</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mathematics</td>
+                            <td>50</td>
+                            <td>45</td>
+                            <td>5</td>
+                            <td>2025-01-10, 2025-01-15, 2025-01-20, 2025-01-25, 2025-01-30</td>
+                        </tr>
+                        <tr>
+                            <td>Science</td>
+                            <td>50</td>
+                            <td>48</td>
+                            <td>2</td>
+                            <td>2025-01-12, 2025-01-22</td>
+                        </tr>
+                        <tr>
+                            <td>English</td>
+                            <td>50</td>
+                            <td>49</td>
+                            <td>1</td>
+                            <td>2025-01-18</td>
+                        </tr>
+                        <tr>
+                            <td>History</td>
+                            <td>50</td>
+                            <td>47</td>
+                            <td>3</td>
+                            <td>2025-01-05, 2025-01-19, 2025-01-25</td>
+                        </tr>
+                        <tr>
+                            <td>Geography</td>
+                            <td>50</td>
+                            <td>46</td>
+                            <td>4</td>
+                            <td>2025-01-08, 2025-01-14, 2025-01-21, 2025-01-28</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="js/students.js"></script>
+</body>
+</html>

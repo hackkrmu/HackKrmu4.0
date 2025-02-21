@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen & Stationary Store</title>
+    <link rel="stylesheet" href="css/utilities.css">
+</head>
+<body>
+    <header>
+        <h1>Neo Card</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Students</a></li>
+                <li><a href="#">School</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+
+        <section class="item-section">
+            <div class="item-group">
+                <h3>Canteen Items</h3>
+                <div class="item-grid">
+                    <div class="item">
+                        <img src="placeholder.png" alt="Chips" class="item-ai-image">
+                        <h4>Chips</h4>
+                        <p>Price: ₹20.00</p>
+                        <button class="add-to-bill" data-name="Chips" data-price="20.00">Add to Bill</button>
+                    </div>
+                    <div class="item">
+                        <img src="placeholder.png" alt="Soda" class="item-ai-image">
+                        <h4>Soda</h4>
+                        <p>Price: ₹50.00</p>
+                        <button class="add-to-bill" data-name="Soda" data-price="50.00">Add to Bill</button>
+                    </div>
+                    <div class="item">
+                        <img src="placeholder.png" alt="Chocolate Bar" class="item-ai-image">
+                        <h4>Chocolate Bar</h4>
+                        <p>Price: ₹40.00</p>
+                        <button class="add-to-bill" data-name="Chocolate Bar" data-price="40.00">Add to Bill</button>
+                    </div>
+                    <div class="item">
+                        <img src="placeholder.png" alt="Samosa" class="item-ai-image">
+                        <h4>Samosa</h4>
+                        <p>Price: ₹15.00</p>
+                        <button class="add-to-bill" data-name="Samosa" data-price="15.00">Add to Bill</button>
+                    </div>
+                    <div class="item">
+                        <img src="placeholder.png" alt="Chole Bhature" class="item-ai-image">
+                        <h4>Snack - Chhole Bhature</h4>
+                        <p>Price: ₹50.00</p>
+                        <button class="add-to-bill" data-name="Chole Bhature" data-price="50.00">Add to Bill</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-group">
+                <h3>Stationery Items</h3>
+                <div class="item-grid">
+                    <div class="item">
+                        <img src="placeholder.png" alt="Pen" class="item-ai-image">
+                        <h4>Pen</h4>
+                        <p>Price: ₹5.00</p>
+                        <button class="add-to-bill" data-name="Pen" data-price="5.00">Add to Bill</button>
+                    </div>
+                    <div class="item">
+                        <img src="placeholder.png" alt="Notebook" class="item-ai-image">
+                        <h4>Notebook</h4>
+                        <p>Price: ₹80.00</p>
+                        <button class="add-to-bill" data-name="Notebook" data-price="80.00">Add to Bill</button>
+                    </div>
+                    <div class="item">
+                        <img src="placeholder.png" alt="Ruler" class="item-ai-image">
+                        <h4>Ruler</h4>
+                        <p>Price: ₹5.00</p>
+                        <button class="add-to-bill" data-name="Ruler" data-price="5.00">Add to Bill</button>
+                    </div>
+                    <div class="item">
+                        <img src="placeholder.png" alt="Eraser" class="item-ai-image">
+                        <h4>Eraser</h4>
+                        <p>Price: ₹5.00</p>
+                        <button class="add-to-bill" data-name="Eraser" data-price="5.00">Add to Bill</button>
+                    </div>
+                    <div class="item">
+                        <img src="placeholder.png" alt="Blank Sheets (500 Ream)" class="item-ai-image">
+                        <h4>Blank Sheets (500 Ream)</h4>
+                        <p>Price: ₹250.00</p>
+                        <button class="add-to-bill" data-name="Blank Sheets (500 Ream)" data-price="250.00">Add to Bill</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bill-section">
+            <div class="bill-card">
+                <h2>Your Bill</h2>
+                <div id="bill-items">
+                    <!-- Bill items will be added here dynamically -->
+                </div>
+                <div class="total-amount">
+                    Total: ₹<span id="total-amount">0.00</span>
+                </div>
+                <div class="button-container">
+                    <button class="reset-button" onclick="resetBill()">Reset</button>
+                    <button class="generate-bill">Generate Bill</button>
+                </div>
+                <div class="nfc-placeholder">
+                    Tap your NFC ID card to confirm payment.
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <p>Use your NFC ID card to purchase items and generate your bill.</p>
+
+    <script src="js/utilities.js"></script>
+</body>
+</html>
