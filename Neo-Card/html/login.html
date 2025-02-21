@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css"> 
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+ <!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h2>Login</h2>
+
+            <!-- Category Selection (Horizontal Layout) -->
+            <div class="category-container">
+                <div class="category-box active" data-category="student">Student</div>
+                <div class="category-box" data-category="teacher">Teacher</div>
+                <div class="category-box" data-category="utilities">Utilities</div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginId">Login ID:</label>
+                    <input type="text" id="loginId" name="loginId" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="login-button">Login</button>
+                </div>
+
+                <div class="form-links">
+                    <a href="#" class="forgot-password">Forgot Password?</a> |
+                    <a href="#" class="sign-up">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
