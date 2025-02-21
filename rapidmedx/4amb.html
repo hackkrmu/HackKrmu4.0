@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambulance Status</title>
+    <link rel="stylesheet" href="4amb.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ambulance Fleet Status</h1>
+
+        <div class="ambulance-list">
+            <div class="ambulance">
+                <img src="ambulance1.jpg" alt="Ambulance 1">
+                <div class="ambulance-info">
+                    <h3>Ambulance 1</h3>
+                    <span class="badge active" id="ambulance1Status">Active</span>
+                </div>
+            </div>
+
+            <div class="ambulance">
+                <img src="ambulance2.jpg" alt="Ambulance 2">
+                <div class="ambulance-info">
+                    <h3>Ambulance 2</h3>
+                    <span class="badge inactive" id="ambulance2Status">Non-Active</span>
+                </div>
+            </div>
+
+            <div class="ambulance">
+                <img src="ambulance3.jpg" alt="Ambulance 3">
+                <div class="ambulance-info">
+                    <h3>Ambulance 3</h3>
+                    <span class="badge active" id="ambulance3Status">Active</span>
+                </div>
+            </div>
+
+            <div class="ambulance">
+                <img src="ambulance4.jpg" alt="Ambulance 4">
+                <div class="ambulance-info">
+                    <h3>Ambulance 4</h3>
+                    <span class="badge inactive" id="ambulance4Status">Non-Active</span>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="toggleStatus('ambulance1Status')">Toggle Ambulance 1 Status</button>
+        <button onclick="toggleStatus('ambulance2Status')">Toggle Ambulance 2 Status</button>
+        <button onclick="toggleStatus('ambulance3Status')">Toggle Ambulance 3 Status</button>
+        <button onclick="toggleStatus('ambulance4Status')">Toggle Ambulance 4 Status</button>
+
+    </div>
+
+    <script>
+        function toggleStatus(elementId) {
+            const badge = document.getElementById(elementId);
+            if (badge.classList.contains('active')) {
+                badge.classList.remove('active');
+                badge.classList.add('inactive');
+                badge.textContent = 'Non-Active';
+            } else {
+                badge.classList.remove('inactive');
+                badge.classList.add('active');
+                badge.textContent = 'Active';
+            }
+        }
+    </script>
+
+</body>
+</html>

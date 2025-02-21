@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ambulance Driver Dashboard (Firebase)</title>
+  <link rel="stylesheet" href="driver.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+   crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.1/dist/leaflet-routing-machine.css" />
+
+</head>
+<body>
+
+  <header>
+    <h1>RapidMedX (Partner)</h1>
+  </header>
+
+  <main>
+    <section id="login-section">
+      <h2>Driver Login</h2>
+      <form id="login-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Login</button>
+        <p id="login-error" class="error-message"></p>
+      </form>
+    </section>
+
+    <section id="booking-section" class="hidden">
+      <h2>New Bookings</h2>
+      <ul id="booking-list">
+        <!-- Booking Items (Populated with JavaScript) -->
+      </ul>
+      <button id="logout-button">Logout</button> <!-- Added Logout Button -->
+    </section>
+
+    <section id="map-section" class="hidden">
+      <h2>Navigation</h2>
+      <div id="map-container"></div>
+      <div id="route-instructions">
+        <h3>Route Instructions:</h3>
+        <ol id="instructions-list"></ol>
+      </div>
+    </section>
+
+    <section id="location-section" class="hidden">
+      <h2>Current Location</h2>
+      <p>Latitude: <span id="latitude"></span></p>
+      <p>Longitude: <span id="longitude"></span></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 RapidMedX </p>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+   crossorigin=""></script>
+   <script src="https://unpkg.com/leaflet-routing-machine@3.2.1/dist/leaflet-routing-machine.js"></script>
+  <script src="driver.js"></script> <!-- Your Main Script -->
+</body>
+</html>

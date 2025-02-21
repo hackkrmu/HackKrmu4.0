@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambulance Management Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <div class="login-signup-container" id="loginSignup">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+            <p id="loginError" class="error-message"></p>
+        </form>
+
+        <h2>Sign Up</h2>
+        <form id="signupForm" style="display: none;">
+            <input type="email" id="signupEmail" placeholder="Email" required>
+            <input type="password" id="signupPassword" placeholder="Password" required>
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+            <p id="signupError" class="error-message"></p>
+        </form>
+    </div>
+
+    <div class="dashboard-container" id="dashboard" style="display: none;">
+        <header>
+            <h1>Ambulance Management Dashboard</h1>
+            <button id="logoutBtn">Logout</button>
+        </header>
+
+        <section class="overview">
+            <div class="card">
+                <h3>Total Ambulances</h3>
+                <p id="totalAmbulances">0</p>
+            </div>
+            <div class="card">
+                <h3>Active Ambulances</h3>
+                <p id="activeAmbulances">0</p>
+            </div>
+            <div class="card">
+                <h3>Inactive Ambulances</h3>
+                <p id="inactiveAmbulances">0</p>
+            </div>
+        </section>
+
+        <section class="map-container">
+            <h2>Live Ambulance Locations</h2>
+            <div id="map">
+              <p>Map will be displayed here</p>
+            </div>
+        </section>
+
+        <section class="ambulance-list">
+            <h2>Ambulance List</h2>
+            <table id="ambulanceTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Status</th>
+                        <th>Location</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="ambulanceTableBody">
+                </tbody>
+            </table>
+        </section>
+
+        <div class="modal" id="ambulanceDetailsModal">
+            <div class="modal-content">
+                <span class="close">×</span>
+                <h2>Ambulance Details</h2>
+                <div id="ambulanceDetails">
+                  <p>Ambulance ID: <span id="ambulanceId"></span></p>
+                  <p>Status: <span id="ambulanceStatus"></span></p>
+                  <p>Location: <span id="ambulanceLocation"></span></p>
+                  <p>Patient Details: <span id="ambulancePatient"></span></p>
+                  <p>Route: <span id="ambulanceRoute"></span></p>
+                  <button id="stopRouteButton">Stop Route</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="firebase-config.js"></script>
+</body>
+</html>
