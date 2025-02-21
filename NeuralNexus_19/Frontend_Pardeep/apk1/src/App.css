@@ -1,0 +1,91 @@
+#root {
+  max-width: 1280px; 
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+*{
+  background-color: white;
+}
+
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.welcome-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.logo {
+  width: 100px;
+  height: 110px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.login-btn, .signup-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.login-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: #45a049;
+}
+
+.signup-btn {
+  background-color: #dceeff;
+  color: #4caf50;
+}
+
+.signup-btn:hover {
+  background-color: #c2e0ff;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.divider-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.divider-text {
+  margin: 0 10px;
+  color: #999;
+  font-size: 14px;
+}

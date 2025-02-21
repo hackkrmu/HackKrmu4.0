@@ -1,0 +1,160 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+* {
+  background-color: white;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.permissions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.permissions-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000;
+  text-align: center;
+}
+
+.permissions-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.permission-card {
+  width: 90%;
+  max-width: 500px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.permission-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.permission-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.permission-text h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #000;
+}
+
+.permission-text p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  content: '';
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+.submit-btn {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+  .permissions-title {
+    font-size: 24px;
+  }
+
+  .permissions-image img {
+    max-width: 300px;
+  }
+
+  .permission-card {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .permissions-title {
+    font-size: 20px;
+  }
+
+  .permission-text h2 {
+    font-size: 16px;
+  }
+
+  .permission-text p {
+    font-size: 12px;
+  }
+}
