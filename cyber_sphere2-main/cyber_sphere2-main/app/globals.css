@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 10, 10;
+  --background-end-rgb: 26, 26, 26;
+  --accent-cyan: 0, 240, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  font-family: 'Inter', sans-serif;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #fff, #00F0FF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cyber-grid {
+  background-image: linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+}
+
+.tool-card {
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+  border-color: rgba(0, 240, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
