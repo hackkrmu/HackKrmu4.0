@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Guidance Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Career Guidance Quiz</h1>
+        <p class="lead">Answer the following questions to help us understand your skills and interests.</p>
+        <form action="/result" method="post">
+            <div class="form-group">
+                <label for="question1">What is your preferred working environment?</label>
+                <select class="form-control" id="question1" name="question1" required>
+                    <option value="">Select...</option>
+                    <option value="indoor">Indoor</option>
+                    <option value="outdoor">Outdoor</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="question2">Do you enjoy working with numbers?</label>
+                <select class="form-control" id="question2" name="question2" required>
+                    <option value="">Select...</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="question3">How do you prefer to solve problems?</label>
+                <select class="form-control" id="question3" name="question3" required>
+                    <option value="">Select...</option>
+                    <option value="analytical">Analytical</option>
+                    <option value="creative">Creative</option>
+                    <option value="practical">Practical</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Quiz</button>
+        </form>
+    </div>
+</body>
+</html>
