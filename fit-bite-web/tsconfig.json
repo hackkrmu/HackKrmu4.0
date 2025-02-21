@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
+, "app/reuse/layout/Backdrop.jsx", "app/reuse/layout/SidebarWiapp/reuse/components1/ui/badge/Badge.jsxge/Bapp/reuse/context1/SidebarContext.jsxrConapp/reuse/context1/ThemeConapp/reuse/components1/icons/index.jsxponeapp/reuse/components1/header/NotificationDropdown.jsxNotiapp/reuse/components1/header/UserDropdown.jsx/heaapp/reuse/components1/ui/dropdown/Dropdown.jsxui/dapp/reuse/components1/ui/dropdown/DropdownItem.jsxropdapp/reuse/components1/ui/images/ResponsiveImage.jsxagesapp/reuse/components1/ui/images/ThreeColumnImageGrid.jsxThreapp/reuse/components1/ui/images/TwoColumnImageGrid.jsxs/Twapp/reuse/components1/ui/modal/index.jsxentsapp/reuse/components1/ui/table/index.jsxentsapp/reuse/components1/ui/video/VideosExample.jsx/vidapp/reuse/components1/ui/video/YouTubeEmbed.jsxi/viapp/reuse/components1/user-profile/UserAddressCard.jsxfileapp/reuse/components1/user-profile/UserInfoCard.jsxprofapp/reuse/components1/user-profile/UserMetaCard.jsxprofapp/reuse/components1/videos/FourIsToThree.jsxvideapp/reuse/components1/videos/OneIsToOne.jsxs1/vapp/reuse/components1/videos/SixteenIsToNine.jsxdeosapp/reuse/components1/videos/TwentyOneIsToNine.jsxos/Tapp/reuse/components1/ui/button/Button.jsxts1/app/reuse/components1/ui/avatar/Avatar.jsxts1/app/reuse/components1/ui/avatar/AvatarText.jsxui/aapp/reuse/components1/ui/alert/Alert.jsxentsapp/reuse/components1/form/Select.jsxponeapp/reuse/components1/form/MultiSelect.jsxts1/app/reuse/components1/form/Label.jsxmponapp/reuse/components1/form/Form.jsxompoapp/reuse/components1/form/switch/Switch.jsx1/foapp/reuse/components1/form/input/Checkbox.jsx/forapp/reuse/components1/form/input/FileInput.jsxformapp/reuse/components1/form/input/InputField.jsxorm/app/reuse/components1/form/input/Radio.jsxts1/app/reuse/components1/form/input/RadioSm.jsx1/foapp/reuse/components1/form/input/TextArea.jsx/forapp/reuse/components1/form/group-input/PhoneInput.jsxoup-app/reuse/components1/form/form-elements/CheckboxComponents.jsxs/Chapp/reuse/components1/form/form-elements/DefaultInputs.jsxemenapp/reuse/components1/form/form-elements/DropZone.jsxrm-eapp/reuse/components1/form/form-elements/FileInputExample.jsxnts/app/reuse/components1/form/form-elements/InputGroup.jsx-eleapp/reuse/components1/form/form-elements/InputStates.jsxelemapp/reuse/components1/form/form-elements/RadioButtons.jsxlemeapp/reuse/components1/form/form-elements/SelectInputs.jsxlemeapp/reuse/components1/form/form-elements/TextAreaInput.jsxemenapp/reuse/components1/form/form-elements/ToggleSwitch.jsxlemeapp/reuse/components1/form/example-form/BasicForm.jsxamplapp/reuse/components1/form/example-form/ExampleFormOne.jsx-forapp/reuse/components1/form/example-form/ExampleFormTwo.jsx-forapp/reuse/components1/form/example-form/ExampleFormWithIcon.jsx/Exaapp/reuse/components1/common/ChartTab.jsxnts1app/reuse/components1/common/ComponentCard.jsxcommapp/reuse/components1/common/GridShape.jsxts1/app/reuse/components1/common/PageBreadCrumb.jsxommoapp/reuse/components1/common/ThemeToggleButton.jsxon/Tapp/reuse/components1/charts/line/LineChartOne.jsxts/lapp/reuse/components1/charts/bar/BarChartOne.jsxartsapp/reuse/components1/calendar/Calendar.jsxs1/capp/reuse/components1/auth/SignInForm.jsxnts1app/reuse/components1/auth/SignUpForm.jsxnts1/auth/SignUpForm.jsx", "app/components/icons/index.jsx"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
