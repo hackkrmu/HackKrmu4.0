@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['weapon']
+
+roboflow:
+  workspace: melody-nyea3
+  project: e_commerce_gun_detection
+  version: 5
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/melody-nyea3/e_commerce_gun_detection/dataset/5
