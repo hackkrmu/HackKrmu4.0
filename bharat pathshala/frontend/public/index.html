@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat UI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+        }
+
+        body {
+            background-color: grey;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+        }
+
+        .top-bar button {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .center-message {
+            text-align: center;
+            font-size: 24px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bottom-bar {
+            display: flex;
+            align-items: center;
+            background: #222;
+            padding: 10px;
+            border-top: 1px solid #444;
+        }
+
+        .bottom-bar input {
+            flex-grow: 1;
+            background: #333;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 20px;
+            margin: 0 10px;
+        }
+
+        .icon {
+            background: #444;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <button>Get Plus</button>
+        <div class="icon">⚪</div>
+    </div>
+
+    <div class="center-message">
+        What can I help with?
+    </div>
+
+    <div class="bottom-bar">
+        <div class="icon">➕</div>
+        <input type="text" placeholder="Message ChatGPT">
+        <div class="icon">🎤</div>
+    </div>
+
+</body>
+</html>
